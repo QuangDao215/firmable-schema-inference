@@ -1,0 +1,189 @@
+{
+ "holdout_rows": 800,
+ "holdout_note": "",
+ "rows_out": 800,
+ "failures": [],
+ "coverage": [
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "filled": 790,
+   "of_rows": 800,
+   "fill_rate": 0.988,
+   "claimed_confidence": 0.99,
+   "source_column_filled": 0.975
+  },
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Charity_Legal_Name",
+   "filled": 799,
+   "of_rows": 800,
+   "fill_rate": 0.999,
+   "claimed_confidence": 0.99,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.trading_name",
+   "source_field": "Other_Organisation_Names",
+   "filled": 104,
+   "of_rows": 800,
+   "fill_rate": 0.13,
+   "claimed_confidence": 0.85,
+   "source_column_filled": 0.105
+  },
+  {
+   "canonical_field": "entity.website",
+   "source_field": "Charity_Website",
+   "filled": 538,
+   "of_rows": 800,
+   "fill_rate": 0.672,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 0.623
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "source_field": "Registration_Date",
+   "filled": 798,
+   "of_rows": 800,
+   "fill_rate": 0.998,
+   "claimed_confidence": 0.98,
+   "source_column_filled": 0.998
+  },
+  {
+   "canonical_field": "address.locality",
+   "source_field": "Town_City",
+   "filled": 694,
+   "of_rows": 800,
+   "fill_rate": 0.868,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 0.875
+  },
+  {
+   "canonical_field": "address.state",
+   "source_field": "State",
+   "filled": 692,
+   "of_rows": 800,
+   "fill_rate": 0.865,
+   "claimed_confidence": 0.99,
+   "source_column_filled": 0.88
+  },
+  {
+   "canonical_field": "address.postcode",
+   "source_field": "Postcode",
+   "filled": 693,
+   "of_rows": 800,
+   "fill_rate": 0.866,
+   "claimed_confidence": 0.99,
+   "source_column_filled": 0.88
+  },
+  {
+   "canonical_field": "address.country",
+   "source_field": "Country",
+   "filled": 693,
+   "of_rows": 800,
+   "fill_rate": 0.866,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 0.853
+  }
+ ],
+ "serious_failures": 0,
+ "dead_fields": [],
+ "losing_values": [],
+ "needs_revision": false,
+ "sample_observations": [
+  {
+   "source_id": "acnc-registered-charities-b050b242",
+   "source_record_id": "865045c2257ae16b",
+   "observed_at": "2026-09-13T19:56:51.506354",
+   "ingested_at": "2026-09-19T16:53:14+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.95,
+    "field_confidence": {
+     "entity.abn": 0.99,
+     "entity.legal_name": 0.99,
+     "entity.website": 0.95,
+     "entity.date_registered": 0.98,
+     "address.locality": 0.95,
+     "address.state": 0.99,
+     "address.postcode": 0.99,
+     "address.country": 0.95
+    }
+   },
+   "valid_from": "2024-04-19",
+   "entity": {
+    "abn": "98676719663",
+    "legal_name": "AUTISTIC HAUS LIMITED",
+    "website": "www.autistic-haus.org.au",
+    "date_registered": "2024-04-19"
+   },
+   "address": {
+    "locality": "Zillmere",
+    "state": "QLD",
+    "postcode": "4034",
+    "country": "Australia"
+   }
+  },
+  {
+   "source_id": "acnc-registered-charities-b050b242",
+   "source_record_id": "1ba886328d064984",
+   "observed_at": "2026-09-13T19:56:51.506354",
+   "ingested_at": "2026-09-19T16:53:14+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.95,
+    "field_confidence": {
+     "entity.abn": 0.99,
+     "entity.legal_name": 0.99,
+     "entity.date_registered": 0.98,
+     "address.country": 0.95
+    }
+   },
+   "valid_from": "2024-09-06",
+   "entity": {
+    "abn": "57680566536",
+    "legal_name": "PROJECT AJR LTD",
+    "date_registered": "2024-09-06"
+   },
+   "address": {
+    "country": "Australia"
+   }
+  },
+  {
+   "source_id": "acnc-registered-charities-b050b242",
+   "source_record_id": "ada9f1e62c5bf4e9",
+   "observed_at": "2026-09-13T19:56:51.506354",
+   "ingested_at": "2026-09-19T16:53:14+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.95,
+    "field_confidence": {
+     "entity.abn": 0.99,
+     "entity.legal_name": 0.99,
+     "entity.website": 0.95,
+     "entity.date_registered": 0.98,
+     "address.locality": 0.95,
+     "address.state": 0.99,
+     "address.postcode": 0.99,
+     "address.country": 0.95
+    }
+   },
+   "valid_from": "2021-04-01",
+   "entity": {
+    "abn": "30589053959",
+    "legal_name": "Celebration of African Australians Inc",
+    "website": "www.celebrateafricanaustraliansact.org",
+    "date_registered": "2021-04-01"
+   },
+   "address": {
+    "locality": "Throsby",
+    "state": "ACT",
+    "postcode": "2914",
+    "country": "Australia"
+   }
+  }
+ ]
+}

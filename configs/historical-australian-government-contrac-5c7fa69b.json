@@ -1,0 +1,345 @@
+{
+ "config_version": "1.0",
+ "source_id": "historical-australian-government-contrac-5c7fa69b",
+ "generated_by": {
+  "agent_version": "0.1",
+  "model": "gemini-3.7-flash",
+  "generated_at": "23:53:53",
+  "revisions": 1,
+  "approved_by": "dao.lq",
+  "approved_at": "2026-09-19T23:56:52"
+ },
+ "resource": {
+  "url": "https://data.gov.au/data/dataset/5c7fa69b-b0e9-4553-b8df-2a022dd2e982/resource/06439664-bbcf-4118-a604-164006bffcaa/download/2019-20-australian-government-contract-data.xlsx",
+  "catalogue_format": "EXCEL (.XLSX)",
+  "real_format": "XLSX",
+  "encoding": "utf-8",
+  "header_row": 0,
+  "sheet": "2019-2020 Contract Notice Data"
+ },
+ "record_id": {
+  "strategy": "source_field",
+  "fields": [
+   "Contract ID"
+  ],
+  "note": "Contract ID is uniquely populated with 0% null rate across all records."
+ },
+ "observation": {
+  "licence": "Creative Commons Attribution 3.0 Australia",
+  "source_reliability": 0.85,
+  "observed_at": {
+   "from_field": "Publish Date",
+   "formats": [
+    "%Y-%m-%d %H:%M:%S"
+   ],
+   "note": "Publication date of the contract notice on AusTender.",
+   "fallback_constant": "2024-01-10T04:40:16.800937",
+   "fallback_source": "dataset metadata_modified from CKAN"
+  },
+  "valid_from": {
+   "from_field": "Start Date",
+   "formats": [
+    "%Y-%m-%d %H:%M:%S"
+   ],
+   "note": "Contract start date marking the beginning of the contractual period."
+  },
+  "valid_to": {
+   "from_field": "End Date",
+   "formats": [
+    "%Y-%m-%d %H:%M:%S"
+   ],
+   "note": "Contract end date marking the termination or conclusion of the contract term."
+  }
+ },
+ "field_mappings": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Supplier Name",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Supplier legal business name as recorded in government procurement notices."
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "Supplier ABN",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "abn_normalize"
+    }
+   ],
+   "field_confidence": 0.98,
+   "note": "Valid Australian Business Number verified by checksum."
+  },
+  {
+   "canonical_field": "address.full",
+   "source_field": "Supplier Address",
+   "transforms": [
+    {
+     "op": "concat",
+     "fields": [
+      "Supplier Address",
+      "Supplier Suburb",
+      "Supplier State",
+      "Supplier Postcode",
+      "Supplier Country"
+     ],
+     "separator": ", "
+    },
+    {
+     "op": "collapse_spaces"
+    },
+    {
+     "op": "strip"
+    }
+   ],
+   "field_confidence": 0.9,
+   "note": "Constructed full supplier address by concatenating street address, suburb, state, postcode, and country."
+  },
+  {
+   "canonical_field": "address.locality",
+   "source_field": "Supplier Suburb",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Supplier suburb / locality."
+  },
+  {
+   "canonical_field": "address.state",
+   "source_field": "Supplier State",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "state_normalize"
+    }
+   ],
+   "field_confidence": 0.98,
+   "note": "Supplier Australian state abbreviation normalized to ontology enum."
+  },
+  {
+   "canonical_field": "address.postcode",
+   "source_field": "Supplier Postcode",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "postcode_extract"
+    }
+   ],
+   "field_confidence": 0.98,
+   "note": "Supplier Australian four-digit postal code."
+  },
+  {
+   "canonical_field": "address.country",
+   "source_field": "Supplier Country",
+   "transforms": [
+    {
+     "op": "strip"
+    }
+   ],
+   "field_confidence": 0.98,
+   "note": "Supplier country name."
+  }
+ ],
+ "unmapped_source_fields": [
+  {
+   "source_field": "Agency Name",
+   "reason": "Procuring government agency, not the contracting entity itself."
+  },
+  {
+   "source_field": "Parent Contract ID",
+   "reason": "Contract administrative identifier, irrelevant to entity ontology."
+  },
+  {
+   "source_field": "Value",
+   "reason": "Contract procurement value, outside entity ontology scope."
+  },
+  {
+   "source_field": "Amendment Date",
+   "reason": "Contract amendment date metadata."
+  },
+  {
+   "source_field": "Amendment Start Date",
+   "reason": "Contract amendment date metadata."
+  },
+  {
+   "source_field": "Amendments Value",
+   "reason": "Contract amendment financial value."
+  },
+  {
+   "source_field": "Description",
+   "reason": "Description of contract procurement goods/services, not entity description."
+  },
+  {
+   "source_field": "Agency Ref ID",
+   "reason": "Internal procuring agency reference identifier."
+  },
+  {
+   "source_field": "UNSPSC Code",
+   "reason": "UNSPSC classification relates to procurement commodity/service category, not ANZSIC entity industry code."
+  },
+  {
+   "source_field": "UNSPSC Title",
+   "reason": "Commodity/service category title."
+  },
+  {
+   "source_field": "Procurement Method",
+   "reason": "Tender and procurement process metadata."
+  },
+  {
+   "source_field": "ATM ID",
+   "reason": "Approach to Market tender identifier."
+  },
+  {
+   "source_field": "SON ID",
+   "reason": "Standing Offer Notice identifier."
+  },
+  {
+   "source_field": "Panel Arrangement",
+   "reason": "Procurement panel arrangement flag."
+  },
+  {
+   "source_field": "Confidentiality Contract Flag",
+   "reason": "Contract confidentiality indicator."
+  },
+  {
+   "source_field": "Confidentiality Contract Reason",
+   "reason": "Contract confidentiality reason text."
+  },
+  {
+   "source_field": "Confidentiality Outputs Flag",
+   "reason": "Contract output confidentiality indicator."
+  },
+  {
+   "source_field": "Confidentiality Outputs Reason",
+   "reason": "Contract output confidentiality reason text."
+  },
+  {
+   "source_field": "Consultancy Flag",
+   "reason": "Consultancy classification indicator for contract."
+  },
+  {
+   "source_field": "Consultancy Reason",
+   "reason": "Reason for engaging consultancy services."
+  },
+  {
+   "source_field": "Amendment Reason",
+   "reason": "Reason for contract amendment."
+  },
+  {
+   "source_field": "Supplier ABN Exempt",
+   "reason": "Exemption flag for supplier ABN provision."
+  },
+  {
+   "source_field": "Contact Name",
+   "reason": "Procuring agency contact officer name."
+  },
+  {
+   "source_field": "Contact Phone",
+   "reason": "Procuring agency contact phone number."
+  },
+  {
+   "source_field": "Branch",
+   "reason": "Procuring agency internal branch."
+  },
+  {
+   "source_field": "Division",
+   "reason": "Procuring agency internal division."
+  },
+  {
+   "source_field": "Office Postcode",
+   "reason": "Postcode of the procuring government agency office, not the supplier."
+  },
+  {
+   "source_field": "Applicable Publish Date",
+   "reason": "Financial reporting version of publish date."
+  },
+  {
+   "source_field": "Applicable FY Year",
+   "reason": "Financial year categorization for reporting."
+  },
+  {
+   "source_field": "Applicable Value",
+   "reason": "Financial reporting contract value."
+  },
+  {
+   "source_field": "Duration Years",
+   "reason": "Computed duration of contract in years."
+  },
+  {
+   "source_field": "Applicable Start Date",
+   "reason": "Financial reporting contract start date."
+  }
+ ],
+ "unfilled_canonical_fields": [
+  {
+   "canonical_field": "entity.trading_name",
+   "reason": "Source dataset does not distinguish or supply trading names separately from supplier legal names."
+  },
+  {
+   "canonical_field": "entity.acn",
+   "reason": "Source dataset only records ABNs, not separate Australian Company Numbers."
+  },
+  {
+   "canonical_field": "entity.nzbn",
+   "reason": "Dataset contains Australian government procurement records; no NZBNs are present."
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "reason": "Entity legal structure type is not explicitly provided in contract notice records."
+  },
+  {
+   "canonical_field": "entity.status",
+   "reason": "Source contains contract records rather than entity registration status."
+  },
+  {
+   "canonical_field": "entity.website",
+   "reason": "No supplier web URLs are provided in the source dataset."
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "reason": "Source provides contract UNSPSC codes rather than ANZSIC industry codes for the supplier entity."
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "reason": "Original entity incorporation/registration dates are not included in procurement notices."
+  }
+ ],
+ "validation": {
+  "rows_tested": 800,
+  "rows_emitted": 800,
+  "failures": [
+   {
+    "canonical_field": "address.postcode",
+    "problem": "dropped a value the source had",
+    "count": 10,
+    "examples": [
+     "801",
+     "97219",
+     "OX2 6DP",
+     "FY1 9JN",
+     "60603",
+     "200"
+    ]
+   }
+  ]
+ }
+}

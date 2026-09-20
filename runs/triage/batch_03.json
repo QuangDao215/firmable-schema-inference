@@ -1,0 +1,193 @@
+{
+ "results": [
+  {
+   "dataset_id": "34b35c52-8af0-4cc1-aa0b-2278f6416d09",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "This dataset contains registry information for registered Australian charities."
+  },
+  {
+   "dataset_id": "2b977e4d-c765-4ce5-8088-65210a744add",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure reports contain details of transactions between government and suppliers."
+  },
+  {
+   "dataset_id": "e9114042-e12a-4590-a12a-7c2485e53fe5",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Tender and procurement datasets list specific supplier engagement events."
+  },
+  {
+   "dataset_id": "4766d2c1-7171-4270-90d8-d3fb7cbe12b1",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "This relates to upcoming tender opportunities which often involve potential business bidders."
+  },
+  {
+   "dataset_id": "57d6ae20-3139-44e0-92cb-a2e706a8eba0",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract registers list individual supplier contracts as events."
+  },
+  {
+   "dataset_id": "31203511-887c-4d44-96af-cad2c6cd05f1",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "A register of government contracts is inherently a list of contract events."
+  },
+  {
+   "dataset_id": "5c7fa69b-b0e9-4553-b8df-2a022dd2e982",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Historical AusTender records report specific government contract notices."
+  },
+  {
+   "dataset_id": "05495e07-b6c6-4c82-8be1-b468204e10c3",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "A historical contract register lists specific contractual agreements."
+  },
+  {
+   "dataset_id": "3e8e365c-99a5-4641-87b8-0e6b8e345193",
+   "record_grain": "aggregate",
+   "confidence": 0.6,
+   "likely_fields": [],
+   "reason": "The title indicates this is a report of statistics rather than a list of entities."
+  },
+  {
+   "dataset_id": "8792a410-dea1-4fc9-b783-b97f0fefc208",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Contract disclosure reports detail specific awards to suppliers."
+  },
+  {
+   "dataset_id": "c7ca97bd-c09a-4e1b-b48a-821d99105b69",
+   "record_grain": "entity",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "This is a list of approved businesses serving as storage suppliers."
+  },
+  {
+   "dataset_id": "339c0dab-13a6-499e-8e3b-3afcf2af8d9d",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Expenditure reports usually list individual payment events to contractors."
+  },
+  {
+   "dataset_id": "42dc292f-2d27-439f-add7-2d7cb8717af1",
+   "record_grain": "aggregate",
+   "confidence": 0.8,
+   "likely_fields": [],
+   "reason": "The resource names suggest these are summaries and internal administrative reports, not business registers."
+  },
+  {
+   "dataset_id": "ccb9f9d1-5e77-49f7-a78d-7475c3da5362",
+   "record_grain": "entity",
+   "confidence": 0.95,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Directly lists companies and their ABNs for a specific incentive program."
+  },
+  {
+   "dataset_id": "c2524c87-cea4-4636-acac-599a82048a26",
+   "record_grain": "entity",
+   "confidence": 0.95,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Publishes tax data per corporate entity."
+  },
+  {
+   "dataset_id": "38b4d146-5494-4271-b782-68c796044dac",
+   "record_grain": "aggregate",
+   "confidence": 0.8,
+   "likely_fields": [],
+   "reason": "This is an annual report containing statistics on solar generation capacity."
+  },
+  {
+   "dataset_id": "59fc9567-d322-4bbd-9888-25589c12593f",
+   "record_grain": "entity",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Enforcement registers identify specific businesses that have received regulatory action."
+  },
+  {
+   "dataset_id": "ab94e84b-114a-4b57-b497-725ad4ca975e",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "A recurring export of government contract notices listing individual contract awards."
+  },
+  {
+   "dataset_id": "bbaf3003-e64e-4b51-a0a5-f1b77469d7e1",
+   "record_grain": "aggregate",
+   "confidence": 0.9,
+   "likely_fields": [],
+   "reason": "This is a report of total taxation revenue, not a list of businesses."
+  },
+  {
+   "dataset_id": "19432f89-dc3a-4ef3-b943-5326ef1dbecc",
+   "record_grain": "unknown",
+   "confidence": 0.2,
+   "likely_fields": [
+    "address_full"
+   ],
+   "reason": "G-NAF is a list of addresses, not businesses, though it can be linked to them."
+  }
+ ],
+ "usage": {
+  "at": "2026-09-19T21:43:31",
+  "step": "triage_batch_3",
+  "model": "gemini-3.1-flash-lite",
+  "input_tokens": 4197,
+  "output_tokens": 2112,
+  "seconds": 7.17,
+  "usd": 0.004217
+ }
+}

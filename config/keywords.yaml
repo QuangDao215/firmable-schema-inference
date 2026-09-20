@@ -1,0 +1,115 @@
+# Words used by the cheap filter in stage A3. No model involved.
+# Weights are additive. Tune here, not in the code.
+
+# Words that almost always mean a named, identifiable business.
+# These map onto fields the ontology actually has.
+strong:
+  weight: 3.0
+  words:
+    - abn
+    - acn
+    - australian business number
+    - australian company number
+    - business name
+    - trading name
+    - legal name
+    - registered name
+    - company register
+    - business register
+    - australian business register
+    - licensee
+    - licence holder
+    - license holder
+    - permit holder
+    - contractor
+    - supplier
+    - tenderer
+    - employer
+    - entity name
+    - organisation name
+    - trading as
+
+# Words that often come with a business but sometimes do not.
+medium:
+  weight: 1.0
+  words:
+    - licence
+    - license
+    - permit
+    - approval
+    - accreditation
+    - accredited
+    - certified
+    - registration
+    - register
+    - contract
+    - tender
+    - procurement
+    - grant recipient
+    - prosecution
+    - inspection
+    - operator
+    - provider
+    - premises
+    - trading
+    - industry
+    - anzsic
+    - charity
+    - not-for-profit
+    - insolvency
+    - liquidation
+
+# Words that suggest the dataset is about the physical world, not businesses.
+negative:
+  weight: -2.0
+  words:
+    - rainfall
+    - temperature
+    - climate
+    - weather
+    - satellite
+    - bathymetry
+    - elevation
+    - topographic
+    - soil
+    - geology
+    - groundwater
+    - vegetation
+    - species
+    - biodiversity
+    - wildlife
+    - habitat
+    - marine park
+    - seismic
+    - bushfire severity
+    - air quality
+    - water quality
+    - land cover
+    - imagery
+    - orthophoto
+    - cadastre
+    - contour
+
+# Publishers who are in the business of recording businesses.
+publisher_bonus:
+  weight: 2.0
+  organisations:
+    - australian-securities-and-investments-commission
+    - australian-business-register
+    - australian-taxation-office
+    - australian-charities-and-not-for-profits-commission
+    - department-of-industry-science-and-resources
+    - safe-work-australia
+    - fair-work-ombudsman
+
+# Formats we can read records out of, scored by how easy they are.
+format_bonus:
+  CSV: 2.0
+  TSV: 2.0
+  XLSX: 1.5
+  XLS: 1.5
+  JSON: 1.5
+  GEOJSON: 1.0
+  XML: 1.0
+  ZIP: 0.5
+  TXT: 0.5

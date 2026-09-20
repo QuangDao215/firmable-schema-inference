@@ -1,0 +1,1378 @@
+{
+ "columns_profiled": 43,
+ "rows_sampled": 400,
+ "columns": [
+  {
+   "name": "Agency Name",
+   "index": 0,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 5,
+   "distinct_is_capped": false,
+   "max_length": 31,
+   "examples": [
+    "Administrative Appeals Tribunal",
+    "Department of Defence",
+    "Australian Bureau of Statistics",
+    "Services Australia",
+    "Department of Health"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Administrative Appeals Tribunal",
+    "Australian Bureau of Statistics",
+    "Department of Defence",
+    "Department of Health",
+    "Services Australia"
+   ]
+  },
+  {
+   "name": "Parent Contract ID",
+   "index": 1,
+   "filled": 90,
+   "of_rows": 400,
+   "null_rate": 0.775,
+   "distinct": 70,
+   "distinct_is_capped": false,
+   "max_length": 9,
+   "examples": [
+    "CN3434272",
+    "CN3444680",
+    "CN3431305",
+    "CN3445511",
+    "CN3436931",
+    "CN3445162",
+    "CN3684684",
+    "CN3583008"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Contract ID",
+   "index": 2,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 400,
+   "distinct_is_capped": false,
+   "max_length": 12,
+   "examples": [
+    "CN3620990",
+    "CN3602517-A1",
+    "CN3671573",
+    "CN3648860",
+    "CN3591066-A1",
+    "CN3606106",
+    "CN3661660",
+    "CN3669641"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Publish Date",
+   "index": 3,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 58,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2020-03-31 00:00:00",
+    "2020-06-11 00:00:00",
+    "2019-11-04 00:00:00",
+    "2019-12-23 00:00:00",
+    "2020-02-24 00:00:00",
+    "2019-07-31 00:00:00",
+    "2019-07-01 00:00:00",
+    "2019-08-28 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Start Date",
+   "index": 4,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 200,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2019-07-01 00:00:00",
+    "2018-07-01 00:00:00",
+    "2015-07-01 00:00:00",
+    "2016-07-01 00:00:00",
+    "2019-06-27 00:00:00",
+    "2019-09-16 00:00:00",
+    "2017-07-01 00:00:00",
+    "2020-01-06 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "End Date",
+   "index": 5,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 168,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2020-06-30 00:00:00",
+    "2019-06-30 00:00:00",
+    "2020-09-30 00:00:00",
+    "2020-10-31 00:00:00",
+    "2019-12-31 00:00:00",
+    "2021-06-30 00:00:00",
+    "2020-03-20 00:00:00",
+    "2020-03-27 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Value",
+   "index": 6,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 380,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "26400",
+    "36203",
+    "70000",
+    "82500",
+    "19800",
+    "12375",
+    "150150",
+    "68200"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.007,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y%m%d",
+      "share": 0.015
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Amendment Date",
+   "index": 7,
+   "filled": 90,
+   "of_rows": 400,
+   "null_rate": 0.775,
+   "distinct": 27,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2019-07-31 00:00:00",
+    "2020-06-11 00:00:00",
+    "2020-01-16 00:00:00",
+    "2020-01-15 00:00:00",
+    "2019-07-30 00:00:00",
+    "2020-05-21 00:00:00",
+    "2020-05-25 00:00:00",
+    "2019-07-25 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Amendment Start Date",
+   "index": 8,
+   "filled": 90,
+   "of_rows": 400,
+   "null_rate": 0.775,
+   "distinct": 34,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2019-07-01 00:00:00",
+    "2019-01-01 00:00:00",
+    "2018-07-01 00:00:00",
+    "2020-05-25 00:00:00",
+    "2020-04-01 00:00:00",
+    "2020-05-01 00:00:00",
+    "2019-06-01 00:00:00",
+    "2020-05-22 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Amendments Value",
+   "index": 9,
+   "filled": 90,
+   "of_rows": 400,
+   "null_rate": 0.775,
+   "distinct": 90,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "648000",
+    "13263.55",
+    "149749.28",
+    "83685.95",
+    "1585053.39",
+    "38165.83",
+    "24763.2",
+    "1481825.02"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.022,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y%m%d",
+      "share": 0.067
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Description",
+   "index": 10,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 276,
+   "distinct_is_capped": false,
+   "max_length": 212,
+   "examples": [
+    "Labour Hire Contractor",
+    "Labour Hire Contractors",
+    "Labour hire contractor",
+    "Labour hire contractors",
+    "Engagement of Enterprise Architect Advisor",
+    "Project Manager - Labour Hire",
+    "Colliers Project Mangement -AAT MELB,PERTH,CANBER",
+    "Labour Hire Staff"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Agency Ref ID",
+   "index": 11,
+   "filled": 307,
+   "of_rows": 400,
+   "null_rate": 0.233,
+   "distinct": 258,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "4500000520",
+    "4500000313",
+    "4500000324",
+    "4500000408",
+    "4500000478",
+    "4500000522",
+    "4500000352",
+    "4500000487"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.993,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "UNSPSC Code",
+   "index": 12,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 63,
+   "distinct_is_capped": false,
+   "max_length": 8,
+   "examples": [
+    "80111600",
+    "43230000",
+    "80131500",
+    "80101507",
+    "81112200",
+    "80101510",
+    "80101504",
+    "80101600"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y%m%d",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "UNSPSC Title",
+   "index": 13,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 63,
+   "distinct_is_capped": false,
+   "max_length": 87,
+   "examples": [
+    "Temporary personnel services",
+    "Software",
+    "Lease and rental of property or building",
+    "Information technology consultation services",
+    "Software maintenance and support",
+    "Risk management consultation services",
+    "Strategic planning consultation services",
+    "Project management"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Procurement Method",
+   "index": 14,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "Open tender",
+    "Limited tender",
+    "Prequalified tender"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Limited tender",
+    "Open tender",
+    "Prequalified tender"
+   ]
+  },
+  {
+   "name": "ATM ID",
+   "index": 15,
+   "filled": 4,
+   "of_rows": 400,
+   "null_rate": 0.99,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 17,
+   "examples": [
+    "RFT 1000413061",
+    "RFT20000551",
+    "FIN14BPAM1961-RFT"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "FIN14BPAM1961-RFT",
+    "RFT 1000413061",
+    "RFT20000551"
+   ]
+  },
+  {
+   "name": "SON ID",
+   "index": 16,
+   "filled": 10,
+   "of_rows": 400,
+   "null_rate": 0.975,
+   "distinct": 9,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "SON2917812",
+    "SON3520963",
+    "SON3393682",
+    "SON3403954",
+    "SON473022",
+    "SON2768152",
+    "SON3328191",
+    "SON1142512"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "SON1142512",
+    "SON2768152",
+    "SON2917812",
+    "SON3328191",
+    "SON3393682",
+    "SON3403954",
+    "SON3520963",
+    "SON3541738",
+    "SON473022"
+   ]
+  },
+  {
+   "name": "Panel Arrangement",
+   "index": 17,
+   "filled": 10,
+   "of_rows": 400,
+   "null_rate": 0.975,
+   "distinct": 2,
+   "distinct_is_capped": false,
+   "max_length": 3,
+   "examples": [
+    "Yes",
+    "No"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "No",
+    "Yes"
+   ]
+  },
+  {
+   "name": "Confidentiality Contract Flag",
+   "index": 18,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 2,
+   "examples": [
+    "No"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "No"
+   ]
+  },
+  {
+   "name": "Confidentiality Contract Reason",
+   "index": 19,
+   "filled": 0,
+   "of_rows": 400,
+   "null_rate": 1.0,
+   "distinct": 0,
+   "distinct_is_capped": false,
+   "max_length": 0,
+   "examples": [],
+   "looks_like": {},
+   "all_values": null
+  },
+  {
+   "name": "Confidentiality Outputs Flag",
+   "index": 20,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 2,
+   "examples": [
+    "No"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "No"
+   ]
+  },
+  {
+   "name": "Confidentiality Outputs Reason",
+   "index": 21,
+   "filled": 0,
+   "of_rows": 400,
+   "null_rate": 1.0,
+   "distinct": 0,
+   "distinct_is_capped": false,
+   "max_length": 0,
+   "examples": [],
+   "looks_like": {},
+   "all_values": null
+  },
+  {
+   "name": "Consultancy Flag",
+   "index": 22,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 2,
+   "distinct_is_capped": false,
+   "max_length": 3,
+   "examples": [
+    "No",
+    "Yes"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "No",
+    "Yes"
+   ]
+  },
+  {
+   "name": "Consultancy Reason",
+   "index": 23,
+   "filled": 31,
+   "of_rows": 400,
+   "null_rate": 0.922,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 43,
+   "examples": [
+    "Need for independent research or assessment",
+    "Skills currently unavailable within agency",
+    "Need for specialised or professional skills"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Need for independent research or assessment",
+    "Need for specialised or professional skills",
+    "Skills currently unavailable within agency"
+   ]
+  },
+  {
+   "name": "Amendment Reason",
+   "index": 24,
+   "filled": 90,
+   "of_rows": 400,
+   "null_rate": 0.775,
+   "distinct": 54,
+   "distinct_is_capped": false,
+   "max_length": 60,
+   "examples": [
+    "Based on actual costs",
+    "Amend the price based on new period",
+    "Change category",
+    "Amend the price based on period",
+    "Amend the price with new period",
+    "Change Category",
+    "Based on actual payment",
+    "Lease extension"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Supplier Name",
+   "index": 25,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 178,
+   "distinct_is_capped": false,
+   "max_length": 39,
+   "examples": [
+    "HAYS PERSONNEL SERVICES (AUST) P/L",
+    "DATA #3 LIMITED",
+    "LAUNCH RECRUITMENT PTY LTD",
+    "GREYTHORN PTY LTD",
+    "NORTHPOINT CONSULTING PTY LTD",
+    "EPIQ AUSTRALIA PTY LTD",
+    "COLLIERS INTERNATIONAL PROJECT SERV",
+    "DIGITAL TRANSFORMATION AGENCY"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Supplier Address",
+   "index": 26,
+   "filled": 334,
+   "of_rows": 400,
+   "null_rate": 0.165,
+   "distinct": 134,
+   "distinct_is_capped": false,
+   "max_length": 35,
+   "examples": [
+    "GPO BOX 3868",
+    "PO BOX 551",
+    "LEVEL 10 1 CASTLEREAGH STREET",
+    "LEVEL 22, TOWER 2, 210 SUSSEX ST",
+    "LV35 TOWER 1/100 BARANGAROO AV",
+    "LV 30 225 GEORGE ST",
+    "9880 GPO BOX",
+    "PO BOX 2076"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Supplier Suburb",
+   "index": 27,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 95,
+   "distinct_is_capped": false,
+   "max_length": 27,
+   "examples": [
+    "SYDNEY",
+    "Sydney",
+    "INDOOROOPILLY",
+    "Melbourne",
+    "MELBOURNE",
+    "CANBERRA",
+    "NORTH RYDE",
+    "Brisbane"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Supplier Postcode",
+   "index": 28,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 92,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "2000",
+    "2001",
+    "3000",
+    "4068",
+    "2601",
+    "4000",
+    "2060",
+    "1670"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 1.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Supplier State",
+   "index": 29,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 7,
+   "distinct_is_capped": false,
+   "max_length": 3,
+   "examples": [
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT",
+    "WA",
+    "SA",
+    "TAS"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 1.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "ACT",
+    "NSW",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA"
+   ]
+  },
+  {
+   "name": "Supplier Country",
+   "index": 30,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 2,
+   "distinct_is_capped": false,
+   "max_length": 9,
+   "examples": [
+    "Australia",
+    "AUSTRALIA"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "AUSTRALIA",
+    "Australia"
+   ]
+  },
+  {
+   "name": "Supplier ABN Exempt",
+   "index": 31,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 2,
+   "distinct_is_capped": false,
+   "max_length": 3,
+   "examples": [
+    "No",
+    "Yes"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "No",
+    "Yes"
+   ]
+  },
+  {
+   "name": "Supplier ABN",
+   "index": 32,
+   "filled": 399,
+   "of_rows": 400,
+   "null_rate": 0.002,
+   "distinct": 160,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "47001407281",
+    "31010545267",
+    "54119140840",
+    "57071352031",
+    "95088011536",
+    "98618986977",
+    "85120213381",
+    "35004609616"
+   ],
+   "looks_like": {
+    "abn_valid": 1.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Contact Name",
+   "index": 33,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 13,
+   "distinct_is_capped": false,
+   "max_length": 31,
+   "examples": [
+    "PROCUREMENT OFFICER",
+    "Procurement Officer",
+    "Ojas Bhatt",
+    "Procurement officer",
+    "Procurement team",
+    "Procurement",
+    "MICHAEL BINNINGTON",
+    "Army Forces Command"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Administrative Appeals Tribunal",
+    "Army Forces Command",
+    "BMU",
+    "Director, procurement",
+    "MICHAEL BINNINGTON",
+    "Neil Mackenzie",
+    "Ojas Bhatt",
+    "PROCUREMENT OFFICER",
+    "PURCHASING HELPDESK",
+    "Procurement",
+    "Procurement Officer",
+    "Procurement officer",
+    "Procurement team"
+   ]
+  },
+  {
+   "name": "Contact Phone",
+   "index": 34,
+   "filled": 310,
+   "of_rows": 400,
+   "null_rate": 0.225,
+   "distinct": 6,
+   "distinct_is_capped": false,
+   "max_length": 14,
+   "examples": [
+    "(03)9454 6100",
+    "03 86264937",
+    "(07) 3361 3063",
+    "0",
+    "1800 906 144",
+    "02 6289 4977"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.003,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "(03)9454 6100",
+    "(07) 3361 3063",
+    "0",
+    "02 6289 4977",
+    "03 86264937",
+    "1800 906 144"
+   ]
+  },
+  {
+   "name": "Branch",
+   "index": 35,
+   "filled": 303,
+   "of_rows": 400,
+   "null_rate": 0.243,
+   "distinct": 4,
+   "distinct_is_capped": false,
+   "max_length": 63,
+   "examples": [
+    "Administrative Appeals Tribunal Administrative Appeals Tribunal",
+    "Army Forces Command",
+    "DHS Branch",
+    "AAT"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "AAT",
+    "Administrative Appeals Tribunal Administrative Appeals Tribunal",
+    "Army Forces Command",
+    "DHS Branch"
+   ]
+  },
+  {
+   "name": "Division",
+   "index": 36,
+   "filled": 304,
+   "of_rows": 400,
+   "null_rate": 0.24,
+   "distinct": 5,
+   "distinct_is_capped": false,
+   "max_length": 38,
+   "examples": [
+    "AAT Administrative Appeals Tribunal",
+    "ARMY HEADQUARTERS",
+    "DHS Division",
+    "Cancer Hearing and Program Support DIV",
+    "AAT"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "AAT",
+    "AAT Administrative Appeals Tribunal",
+    "ARMY HEADQUARTERS",
+    "Cancer Hearing and Program Support DIV",
+    "DHS Division"
+   ]
+  },
+  {
+   "name": "Office Postcode",
+   "index": 37,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 7,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "4000",
+    "3000",
+    "2000",
+    "2021",
+    "2617",
+    "2900",
+    "2606"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 1.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "2000",
+    "2021",
+    "2606",
+    "2617",
+    "2900",
+    "3000",
+    "4000"
+   ]
+  },
+  {
+   "name": "Applicable Publish Date",
+   "index": 38,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 40,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2020-06-11 00:00:00",
+    "2020-03-31 00:00:00",
+    "2019-11-04 00:00:00",
+    "2019-07-31 00:00:00",
+    "2019-07-01 00:00:00",
+    "2019-12-23 00:00:00",
+    "2020-02-24 00:00:00",
+    "2019-08-28 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Applicable FY Year",
+   "index": 39,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "2020"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 1.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "2020"
+   ]
+  },
+  {
+   "name": "Applicable Value",
+   "index": 40,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 380,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "26400",
+    "36203",
+    "70000",
+    "82500",
+    "19800",
+    "12375",
+    "150150",
+    "68200"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.007,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y%m%d",
+      "share": 0.015
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Duration Years",
+   "index": 41,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 200,
+   "distinct_is_capped": false,
+   "max_length": 20,
+   "examples": [
+    "0.08333333333333333",
+    "0.9166666666666666",
+    "0.4361111111111111",
+    "0.6555555555555556",
+    "0.25",
+    "0.05277777777777778",
+    "0.45555555555555555",
+    "0.4583333333333333"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Applicable Start Date",
+   "index": 42,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 190,
+   "distinct_is_capped": false,
+   "max_length": 19,
+   "examples": [
+    "2019-07-01 00:00:00",
+    "2019-01-01 00:00:00",
+    "2018-07-01 00:00:00",
+    "2019-06-27 00:00:00",
+    "2019-09-16 00:00:00",
+    "2020-01-06 00:00:00",
+    "2020-03-20 00:00:00",
+    "2020-04-01 00:00:00"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y-%m-%d %H:%M:%S",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+# Settings for the whole pipeline. Change things here, not in the code.
+
+catalogue:
+  base_url: "https://data.gov.au/data/api/3/action"
+  rows_per_page: 100
+  timeout_seconds: 60
+  polite_delay_seconds: 0.5
+  max_retries: 3
+
+  # Only ask CKAN for datasets that have a resource we can actually parse.
+  # This runs on the server, so PDF-only and web-page-only datasets never
+  # reach us. See DESIGN.md entry 13.
+  format_filter: "res_format:(CSV OR TSV OR XLSX OR XLS OR JSON OR GEOJSON OR XML OR ZIP)"
+
+  records_per_query: 60
+
+  # Channel 1. Free-text search over dataset title, description and tags.
+  # These are the terms an engineer who knows the domain would search for.
+  queries:
+    - "abn"
+    - "business names"
+    - "company register"
+    - "licensed contractors"
+    - "building approvals"
+    - "procurement contracts"
+    - "liquor licences"
+    - "food business register"
+    - "trade licences"
+    - "workplace safety prosecutions"
+    - "charities register"
+    - "government tenders awarded"
+
+  # Channel 2. Search the names of the files themselves, not the dataset page.
+  # A dataset called "Annual Report 2023" can still ship a file called
+  # "licensed_contractors.csv". Channel 1 misses those. See DESIGN.md entry 14.
+  resource_records_per_query: 40
+  resource_queries:
+    - "name:abn"
+    - "name:business"
+    - "name:licence"
+    - "name:licensee"
+    - "name:contractor"
+    - "name:supplier"
+    - "name:permit"
+    - "name:register"
+
+  # How many datasets the model triage step reads, and how many end up on the
+  # shortlist. The assignment asks for 50. No score threshold anywhere: we rank
+  # and take the top k.
+  candidate_pool: 120
+  shortlist_size: 50
+
+models:
+  # gemini-2.5-flash-lite is cheaper on paper but returns 404 for new API
+  # keys. See DESIGN.md entry 11. This is the cheapest one we can use.
+  triage: "gemini-3.1-flash-lite"
+  mapping: "gemini-3.7-flash"
+
+# USD per 1 million tokens, paid tier. Read off
+# https://ai.google.dev/gemini-api/docs/pricing on 2026-09-19.
+# Every call we make is priced with this table, so the cost figures in the
+# write-up are computed, not estimated.
+prices:
+  gemini-3.1-flash-lite:
+    input: 0.25
+    output: 1.50
+  gemini-3.5-flash-lite:
+    input: 0.30
+    output: 2.50
+  gemini-2.5-flash-lite:
+    # Listed for reference. Not available to new API keys.
+    input: 0.10
+    output: 0.40
+  gemini-3.7-flash:
+    # Promotional price, ends 2026-12-31. After that: 1.50 / 7.50.
+    input: 0.75
+    output: 3.75
+  gemini-3.8-flash:
+    input: 0.75
+    output: 3.75
+  gemini-2.5-flash:
+    input: 0.30
+    output: 2.50
+
+paths:
+  raw_catalogue: "data/raw/catalogue"
+  interim: "data/interim"
+  outputs: "outputs"
+  runs: "runs"
+  configs: "configs"

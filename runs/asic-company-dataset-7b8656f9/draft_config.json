@@ -1,0 +1,209 @@
+{
+ "record_id": {
+  "strategy": "hash_of_fields",
+  "fields": [
+   "ACN",
+   "Company Name"
+  ],
+  "note": "ACN alone is not unique because the dataset includes historical name records per company."
+ },
+ "observed_at": {
+  "from_field": "",
+  "formats": [],
+  "note": "No observation timestamp is present in the source records."
+ },
+ "valid_from": {
+  "from_field": "Date of Registration",
+  "formats": [
+   "%d/%m/%Y"
+  ],
+  "note": "Date when the company was legally registered."
+ },
+ "valid_to": {
+  "from_field": "Date of Deregistration",
+  "formats": [
+   "%d/%m/%Y"
+  ],
+  "note": "Date when the company was deregistered, if applicable."
+ },
+ "source_reliability": 0.98,
+ "field_mappings": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Company Name",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Primary registered entity name."
+  },
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Current Name",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Current legal name of the entity."
+  },
+  {
+   "canonical_field": "entity.acn",
+   "source_field": "ACN",
+   "transforms": [
+    {
+     "op": "acn_normalize"
+    }
+   ],
+   "field_confidence": 1.0,
+   "note": "Australian Company Number validated with checksum."
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "transforms": [
+    {
+     "op": "null_if",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "op": "abn_normalize"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Australian Business Number validated with checksum."
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "source_field": "Type",
+   "transforms": [
+    {
+     "op": "map_values",
+     "mapping": {
+      "APTY": "company",
+      "APUB": "company",
+      "FNOS": "company"
+     },
+     "default": "unknown"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Maps ASIC company types (APTY, APUB, FNOS) to canonical entity_type."
+  },
+  {
+   "canonical_field": "entity.status",
+   "source_field": "Status",
+   "transforms": [
+    {
+     "op": "map_values",
+     "mapping": {
+      "REGD": "active",
+      "DRGD": "deregistered",
+      "EXAD": "in_liquidation"
+     },
+     "default": "unknown"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Maps ASIC company status codes to canonical status."
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "source_field": "Date of Registration",
+   "transforms": [
+    {
+     "op": "parse_date",
+     "formats": [
+      "%d/%m/%Y"
+     ]
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Registration date parsed to ISO format."
+  }
+ ],
+ "unmapped_source_fields": [
+  {
+   "source_field": "Class",
+   "reason": "Internal ASIC company structure classification not represented in canonical ontology."
+  },
+  {
+   "source_field": "Sub Class",
+   "reason": "Internal ASIC company structure sub-classification not represented in canonical ontology."
+  },
+  {
+   "source_field": "Date of Deregistration",
+   "reason": "Mapped to valid_to metadata rather than an entity attribute."
+  },
+  {
+   "source_field": "Previous State of Registration",
+   "reason": "Refers to historical state corporate registry, not physical or registered business address state."
+  },
+  {
+   "source_field": "State Registration number",
+   "reason": "Historical pre-ACN state registration identifier."
+  },
+  {
+   "source_field": "Modified since last report",
+   "reason": "Empty dataset export change-tracking flag."
+  },
+  {
+   "source_field": "Current Name Indicator",
+   "reason": "Indicator flag distinguishing current vs previous names, not a canonical field."
+  },
+  {
+   "source_field": "Current Name Start Date",
+   "reason": "Effective date of current name change, not represented in canonical ontology."
+  }
+ ],
+ "unfilled_canonical_fields": [
+  {
+   "canonical_field": "entity.trading_name",
+   "reason": "Source only contains registered corporate legal names, not trading names."
+  },
+  {
+   "canonical_field": "entity.nzbn",
+   "reason": "Dataset covers Australian entities; New Zealand Business Number is not applicable."
+  },
+  {
+   "canonical_field": "entity.website",
+   "reason": "Entity website URL is not captured in this ASIC registry dataset."
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "reason": "Industry/ANZSIC classification codes are not provided in this extract."
+  },
+  {
+   "canonical_field": "address.full",
+   "reason": "No address fields are present in this dataset."
+  },
+  {
+   "canonical_field": "address.locality",
+   "reason": "No locality data is present in this dataset."
+  },
+  {
+   "canonical_field": "address.state",
+   "reason": "Only historical state of registration is present, not entity address state."
+  },
+  {
+   "canonical_field": "address.postcode",
+   "reason": "No postcode data is present in this dataset."
+  },
+  {
+   "canonical_field": "address.country",
+   "reason": "No country address data is present in this dataset."
+  }
+ ],
+ "_unpack_problems": []
+}

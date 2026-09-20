@@ -1,0 +1,233 @@
+{
+ "results": [
+  {
+   "dataset_id": "5bd7fcab-e315-42cb-8daf-50b7efc2027e",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "trading_name",
+    "abn",
+    "entity_type",
+    "status"
+   ],
+   "reason": "This is a bulk extract of registered Australian businesses from the Australian Business Register."
+  },
+  {
+   "dataset_id": "7b8656f9-606d-4337-af29-66b89b2eeefb",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "acn",
+    "status",
+    "date_registered"
+   ],
+   "reason": "This dataset tracks companies registered with the Australian Securities and Investments Commission."
+  },
+  {
+   "dataset_id": "fa0b0d71-b8b8-4af8-bc59-0b000ce0d5e4",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "abn",
+    "status",
+    "address_full"
+   ],
+   "reason": "This identifies businesses specifically holding Australian credit licences."
+  },
+  {
+   "dataset_id": "42f46baa-b642-48b2-9f26-fc24d09d9320",
+   "record_grain": "aggregate",
+   "confidence": 0.1,
+   "likely_fields": [
+    "industry_code"
+   ],
+   "reason": "This provides industry-level summaries of registrations rather than individual business records."
+  },
+  {
+   "dataset_id": "1ca29b03-220d-4c19-b34e-c7932cd4508d",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contains identifying information for individual Victorian government schools."
+  },
+  {
+   "dataset_id": "3a3661a8-ee5d-4165-be5c-018634ca7202",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "abn",
+    "trading_name",
+    "status"
+   ],
+   "reason": "This service provides access to individual entity records from the Australian Business Register."
+  },
+  {
+   "dataset_id": "bc515135-4bb6-4d50-957a-3713709a76d3",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "trading_name",
+    "abn",
+    "status"
+   ],
+   "reason": "This lists business names registered with ASIC, which are entities or business activities."
+  },
+  {
+   "dataset_id": "ab7eddce-84df-4098-bc8f-500d0d9776d1",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "postcode",
+    "status"
+   ],
+   "reason": "Contains details of individual Australian Financial Services Licensees."
+  },
+  {
+   "dataset_id": "a7bbbf64-e2ef-4d96-9fb4-0aea73ada2af",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "status",
+    "address_full"
+   ],
+   "reason": "Identifies individuals or firms acting as authorised representatives for financial services."
+  },
+  {
+   "dataset_id": "a3b6d445-3a00-409a-8b49-53dc62b823bf",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "status"
+   ],
+   "reason": "Tracks individual credit representatives authorised under financial services legislation."
+  },
+  {
+   "dataset_id": "a265ef83-1190-4c63-ac51-a0ca3966c666",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state"
+   ],
+   "reason": "A register of specific liquor licence holders in Victoria."
+  },
+  {
+   "dataset_id": "a5fde808-ba32-4cee-bfcb-fbb3afa56a28",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "status"
+   ],
+   "reason": "Lists specific individuals or organisations that are banned or disqualified by ASIC."
+  },
+  {
+   "dataset_id": "f2b7c2c1-f4ef-4ae9-aba5-45c19e4d3038",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "status"
+   ],
+   "reason": "Identifies individual financial advisers registered with ASIC."
+  },
+  {
+   "dataset_id": "37390371-9da4-42d8-9304-649c50090611",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "status"
+   ],
+   "reason": "Provides a register of individual registered auditors for self-managed super funds."
+  },
+  {
+   "dataset_id": "8a1ad782-3d60-4c34-8cd8-f11c031947b7",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "A registry of specific businesses compliant with the Fair Jobs Code."
+  },
+  {
+   "dataset_id": "297dfb0e-3b94-433b-be64-3bb0905e28a4",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "trading_name",
+    "address_full",
+    "postcode"
+   ],
+   "reason": "Contains records for individual liquor licence venues in NSW."
+  },
+  {
+   "dataset_id": "c6f35652-d145-478a-8c54-11ce5db4dd16",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "status"
+   ],
+   "reason": "Lists individual liquor licence premises in NSW."
+  },
+  {
+   "dataset_id": "553b3049-2b8b-46a2-95e6-640d7986a8c1",
+   "record_grain": "event",
+   "confidence": 0.2,
+   "likely_fields": [
+    "address_full",
+    "locality",
+    "state",
+    "postcode"
+   ],
+   "reason": "Describes locations of toilets, not businesses, though some may be business-affiliated."
+  },
+  {
+   "dataset_id": "2f40102e-1ea3-4b13-bbff-f217435ce992",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "trading_name",
+    "address_full",
+    "locality"
+   ],
+   "reason": "Business establishments are identified by trading name and address within this City of Melbourne dataset."
+  },
+  {
+   "dataset_id": "cc83c07e-b7ee-47f3-80f5-106014e8ca46",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "trading_name",
+    "address_full",
+    "locality"
+   ],
+   "reason": "Contains business establishments with their trading names and addresses."
+  }
+ ],
+ "usage": {
+  "at": "2026-09-19T21:43:17",
+  "step": "triage_batch_1",
+  "model": "gemini-3.1-flash-lite",
+  "input_tokens": 4580,
+  "output_tokens": 2115,
+  "seconds": 8.59,
+  "usd": 0.004318
+ }
+}

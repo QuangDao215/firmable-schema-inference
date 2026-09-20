@@ -1,0 +1,410 @@
+{
+ "record_id": {
+  "strategy": "hash_of_fields",
+  "fields": [
+   "Charity_Legal_Name",
+   "ABN"
+  ],
+  "note": "ABN has missing values (2.5%), so hashing Charity_Legal_Name with ABN ensures a unique, persistent identifier."
+ },
+ "observed_at": {
+  "from_field": "",
+  "formats": [],
+  "note": "Source does not provide an extraction or snapshot timestamp."
+ },
+ "valid_from": {
+  "from_field": "Registration_Date",
+  "formats": [
+   "%d/%m/%Y"
+  ],
+  "note": "Charity registration date signifies when the registration became legally effective."
+ },
+ "valid_to": {
+  "from_field": "",
+  "formats": [],
+  "note": "No deregistration or expiry date column is present in this register."
+ },
+ "source_reliability": 0.95,
+ "field_mappings": [
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "transforms": [
+    {
+     "op": "abn_normalize"
+    }
+   ],
+   "field_confidence": 0.99,
+   "note": "Australian Business Number validated against the 11-digit checksum algorithm."
+  },
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Charity_Legal_Name",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.99,
+   "note": "Primary registered legal name of the charity."
+  },
+  {
+   "canonical_field": "entity.trading_name",
+   "source_field": "Other_Organisation_Names",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.85,
+   "note": "Alternate or operating business name."
+  },
+  {
+   "canonical_field": "entity.website",
+   "source_field": "Charity_Website",
+   "transforms": [
+    {
+     "op": "strip"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Official website URL of the charity organisation."
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "source_field": "Registration_Date",
+   "transforms": [
+    {
+     "op": "parse_date",
+     "formats": [
+      "%d/%m/%Y"
+     ]
+    }
+   ],
+   "field_confidence": 0.98,
+   "note": "Official date of registration with the regulator."
+  },
+  {
+   "canonical_field": "address.locality",
+   "source_field": "Town_City",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Town or city name of the charity address."
+  },
+  {
+   "canonical_field": "address.state",
+   "source_field": "State",
+   "transforms": [
+    {
+     "op": "state_normalize"
+    }
+   ],
+   "field_confidence": 0.99,
+   "note": "Australian state code normalized to enum values."
+  },
+  {
+   "canonical_field": "address.postcode",
+   "source_field": "Postcode",
+   "transforms": [
+    {
+     "op": "postcode_extract"
+    }
+   ],
+   "field_confidence": 0.99,
+   "note": "Australian 4-digit postal code."
+  },
+  {
+   "canonical_field": "address.country",
+   "source_field": "Country",
+   "transforms": [
+    {
+     "op": "strip"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Country name of the charity address."
+  }
+ ],
+ "unmapped_source_fields": [
+  {
+   "source_field": "Address_Type",
+   "reason": "Metadata indicating the classification of the address, not part of canonical address schema."
+  },
+  {
+   "source_field": "Address_Line_1",
+   "reason": "Discrete street address line omitted in favor of structured components as address.full requires complete composite string."
+  },
+  {
+   "source_field": "Address_Line_2",
+   "reason": "Secondary address line omitted in favor of structured components."
+  },
+  {
+   "source_field": "Address_Line_3",
+   "reason": "Tertiary address line omitted in favor of structured components."
+  },
+  {
+   "source_field": "Date_Organisation_Established",
+   "reason": "Date founded/established prior to regulator registration; does not map to canonical date_registered."
+  },
+  {
+   "source_field": "Charity_Size",
+   "reason": "Financial reporting size tier (Small, Medium, Large) not modeled in canonical entity ontology."
+  },
+  {
+   "source_field": "Number_of_Responsible_Persons",
+   "reason": "Governance count metric outside entity core attributes."
+  },
+  {
+   "source_field": "Financial_Year_End",
+   "reason": "Accounting cycle date not represented in canonical entity schema."
+  },
+  {
+   "source_field": "Operates_in_ACT",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_NSW",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_NT",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_QLD",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_SA",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_TAS",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_VIC",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operates_in_WA",
+   "reason": "Operational jurisdiction flag not modeled in canonical ontology."
+  },
+  {
+   "source_field": "Operating_Countries",
+   "reason": "List of international operational territories outside core address or entity attributes."
+  },
+  {
+   "source_field": "PBI",
+   "reason": "Public Benevolent Institution tax status subtype not mapped to canonical entity type."
+  },
+  {
+   "source_field": "HPC",
+   "reason": "Health Promotion Charity tax status subtype not mapped to canonical entity type."
+  },
+  {
+   "source_field": "Preventing_or_relieving_suffering_of_animals",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_Culture",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_Education",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_Health",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Promote_or_oppose_a_change_to_law__government_poll_or_prac",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_natual_environment",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Promoting_or_protecting_human_rights",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Purposes_beneficial_to_ther_general_public_and_other_analogous",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Promoting_reconciliation__mutual_respect_and_tolerance",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_Religion",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_social_or_public_welfare",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Advancing_security_or_safety_of_Australia_or_Australian_public",
+   "reason": "Charitable purpose flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Aboriginal_or_TSI",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Adults",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Aged_Persons",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Children",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Communities_Overseas",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Early_Childhood",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Ethnic_Groups",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Families",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Females",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Financially_Disadvantaged",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "LGBTIQA+",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "General_Community_in_Australia",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Males",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Migrants_Refugees_or_Asylum_Seekers",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Other_Beneficiaries",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Other_Charities",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "People_at_risk_of_homelessness",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "People_with_Chronic_Illness",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "People_with_Disabilities",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Pre_Post_Release_Offenders",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Rural_Regional_Remote_Communities",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Unemployed_Person",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Veterans_or_their_families",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Victims_of_crime",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Victims_of_Disasters",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "Youth",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "animals",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "environment",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  },
+  {
+   "source_field": "other_gender_identities",
+   "reason": "Beneficiary demographic flag not captured in canonical ontology."
+  }
+ ],
+ "unfilled_canonical_fields": [
+  {
+   "canonical_field": "entity.acn",
+   "reason": "ACN is not provided as a distinct field in this dataset."
+  },
+  {
+   "canonical_field": "entity.nzbn",
+   "reason": "Source dataset covers Australian registered charities only."
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "reason": "Legal entity structure type is not explicitly provided as a structured enum field."
+  },
+  {
+   "canonical_field": "entity.status",
+   "reason": "Registration status column is not present in this dataset."
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "reason": "ANZSIC or equivalent industry code is not included in the source data."
+  },
+  {
+   "canonical_field": "address.full",
+   "reason": "Source splits address across multiple fields and address components are mapped to discrete canonical fields."
+  }
+ ],
+ "_unpack_problems": []
+}

@@ -1,0 +1,165 @@
+{
+ "config_version": "1.0",
+ "source_id": "victorian-government-schools-abns-1ca29b03",
+ "generated_by": {
+  "agent_version": "0.1",
+  "model": "gemini-3.7-flash",
+  "generated_at": "",
+  "revisions": 2,
+  "approved_by": "dao.lq",
+  "approved_at": "2026-09-19T23:56:51"
+ },
+ "resource": {
+  "url": "http://www.education.vic.gov.au/Documents/about/research/datavic/dv183-schoolABNdetails.xlsx",
+  "catalogue_format": "XLSX",
+  "real_format": "XLSX",
+  "encoding": "utf-8",
+  "header_row": 0,
+  "sheet": "Sheet1"
+ },
+ "record_id": {
+  "strategy": "source_field",
+  "fields": [
+   "SchoolNumber"
+  ],
+  "note": "SchoolNumber is unique and non-null for every record."
+ },
+ "observation": {
+  "licence": "Creative Commons Attribution 3.0 Australia",
+  "source_reliability": 0.85,
+  "observed_at": {
+   "from_field": "LoadDate",
+   "formats": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f"
+   ],
+   "note": "LoadDate records the timestamp when the record was extracted or loaded into the source dataset.",
+   "fallback_constant": "2025-06-25T17:38:22.490113",
+   "fallback_source": "dataset metadata_modified from CKAN"
+  },
+  "valid_from": {
+   "from_field": "",
+   "formats": [],
+   "note": "No temporal validity start date present in source data."
+  },
+  "valid_to": {
+   "from_field": "",
+   "formats": [],
+   "note": "No temporal validity end date present in source data."
+  }
+ },
+ "field_mappings": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "SchoolName",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "SchoolName represents the registered name of the educational institution."
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "transforms": [
+    {
+     "op": "abn_normalize"
+    }
+   ],
+   "field_confidence": 0.9,
+   "note": "ABN field contains Australian Business Numbers. Malformed or truncated entries that fail checksum validation are dropped by abn_normalize."
+  }
+ ],
+ "unmapped_source_fields": [
+  {
+   "source_field": "SchoolNumber",
+   "reason": "Internal departmental identifier used as record_id, not an ontology-level identifier."
+  },
+  {
+   "source_field": "Fin_Period",
+   "reason": "Represents the reporting accounting period (e.g. 201506), not an entity attribute."
+  },
+  {
+   "source_field": "LoadDate",
+   "reason": "Used for record-level observed_at timestamp."
+  }
+ ],
+ "unfilled_canonical_fields": [
+  {
+   "canonical_field": "entity.trading_name",
+   "reason": "No distinct trading name column provided."
+  },
+  {
+   "canonical_field": "entity.acn",
+   "reason": "No Australian Company Number column present."
+  },
+  {
+   "canonical_field": "entity.nzbn",
+   "reason": "Not a New Zealand registry dataset."
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "reason": "No entity structure or legal type indicator provided."
+  },
+  {
+   "canonical_field": "entity.status",
+   "reason": "No operating or registration status column provided."
+  },
+  {
+   "canonical_field": "entity.website",
+   "reason": "No website URL provided in source data."
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "reason": "No industry classification or ANZSIC code provided."
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "reason": "No entity registration date provided."
+  },
+  {
+   "canonical_field": "address.full",
+   "reason": "No physical or postal address information present."
+  },
+  {
+   "canonical_field": "address.locality",
+   "reason": "No suburb or locality information present."
+  },
+  {
+   "canonical_field": "address.state",
+   "reason": "No state or jurisdiction column present."
+  },
+  {
+   "canonical_field": "address.postcode",
+   "reason": "No postcode column present."
+  },
+  {
+   "canonical_field": "address.country",
+   "reason": "No country column present."
+  }
+ ],
+ "validation": {
+  "rows_tested": 800,
+  "rows_emitted": 800,
+  "failures": [
+   {
+    "canonical_field": "entity.abn",
+    "problem": "dropped a value the source had",
+    "count": 7,
+    "examples": [
+     "142 547 710",
+     "14 209 385 ",
+     "71 802 971 ",
+     "85 269 418 ",
+     "97 085 612 ",
+     "85 100 276 "
+    ]
+   }
+  ]
+ }
+}

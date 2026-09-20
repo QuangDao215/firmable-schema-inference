@@ -1,0 +1,29 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Downloads and intermediate files.
+data/*
+data/interim/*
+
+# Except the evidence for Part 1. The brief asks for a pool of at least 200
+# catalogue records retrieved programmatically, and the model's judgement of
+# each one it triaged. Neither is regenerable, because data.gov.au changes.
+!data/interim/
+!data/interim/datasets.jsonl
+!data/interim/triaged.jsonl
+
+# Rows pulled out of a source so the agent can profile and validate them.
+# Regenerate with: python -m src.agent.run
+runs/*/records.jsonl
+
+# The deeper 25,000-per-source pull that part 3 matches on. 84 MB, and the
+# engine rebuilds it in 6.5 seconds.
+# Regenerate with: python -m src.extract --limit 25000 --out observations_deep
+outputs/observations_deep/
+outputs/extraction_report_observations_deep.json
+
+# Working notes, not part of the submission.
+CLAUDE.md
+PLAN.md

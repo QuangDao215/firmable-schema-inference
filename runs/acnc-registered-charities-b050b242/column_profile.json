@@ -1,0 +1,1953 @@
+{
+ "columns_profiled": 69,
+ "rows_sampled": 400,
+ "columns": [
+  {
+   "name": "ABN",
+   "index": 0,
+   "filled": 390,
+   "of_rows": 400,
+   "null_rate": 0.025,
+   "distinct": 390,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "51214424410",
+    "88721033578",
+    "62601233489",
+    "18246792704",
+    "45689272320",
+    "64423343545",
+    "28650300600",
+    "96142275848"
+   ],
+   "looks_like": {
+    "abn_valid": 1.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Charity_Legal_Name",
+   "index": 1,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 400,
+   "distinct_is_capped": false,
+   "max_length": 89,
+   "examples": [
+    "U3A Inner North Incorporated",
+    "SPECTRUM 3 INC.",
+    "MOVEMENT FOR THE ORDINATION OF WOMEN AUSTRALIA LTD",
+    "GEORGES RIVER COMBINED COUNCILS' COMMITTEE INCORPORATED",
+    "THE DANDELION COLLECTIVE LTD",
+    "The Uniting Church in Australia Northern Synod",
+    "UQ RESIDENCES LIMITED",
+    "Jurien Bay Veterans Inc"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Other_Organisation_Names",
+   "index": 2,
+   "filled": 42,
+   "of_rows": 400,
+   "null_rate": 0.895,
+   "distinct": 42,
+   "distinct_is_capped": false,
+   "max_length": 122,
+   "examples": [
+    "Georges Riverkeeper",
+    "Donnybrook Men's Shed Inc.",
+    "Hope Arabic Church - South Australia, \u0643\u0646\u064a\u0633\u0629 \u0627\u0644\u0631\u062c\u0627\u0621 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 - \u062c\u0646\u0648\u0628 \u0623\u0633\u062a\u0631\u0627\u0644\u064a\u0627",
+    "Girgarre Salinity Study Group Inc",
+    "Nelson Coastcare",
+    "Nada Family Charity",
+    "Brown Plumb Foundation",
+    "Murnong First Peoples Gathering Place"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Address_Type",
+   "index": 3,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 8,
+   "examples": [
+    "Business"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Business"
+   ]
+  },
+  {
+   "name": "Address_Line_1",
+   "index": 4,
+   "filled": 349,
+   "of_rows": 400,
+   "null_rate": 0.127,
+   "distinct": 337,
+   "distinct_is_capped": false,
+   "max_length": 64,
+   "examples": [
+    "19 Thompson Street",
+    "C/O Australian Philanthropic Services",
+    "Level 4",
+    "2 Railway Street",
+    "78 St Leonards Road",
+    "141 Central Rd",
+    "1 Mcnab Ave",
+    "540 Regency Rd"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Address_Line_2",
+   "index": 5,
+   "filled": 46,
+   "of_rows": 400,
+   "null_rate": 0.885,
+   "distinct": 44,
+   "distinct_is_capped": false,
+   "max_length": 46,
+   "examples": [
+    "Level 7, 130 Pitt Street",
+    "2-40 Clunies Ross Street",
+    "3 Fourth Avenue",
+    "Level 12, 167 Macquarie Street",
+    "Balwyn North",
+    "377 Hannan Street",
+    "71 Kent Street",
+    "Savannah Way"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Address_Line_3",
+   "index": 6,
+   "filled": 4,
+   "of_rows": 400,
+   "null_rate": 0.99,
+   "distinct": 4,
+   "distinct_is_capped": false,
+   "max_length": 17,
+   "examples": [
+    "via",
+    "405 Liverpool St",
+    "1 -59 Quay Street",
+    "NT Portion 7278"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "1 -59 Quay Street",
+    "405 Liverpool St",
+    "NT Portion 7278",
+    "via"
+   ]
+  },
+  {
+   "name": "Town_City",
+   "index": 7,
+   "filled": 350,
+   "of_rows": 400,
+   "null_rate": 0.125,
+   "distinct": 290,
+   "distinct_is_capped": false,
+   "max_length": 22,
+   "examples": [
+    "Sydney",
+    "Melbourne",
+    "Kensington",
+    "Brisbane City",
+    "Footscray",
+    "PARAP",
+    "Armadale",
+    "Perth"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "State",
+   "index": 8,
+   "filled": 352,
+   "of_rows": 400,
+   "null_rate": 0.12,
+   "distinct": 8,
+   "distinct_is_capped": false,
+   "max_length": 3,
+   "examples": [
+    "NSW",
+    "VIC",
+    "QLD",
+    "WA",
+    "SA",
+    "NT",
+    "TAS",
+    "ACT"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 1.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "ACT",
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA"
+   ]
+  },
+  {
+   "name": "Postcode",
+   "index": 9,
+   "filled": 352,
+   "of_rows": 400,
+   "null_rate": 0.12,
+   "distinct": 272,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "2000",
+    "3000",
+    "4000",
+    "3031",
+    "0820",
+    "3011",
+    "3168",
+    "3550"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 1.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Country",
+   "index": 10,
+   "filled": 341,
+   "of_rows": 400,
+   "null_rate": 0.147,
+   "distinct": 2,
+   "distinct_is_capped": false,
+   "max_length": 9,
+   "examples": [
+    "Australia",
+    "AUSTRALIA"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "AUSTRALIA",
+    "Australia"
+   ]
+  },
+  {
+   "name": "Charity_Website",
+   "index": 11,
+   "filled": 249,
+   "of_rows": 400,
+   "null_rate": 0.377,
+   "distinct": 248,
+   "distinct_is_capped": false,
+   "max_length": 100,
+   "examples": [
+    "https://www.socialflourishing.com.au",
+    "https://www.u3ainnernorth.org.au/",
+    "www.spectrum3.org.au",
+    "www.mowatch.com.au",
+    "https://georgesriver.org.au/",
+    "https://www.ns.uca.org.au/",
+    "https://www.uqres.com",
+    "http://veerfoundation.org.au/"
+   ],
+   "looks_like": {
+    "abn_valid": 0.004,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.518,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Registration_Date",
+   "index": 12,
+   "filled": 399,
+   "of_rows": 400,
+   "null_rate": 0.002,
+   "distinct": 233,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "01/07/2023",
+    "03/12/2012",
+    "01/01/2021",
+    "21/05/2021",
+    "13/05/2021",
+    "18/05/2021",
+    "01/07/2021",
+    "27/05/2021"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%d/%m/%Y",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Date_Organisation_Established",
+   "index": 13,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 294,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "11/05/2021",
+    "27/05/2021",
+    "18/05/2021",
+    "17/05/2021",
+    "14/05/2021",
+    "20/05/2021",
+    "13/05/2021",
+    "05/05/2021"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%d/%m/%Y",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Charity_Size",
+   "index": 14,
+   "filled": 332,
+   "of_rows": 400,
+   "null_rate": 0.17,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 6,
+   "examples": [
+    "Small",
+    "Large",
+    "Medium"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Large",
+    "Medium",
+    "Small"
+   ]
+  },
+  {
+   "name": "Number_of_Responsible_Persons",
+   "index": 15,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 17,
+   "distinct_is_capped": false,
+   "max_length": 2,
+   "examples": [
+    "3",
+    "5",
+    "4",
+    "6",
+    "7",
+    "2",
+    "8",
+    "10"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "1",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "17",
+    "18",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+   ]
+  },
+  {
+   "name": "Financial_Year_End",
+   "index": 16,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 10,
+   "distinct_is_capped": false,
+   "max_length": 6,
+   "examples": [
+    "30-Jun",
+    "31-Dec",
+    "31-Mar",
+    "30-Sep",
+    "28-Feb",
+    "31-Jul",
+    "31-Aug",
+    "23-Aug"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "23-Aug",
+    "28-Feb",
+    "30-Apr",
+    "30-Jun",
+    "30-Sep",
+    "31-Aug",
+    "31-Dec",
+    "31-Jul",
+    "31-Mar",
+    "31-Oct"
+   ]
+  },
+  {
+   "name": "Operates_in_ACT",
+   "index": 17,
+   "filled": 22,
+   "of_rows": 400,
+   "null_rate": 0.945,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_NSW",
+   "index": 18,
+   "filled": 111,
+   "of_rows": 400,
+   "null_rate": 0.722,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_NT",
+   "index": 19,
+   "filled": 21,
+   "of_rows": 400,
+   "null_rate": 0.948,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_QLD",
+   "index": 20,
+   "filled": 58,
+   "of_rows": 400,
+   "null_rate": 0.855,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_SA",
+   "index": 21,
+   "filled": 35,
+   "of_rows": 400,
+   "null_rate": 0.912,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_TAS",
+   "index": 22,
+   "filled": 15,
+   "of_rows": 400,
+   "null_rate": 0.963,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_VIC",
+   "index": 23,
+   "filled": 107,
+   "of_rows": 400,
+   "null_rate": 0.732,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operates_in_WA",
+   "index": 24,
+   "filled": 48,
+   "of_rows": 400,
+   "null_rate": 0.88,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Operating_Countries",
+   "index": 25,
+   "filled": 264,
+   "of_rows": 400,
+   "null_rate": 0.34,
+   "distinct": 22,
+   "distinct_is_capped": false,
+   "max_length": 43,
+   "examples": [
+    "AUS",
+    "IDN",
+    "AUS, KHM",
+    "USA, ZMB",
+    "AUS, COK, FJI, KIR, SLB, TON, TUV",
+    "PAK, ZMB",
+    "AUS, IRQ",
+    "AFG, BGD, BTN, IDN, LAO, LKA, MYS, NPL, VNM"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "AFG, BGD, BTN, IDN, LAO, LKA, MYS, NPL, VNM",
+    "AFG, LKA, PAK",
+    "AUS",
+    "AUS, BGD",
+    "AUS, BGD, FJI, KHM, NPL",
+    "AUS, COK, FJI, KIR, SLB, TON, TUV",
+    "AUS, IDN, PSE",
+    "AUS, IRQ",
+    "AUS, KHM",
+    "AUS, KHM, PNG, TLS",
+    "AUS, NZL",
+    "IDN",
+    "KEN",
+    "KEN, UGA",
+    "KHM",
+    "KIR, TLS, TON",
+    "LBN",
+    "LKA",
+    "PAK, ZMB",
+    "PNG",
+    "SSD",
+    "USA, ZMB"
+   ]
+  },
+  {
+   "name": "PBI",
+   "index": 26,
+   "filled": 79,
+   "of_rows": 400,
+   "null_rate": 0.802,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "HPC",
+   "index": 27,
+   "filled": 26,
+   "of_rows": 400,
+   "null_rate": 0.935,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Preventing_or_relieving_suffering_of_animals",
+   "index": 28,
+   "filled": 8,
+   "of_rows": 400,
+   "null_rate": 0.98,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_Culture",
+   "index": 29,
+   "filled": 60,
+   "of_rows": 400,
+   "null_rate": 0.85,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_Education",
+   "index": 30,
+   "filled": 78,
+   "of_rows": 400,
+   "null_rate": 0.805,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_Health",
+   "index": 31,
+   "filled": 53,
+   "of_rows": 400,
+   "null_rate": 0.867,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Promote_or_oppose_a_change_to_law__government_poll_or_prac",
+   "index": 32,
+   "filled": 4,
+   "of_rows": 400,
+   "null_rate": 0.99,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_natual_environment",
+   "index": 33,
+   "filled": 34,
+   "of_rows": 400,
+   "null_rate": 0.915,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Promoting_or_protecting_human_rights",
+   "index": 34,
+   "filled": 5,
+   "of_rows": 400,
+   "null_rate": 0.988,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Purposes_beneficial_to_ther_general_public_and_other_analogous",
+   "index": 35,
+   "filled": 71,
+   "of_rows": 400,
+   "null_rate": 0.823,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Promoting_reconciliation__mutual_respect_and_tolerance",
+   "index": 36,
+   "filled": 14,
+   "of_rows": 400,
+   "null_rate": 0.965,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_Religion",
+   "index": 37,
+   "filled": 61,
+   "of_rows": 400,
+   "null_rate": 0.848,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_social_or_public_welfare",
+   "index": 38,
+   "filled": 126,
+   "of_rows": 400,
+   "null_rate": 0.685,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Advancing_security_or_safety_of_Australia_or_Australian_public",
+   "index": 39,
+   "filled": 8,
+   "of_rows": 400,
+   "null_rate": 0.98,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Aboriginal_or_TSI",
+   "index": 40,
+   "filled": 96,
+   "of_rows": 400,
+   "null_rate": 0.76,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Adults",
+   "index": 41,
+   "filled": 181,
+   "of_rows": 400,
+   "null_rate": 0.547,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Aged_Persons",
+   "index": 42,
+   "filled": 157,
+   "of_rows": 400,
+   "null_rate": 0.607,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Children",
+   "index": 43,
+   "filled": 143,
+   "of_rows": 400,
+   "null_rate": 0.643,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Communities_Overseas",
+   "index": 44,
+   "filled": 40,
+   "of_rows": 400,
+   "null_rate": 0.9,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Early_Childhood",
+   "index": 45,
+   "filled": 95,
+   "of_rows": 400,
+   "null_rate": 0.762,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Ethnic_Groups",
+   "index": 46,
+   "filled": 102,
+   "of_rows": 400,
+   "null_rate": 0.745,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Families",
+   "index": 47,
+   "filled": 152,
+   "of_rows": 400,
+   "null_rate": 0.62,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Females",
+   "index": 48,
+   "filled": 134,
+   "of_rows": 400,
+   "null_rate": 0.665,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Financially_Disadvantaged",
+   "index": 49,
+   "filled": 137,
+   "of_rows": 400,
+   "null_rate": 0.657,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "LGBTIQA+",
+   "index": 50,
+   "filled": 14,
+   "of_rows": 400,
+   "null_rate": 0.965,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "General_Community_in_Australia",
+   "index": 51,
+   "filled": 134,
+   "of_rows": 400,
+   "null_rate": 0.665,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Males",
+   "index": 52,
+   "filled": 128,
+   "of_rows": 400,
+   "null_rate": 0.68,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Migrants_Refugees_or_Asylum_Seekers",
+   "index": 53,
+   "filled": 32,
+   "of_rows": 400,
+   "null_rate": 0.92,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Other_Beneficiaries",
+   "index": 54,
+   "filled": 29,
+   "of_rows": 400,
+   "null_rate": 0.927,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Other_Charities",
+   "index": 55,
+   "filled": 56,
+   "of_rows": 400,
+   "null_rate": 0.86,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "People_at_risk_of_homelessness",
+   "index": 56,
+   "filled": 82,
+   "of_rows": 400,
+   "null_rate": 0.795,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "People_with_Chronic_Illness",
+   "index": 57,
+   "filled": 63,
+   "of_rows": 400,
+   "null_rate": 0.843,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "People_with_Disabilities",
+   "index": 58,
+   "filled": 79,
+   "of_rows": 400,
+   "null_rate": 0.802,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Pre_Post_Release_Offenders",
+   "index": 59,
+   "filled": 25,
+   "of_rows": 400,
+   "null_rate": 0.938,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Rural_Regional_Remote_Communities",
+   "index": 60,
+   "filled": 121,
+   "of_rows": 400,
+   "null_rate": 0.698,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Unemployed_Person",
+   "index": 61,
+   "filled": 69,
+   "of_rows": 400,
+   "null_rate": 0.828,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Veterans_or_their_families",
+   "index": 62,
+   "filled": 32,
+   "of_rows": 400,
+   "null_rate": 0.92,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Victims_of_crime",
+   "index": 63,
+   "filled": 43,
+   "of_rows": 400,
+   "null_rate": 0.892,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Victims_of_Disasters",
+   "index": 64,
+   "filled": 45,
+   "of_rows": 400,
+   "null_rate": 0.887,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "Youth",
+   "index": 65,
+   "filled": 175,
+   "of_rows": 400,
+   "null_rate": 0.562,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "animals",
+   "index": 66,
+   "filled": 24,
+   "of_rows": 400,
+   "null_rate": 0.94,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "environment",
+   "index": 67,
+   "filled": 36,
+   "of_rows": 400,
+   "null_rate": 0.91,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "other_gender_identities",
+   "index": 68,
+   "filled": 33,
+   "of_rows": 400,
+   "null_rate": 0.917,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  }
+ ]
+}

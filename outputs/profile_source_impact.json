@@ -1,0 +1,58 @@
+{
+ "profiles": 50,
+ "question": "If we deleted one of the six sources, how many profiles change and how badly?",
+ "definitions": {
+  "profiles_that_disappear": "the entity no longer appears in more than one source, so it is not an entity under our own definition",
+  "profiles_that_lose_a_field": "at least one canonical field can no longer be filled",
+  "profiles_where_a_value_changes": "a winning value is different without this source"
+ },
+ "per_source": [
+  {
+   "source_removed": "acnc-registered-charities-b050b242",
+   "profiles_that_disappear": 0,
+   "profiles_that_lose_a_field": 18,
+   "profiles_where_a_value_changes": 7,
+   "fields_that_changed": {
+    "address.locality": 6,
+    "entity.legal_name": 1
+   }
+  },
+  {
+   "source_removed": "asic-company-dataset-7b8656f9",
+   "profiles_that_disappear": 0,
+   "profiles_that_lose_a_field": 39,
+   "profiles_where_a_value_changes": 8,
+   "fields_that_changed": {
+    "entity.date_registered": 8
+   }
+  },
+  {
+   "source_removed": "historical-australian-government-contrac-5c7fa69b",
+   "profiles_that_disappear": 1,
+   "profiles_that_lose_a_field": 43,
+   "profiles_where_a_value_changes": 0,
+   "fields_that_changed": {}
+  },
+  {
+   "source_removed": "victorian-government-schools-abns-1ca29b03",
+   "profiles_that_disappear": 0,
+   "profiles_that_lose_a_field": 0,
+   "profiles_where_a_value_changes": 0,
+   "fields_that_changed": {}
+  },
+  {
+   "source_removed": "victorian-liquor-licences-by-location-6f1cc305",
+   "profiles_that_disappear": 0,
+   "profiles_that_lose_a_field": 0,
+   "profiles_where_a_value_changes": 0,
+   "fields_that_changed": {}
+  },
+  {
+   "source_removed": "wgea-dataset-4d35cd80",
+   "profiles_that_disappear": 1,
+   "profiles_that_lose_a_field": 49,
+   "profiles_where_a_value_changes": 0,
+   "fields_that_changed": {}
+  }
+ ]
+}

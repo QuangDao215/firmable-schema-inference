@@ -1,0 +1,147 @@
+{
+ "source_id": "victorian-government-schools-abns-1ca29b03",
+ "steps": {
+  "c1_probe": {
+   "status": "done",
+   "started": "23:01:39",
+   "seconds": 2.78,
+   "result": {
+    "local_path": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/1ca29b03-220d-4c19-b34e-c7932cd4508d_6dc3a5859f.bin",
+    "bytes": 114348,
+    "shape": {
+     "url": "http://www.education.vic.gov.au/Documents/about/research/datavic/dv183-schoolABNdetails.xlsx",
+     "catalogue_format": "XLSX",
+     "real_format": "XLSX",
+     "encoding": "utf-8",
+     "header_row": 0,
+     "sheet": "Sheet1"
+    },
+    "records_pulled": 1540,
+    "sample_rows": 400,
+    "holdout_rows": 1140,
+    "columns": [
+     "SchoolNumber",
+     "SchoolName",
+     "Fin_Period",
+     "LoadDate",
+     "ABN"
+    ],
+    "records_file": "/Users/dao.lq/Projects/firmable_assignment/runs/victorian-government-schools-abns-1ca29b03/records.jsonl",
+    "catalogue_format_was_wrong": false
+   }
+  },
+  "c2_profile": {
+   "status": "done",
+   "started": "23:01:42",
+   "seconds": 0.01,
+   "result": {
+    "columns_profiled": 5,
+    "rows_sampled": 400,
+    "profile_file": "/Users/dao.lq/Projects/firmable_assignment/runs/victorian-government-schools-abns-1ca29b03/column_profile.json"
+   }
+  },
+  "c3_propose": {
+   "status": "done",
+   "started": "23:53:33",
+   "seconds": 6.12,
+   "result": {
+    "prompt_chars": 7339,
+    "model": "gemini-3.7-flash",
+    "model_calls": 1,
+    "usd": 0.008398,
+    "input_tokens": 2243,
+    "output_tokens": 1791,
+    "seconds": 6.1,
+    "draft_file": "/Users/dao.lq/Projects/firmable_assignment/runs/victorian-government-schools-abns-1ca29b03/draft_config.json"
+   }
+  },
+  "c4_validate": {
+   "status": "done",
+   "started": "23:53:39",
+   "seconds": 0.02,
+   "result": {
+    "holdout_rows": 800,
+    "rows_out": 800,
+    "serious_failures": 0,
+    "dead_fields": [],
+    "losing_values": [],
+    "needs_revision": true
+   }
+  },
+  "c5_revise": {
+   "status": "done",
+   "started": "23:53:39",
+   "seconds": 13.42,
+   "result": {
+    "rounds": [
+     {
+      "round": 1,
+      "failures_before": 1,
+      "failures_after": 1,
+      "improved": false,
+      "usd": 0.008846,
+      "input_tokens": 2080,
+      "output_tokens": 1943,
+      "seconds": 6.02,
+      "unpack_problems": [],
+      "removed_checks": [],
+      "kept": true
+     },
+     {
+      "round": 2,
+      "failures_before": 1,
+      "failures_after": 1,
+      "improved": false,
+      "usd": 0.009435,
+      "input_tokens": 2090,
+      "output_tokens": 2098,
+      "seconds": 7.34,
+      "unpack_problems": [],
+      "removed_checks": [],
+      "kept": true
+     }
+    ],
+    "model_calls": 2,
+    "usd": 0.01828,
+    "still_failing": true
+   }
+  },
+  "c6_review": {
+   "status": "done",
+   "started": "23:53:53",
+   "seconds": 0.0,
+   "result": {
+    "card_file": "/Users/dao.lq/Projects/firmable_assignment/runs/victorian-government-schools-abns-1ca29b03/review_card.md",
+    "lines": 95,
+    "awaiting_decision": false,
+    "decision": {
+     "approved": true,
+     "by": "dao.lq",
+     "at": "2026-09-19T23:56:51",
+     "note": "0.9% of ABN column holds 9-digit values, likely ACNs, dropped rather than guessed",
+     "unresolved_failures": 1,
+     "reviewed_card": "/Users/dao.lq/Projects/firmable_assignment/runs/victorian-government-schools-abns-1ca29b03/review_card.md"
+    }
+   }
+  },
+  "c7_freeze": {
+   "status": "done",
+   "seconds": 0,
+   "result": {
+    "config_file": "/Users/dao.lq/Projects/firmable_assignment/configs/victorian-government-schools-abns-1ca29b03.json",
+    "approved_by": "dao.lq",
+    "unresolved_failures": 1
+   }
+  }
+ },
+ "source": {
+  "dataset_id": "1ca29b03-220d-4c19-b34e-c7932cd4508d",
+  "title": "Victorian Government Schools ABNs",
+  "organisation": "Department of Education",
+  "licence": "Creative Commons Attribution 3.0 Australia",
+  "download_url": "http://www.education.vic.gov.au/Documents/about/research/datavic/dv183-schoolABNdetails.xlsx",
+  "download_format": "XLSX",
+  "record_grain": "entity",
+  "landing_page": "https://data.gov.au/dataset/victorian-government-schools-abns"
+ }
+}

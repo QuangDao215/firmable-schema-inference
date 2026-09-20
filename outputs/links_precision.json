@@ -1,0 +1,36 @@
+{
+ "seed": 20260920,
+ "reviewed_by": "claude-sonnet (independent reviewer)",
+ "summaries": [
+  {
+   "sample": "headline",
+   "threshold": 0.7,
+   "checked": 50,
+   "correct": 50,
+   "wrong": 0,
+   "cannot_tell": 0,
+   "precision_strict": 1.0,
+   "precision_of_decided": 1.0
+  },
+  {
+   "sample": "weak_tier",
+   "threshold": 0.75,
+   "checked": 50,
+   "correct": 45,
+   "wrong": 2,
+   "cannot_tell": 3,
+   "precision_strict": 0.9,
+   "precision_of_decided": 0.957
+  },
+  {
+   "sample": "below_threshold",
+   "threshold": 0.45,
+   "checked": 50,
+   "correct": 49,
+   "wrong": 1,
+   "cannot_tell": 0,
+   "precision_strict": 0.98,
+   "precision_of_decided": 0.98
+  }
+ ]
+}

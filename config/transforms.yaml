@@ -1,0 +1,97 @@
+# The closed list of transforms a mapping config may use.
+#
+# The agent picks from this list. It never writes code. Two reasons:
+#   1. Model-written code means the engine has to run eval(), which we will not
+#      do on output from a model.
+#   2. A fixed vocabulary is what makes "one engine, six configs" true. If each
+#      config can carry its own code, they are six scripts again.
+#
+# Every op is implemented in src/transforms.py. A config naming an op that is
+# not on this list is rejected before it runs.
+
+ops:
+
+  # --- text tidying ---
+  strip:
+    args: []
+    does: "Remove whitespace from both ends."
+  collapse_spaces:
+    args: []
+    does: "Turn runs of whitespace into one space."
+  upper:
+    args: []
+    does: "Uppercase."
+  lower:
+    args: []
+    does: "Lowercase."
+  title_case:
+    args: []
+    does: "Capitalise Each Word. Use for names that arrive SHOUTED."
+  null_if:
+    args: [values]
+    does: "Return nothing when the value is one of these, e.g. ['N/A', '-', 'unknown']."
+
+  # --- pulling a value out ---
+  regex_extract:
+    args: [pattern, group]
+    does: "Return capture group `group` of `pattern`, or nothing if no match."
+  split_take:
+    args: [separator, index]
+    does: "Split on `separator` and take one piece. Negative index counts back."
+  digits_only:
+    args: []
+    does: "Keep digits. Turns '51 824 753 556' into '51824753556'."
+
+  # --- combining or fixing ---
+  concat:
+    args: [fields, separator]
+    does: "Join several source fields. Used to build a full address."
+  constant:
+    args: [value]
+    does: "Ignore the source and return this value."
+  coalesce:
+    args: [fields]
+    does: "First of these source fields that has a value."
+
+  # --- Australian identifiers, checksummed ---
+  abn_normalize:
+    args: []
+    does: >
+      Strip to digits, require 11, verify the ABN checksum. Returns nothing if
+      the checksum fails. The ontology says validate, not length-check.
+    sets_derivation: L1
+  acn_normalize:
+    args: []
+    does: "Strip to digits, require 9, verify the ACN checksum."
+    sets_derivation: L1
+  nzbn_normalize:
+    args: []
+    does: "Strip to digits, require 13. No published checksum, so shape only."
+
+  # --- controlled values ---
+  map_values:
+    args: [mapping, default]
+    does: >
+      Look the value up in `mapping`, case-insensitively. Use for enums such as
+      entity_type and status. `default` is used when nothing matches, and
+      should be 'unknown' rather than a guess.
+  state_normalize:
+    args: []
+    does: >
+      Fold Australian state names and abbreviations to the ontology's enum:
+      NSW VIC QLD WA SA TAS ACT NT NZ OTHER.
+    sets_derivation: L1
+  postcode_extract:
+    args: []
+    does: "Find a four-digit Australian postcode in the value."
+
+  # --- dates ---
+  parse_date:
+    args: [formats]
+    does: >
+      Try each strptime format in order, return an ISO date. `formats` is a
+      list because sources mix styles within one column.
+    sets_derivation: L1
+  parse_datetime:
+    args: [formats]
+    does: "As parse_date, returning an ISO datetime."

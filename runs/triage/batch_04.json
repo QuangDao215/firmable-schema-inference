@@ -1,0 +1,216 @@
+{
+ "results": [
+  {
+   "dataset_id": "27b9e08d-e4ee-41ac-b9bd-c8ca83740ec3",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "5c7c4a8d-5e2d-4d43-8a9e-c376bf7c7d44",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "5975f6b7-a53b-416f-9cb3-10138d5fd543",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "e2ef02f6-cfb0-4dca-8ec0-2e14e232c667",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "863fd64a-6edc-4685-83bb-cc26b8a4e863",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "7e74c2fc-7b3b-49ad-9fdb-affc61f1df29",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "e02fc43d-0a7c-4c14-a67c-f165a7ca4c71",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Each row represents a specific anticipatory notice event related to a project at a specific address."
+  },
+  {
+   "dataset_id": "749e324f-60dd-4a7b-9b24-b4c4baed6cf4",
+   "record_grain": "aggregate",
+   "confidence": 1.0,
+   "likely_fields": [],
+   "reason": "This dataset provides statistical time series rather than individual business entity records."
+  },
+  {
+   "dataset_id": "ca1218a4-7091-4c30-9212-39bfaf5b0b55",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "date_registered"
+   ],
+   "reason": "This is a direct register of individual professional entities."
+  },
+  {
+   "dataset_id": "d04d529a-a091-44c4-a8fd-816ed86cbfdf",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "date_registered"
+   ],
+   "reason": "This is a direct register of individual professional entities."
+  },
+  {
+   "dataset_id": "67c0df26-9e6a-4a44-b92d-415a5dc356d7",
+   "record_grain": "aggregate",
+   "confidence": 0.9,
+   "likely_fields": [],
+   "reason": "The title and description indicate this is an analysis of procurement statistics, not a list of companies."
+  },
+  {
+   "dataset_id": "e08a07dc-e1e7-4ab9-95c0-a7930d2f6a39",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "acn"
+   ],
+   "reason": "This lists banned individuals or entities disqualified from roles."
+  },
+  {
+   "dataset_id": "5d6e9a38-7861-43c2-b565-db9c90d024ad",
+   "record_grain": "unknown",
+   "confidence": 0.2,
+   "likely_fields": [
+    "address_full"
+   ],
+   "reason": "An asbestos register typically lists buildings/sites, not businesses."
+  },
+  {
+   "dataset_id": "0d9f7809-1d2b-43dd-b24a-826e35cbe15a",
+   "record_grain": "unknown",
+   "confidence": 0.3,
+   "likely_fields": [],
+   "reason": "General annual report data is likely aggregated or mixed; only the 'Contractors' subset might be useful."
+  },
+  {
+   "dataset_id": "3a4d1d90-f164-402a-a775-e280c1bd3c54",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure lists usually contain rows representing individual contract award events."
+  },
+  {
+   "dataset_id": "f916f4ef-56f1-4d29-a061-6de7c3bbb3d4",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure lists usually contain rows representing individual contract award events."
+  },
+  {
+   "dataset_id": "a215dda9-c48e-4fe5-b96b-699412e238d5",
+   "record_grain": "aggregate",
+   "confidence": 1.0,
+   "likely_fields": [],
+   "reason": "The description explicitly states this is aggregated data of procurement statistics."
+  },
+  {
+   "dataset_id": "1efa3f90-819b-4ec5-9a0c-cc35527e8255",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure lists usually contain rows representing individual contract award events."
+  },
+  {
+   "dataset_id": "8d3a40b6-c3b8-4164-9662-d892aa682f03",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure lists usually contain rows representing individual contract award events."
+  },
+  {
+   "dataset_id": "7c190e42-7e49-48a4-a0ab-4d4418f9055b",
+   "record_grain": "event",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure lists usually contain rows representing individual contract award events."
+  }
+ ],
+ "usage": {
+  "at": "2026-09-19T21:43:37",
+  "step": "triage_batch_4",
+  "model": "gemini-3.1-flash-lite",
+  "input_tokens": 4663,
+  "output_tokens": 2140,
+  "seconds": 5.95,
+  "usd": 0.004376
+ }
+}

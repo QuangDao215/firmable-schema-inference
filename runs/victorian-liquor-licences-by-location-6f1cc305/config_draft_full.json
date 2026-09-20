@@ -1,0 +1,250 @@
+{
+ "config_version": "1.0",
+ "source_id": "victorian-liquor-licences-by-location-6f1cc305",
+ "generated_by": {
+  "agent_version": "0.1",
+  "model": "gemini-3.7-flash",
+  "generated_at": "23:53:14"
+ },
+ "resource": {
+  "url": "https://www.vic.gov.au/sites/default/files/2023-04/Geo-coded-location-as-at-31-January-2022.xlsx",
+  "catalogue_format": "XLSX",
+  "real_format": "XLSX",
+  "encoding": "utf-8",
+  "header_row": 3,
+  "sheet": "Current_Victorian_Licences_By_L"
+ },
+ "record_id": {
+  "strategy": "source_field",
+  "fields": [
+   "Licence Num"
+  ],
+  "note": "Licence Num is fully populated and unique across all 400 sample records."
+ },
+ "observation": {
+  "licence": "Creative Commons Attribution 3.0 Australia",
+  "source_reliability": 0.9,
+  "observed_at": {
+   "from_field": "",
+   "formats": [],
+   "note": "No observation timestamp column is present in the source file.",
+   "fallback_constant": "2026-09-14T17:48:10.178976",
+   "fallback_source": "dataset metadata_modified from CKAN"
+  },
+  "valid_from": {
+   "from_field": "",
+   "formats": [],
+   "note": "No issue date or licence commencement date column is provided."
+  },
+  "valid_to": {
+   "from_field": "",
+   "formats": [],
+   "note": "No expiry date column is provided."
+  }
+ },
+ "field_mappings": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Licensee",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Contains the legal name of the licensee."
+  },
+  {
+   "canonical_field": "entity.trading_name",
+   "source_field": "Trading As",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Contains the business trading name."
+  },
+  {
+   "canonical_field": "address.full",
+   "source_field": "Address",
+   "transforms": [
+    {
+     "op": "concat",
+     "fields": [
+      "Address",
+      "Suburb",
+      "Postcode"
+     ],
+     "separator": ", "
+    },
+    {
+     "op": "collapse_spaces"
+    },
+    {
+     "op": "strip"
+    }
+   ],
+   "field_confidence": 0.9,
+   "note": "Constructs the full physical address by joining street, suburb, and postcode."
+  },
+  {
+   "canonical_field": "address.locality",
+   "source_field": "Suburb",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    },
+    {
+     "op": "title_case"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Extracts the premises suburb name."
+  },
+  {
+   "canonical_field": "address.state",
+   "source_field": "Postcode",
+   "transforms": [
+    {
+     "op": "constant",
+     "value": "VIC"
+    }
+   ],
+   "field_confidence": 1.0,
+   "note": "Dataset covers Victorian liquor licences exclusively."
+  },
+  {
+   "canonical_field": "address.postcode",
+   "source_field": "Postcode",
+   "transforms": [
+    {
+     "op": "postcode_extract"
+    }
+   ],
+   "field_confidence": 0.98,
+   "note": "Extracts 4-digit Australian postcode."
+  },
+  {
+   "canonical_field": "address.country",
+   "source_field": "Postcode",
+   "transforms": [
+    {
+     "op": "constant",
+     "value": "Australia"
+    }
+   ],
+   "field_confidence": 1.0,
+   "note": "All addresses in this register are in Australia."
+  }
+ ],
+ "unmapped_source_fields": [
+  {
+   "source_field": "Licence Num",
+   "reason": "Used as the primary record_id identifier."
+  },
+  {
+   "source_field": "Category",
+   "reason": "Licence permit category is specific to liquor licensing and outside the canonical business ontology."
+  },
+  {
+   "source_field": "Trading Hours",
+   "reason": "Licence trading hours condition is not modeled in the canonical ontology."
+  },
+  {
+   "source_field": "After 11 pm",
+   "reason": "Licence operational restriction flag not modeled in the canonical ontology."
+  },
+  {
+   "source_field": "Maximum Capacity",
+   "reason": "Column is 100% null."
+  },
+  {
+   "source_field": "Latitude",
+   "reason": "Geographic coordinates are not modeled in the address ontology."
+  },
+  {
+   "source_field": "Longitude",
+   "reason": "Geographic coordinates are not modeled in the address ontology."
+  },
+  {
+   "source_field": "column_12",
+   "reason": "Column is 100% null."
+  },
+  {
+   "source_field": "column_13",
+   "reason": "Column is 100% null."
+  },
+  {
+   "source_field": "Postal Address",
+   "reason": "Alternative postal street address; primary premises address was mapped."
+  },
+  {
+   "source_field": "Postal Suburb",
+   "reason": "Alternative postal suburb; primary premises address was mapped."
+  },
+  {
+   "source_field": "Postal Postcode",
+   "reason": "Alternative postal postcode; primary premises address was mapped."
+  },
+  {
+   "source_field": "Council",
+   "reason": "Local government municipality is not represented in the ontology."
+  },
+  {
+   "source_field": "Region",
+   "reason": "State administrative region is not represented in the ontology."
+  },
+  {
+   "source_field": "Metro/Regional",
+   "reason": "Regional categorization flag is not modeled in the ontology."
+  },
+  {
+   "source_field": "Gaming",
+   "reason": "Gaming authorisation flag is outside the canonical business ontology."
+  }
+ ],
+ "unfilled_canonical_fields": [
+  {
+   "canonical_field": "entity.abn",
+   "reason": "No Australian Business Number column in the source dataset."
+  },
+  {
+   "canonical_field": "entity.acn",
+   "reason": "No Australian Company Number column in the source dataset."
+  },
+  {
+   "canonical_field": "entity.nzbn",
+   "reason": "Source dataset is Australian and contains no NZBNs."
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "reason": "No structured entity type column is present."
+  },
+  {
+   "canonical_field": "entity.status",
+   "reason": "No explicit status column is provided in the source dataset."
+  },
+  {
+   "canonical_field": "entity.website",
+   "reason": "No website URL column in the source dataset."
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "reason": "No ANZSIC or industry classification code in the source dataset."
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "reason": "No registration or licensing date provided in the source dataset."
+  }
+ ]
+}

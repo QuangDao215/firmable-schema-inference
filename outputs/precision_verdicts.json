@@ -1,0 +1,755 @@
+{
+  "reviewed_by": "claude-sonnet (independent reviewer)",
+  "verdicts": [
+    {
+      "pair_id": "L01200",
+      "same_business": "yes",
+      "reason": "Matching ABN 80117140235 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01295",
+      "same_business": "yes",
+      "reason": "Matching ABN 42843327183 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01453",
+      "same_business": "yes",
+      "reason": "Matching ABN 37112535645 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00573",
+      "same_business": "yes",
+      "reason": "Matching ABN 91062546365 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00261",
+      "same_business": "yes",
+      "reason": "Matching ABN 90000049525 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00927",
+      "same_business": "yes",
+      "reason": "Matching ABN 40000805425 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00839",
+      "same_business": "yes",
+      "reason": "Matching ABN 61000449178 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00709",
+      "same_business": "yes",
+      "reason": "Matching ABN 71000064835 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00494",
+      "same_business": "yes",
+      "reason": "Matching ABN 63144947124 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00897",
+      "same_business": "yes",
+      "reason": "Matching ABN 42000664942 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00710",
+      "same_business": "yes",
+      "reason": "Matching ABN 69000065636 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00043",
+      "same_business": "yes",
+      "reason": "Matching ABN 94643894384 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00259",
+      "same_business": "yes",
+      "reason": "Matching ABN 48394787253 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01480",
+      "same_business": "yes",
+      "reason": "Matching ABN 94001540316 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00598",
+      "same_business": "yes",
+      "reason": "Matching ABN 83153973481 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01046",
+      "same_business": "yes",
+      "reason": "Matching ABN 40068649972 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00963",
+      "same_business": "yes",
+      "reason": "Matching ABN 19000967859 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00805",
+      "same_business": "yes",
+      "reason": "Matching ABN 83000303391 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00254",
+      "same_business": "yes",
+      "reason": "Matching ABN 43000106829 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00140",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00384",
+      "same_business": "yes",
+      "reason": "Matching ABN 61006067349 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00514",
+      "same_business": "yes",
+      "reason": "Matching ABN 39081678364 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00879",
+      "same_business": "yes",
+      "reason": "Matching ABN 79000587780 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00378",
+      "same_business": "yes",
+      "reason": "Matching ABN 22009943435 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00774",
+      "same_business": "yes",
+      "reason": "Matching ABN 84000191248 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01010",
+      "same_business": "yes",
+      "reason": "Matching ABN 45001187837 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00978",
+      "same_business": "yes",
+      "reason": "Matching ABN 50001020471 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01147",
+      "same_business": "yes",
+      "reason": "Matching ABN 64083660093 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00450",
+      "same_business": "yes",
+      "reason": "Matching ABN 67008559331 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00661",
+      "same_business": "yes",
+      "reason": "Matching ABN 36000020495 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01420",
+      "same_business": "yes",
+      "reason": "Matching ABN 82005914796 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01339",
+      "same_business": "yes",
+      "reason": "Matching ABN 77107656833 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01071",
+      "same_business": "yes",
+      "reason": "Matching ABN 21002888762 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01023",
+      "same_business": "yes",
+      "reason": "Matching ABN 86001217527 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00728",
+      "same_business": "yes",
+      "reason": "Matching ABN 97000098162 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00956",
+      "same_business": "yes",
+      "reason": "Matching ABN 44000964278 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00467",
+      "same_business": "yes",
+      "reason": "Matching ABN 12000637267 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01121",
+      "same_business": "yes",
+      "reason": "Matching ABN 33003357720 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00857",
+      "same_business": "yes",
+      "reason": "Matching ABN 79000514858 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01269",
+      "same_business": "yes",
+      "reason": "Matching ABN 65009810324 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00444",
+      "same_business": "yes",
+      "reason": "Matching ABN 92456457335 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00070",
+      "same_business": "yes",
+      "reason": "Matching ABN 68846923225 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00303",
+      "same_business": "yes",
+      "reason": "Matching ABN 63826265059 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00731",
+      "same_business": "yes",
+      "reason": "Matching ABN 90000100096 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00908",
+      "same_business": "yes",
+      "reason": "Matching ABN 94000728398 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01154",
+      "same_business": "yes",
+      "reason": "Matching ABN 58009378643 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01385",
+      "same_business": "yes",
+      "reason": "Matching ABN 83099701872 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01088",
+      "same_business": "yes",
+      "reason": "Matching ABN 41127556389 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01585",
+      "same_business": "yes",
+      "reason": "Matching ABN 39112099000 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L01238",
+      "same_business": "yes",
+      "reason": "Matching ABN 53635351870 identifies the same legal entity regardless of name wording."
+    },
+    {
+      "pair_id": "L00129",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00409",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00344",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00191",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00192",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00140",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00170",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00136",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00447",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00144",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00098",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00541",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L01081",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00437",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00333",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00153",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00037",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00455",
+      "same_business": "cannot_tell",
+      "reason": "Legal names differ (University of Ballarat vs Federation University); records don't confirm rename vs new entity."
+    },
+    {
+      "pair_id": "L00515",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00083",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00310",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00028",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00279",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00528",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00256",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00257",
+      "same_business": "no",
+      "reason": "Different ABN registered 2012 without 'Limited'; a distinct 2017 entity matches the licence name exactly."
+    },
+    {
+      "pair_id": "L00553",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00386",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00536",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00346",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L01209",
+      "same_business": "cannot_tell",
+      "reason": "Only the trading name 'Aitken Hill' links them; legal owner names share no words and no ABN confirms it."
+    },
+    {
+      "pair_id": "L01049",
+      "same_business": "cannot_tell",
+      "reason": "Only the hotel trading name matches; the legal entities named have no shared wording and no ABN link."
+    },
+    {
+      "pair_id": "L00138",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00476",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00505",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00180",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00033",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L01526",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00397",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00436",
+      "same_business": "no",
+      "reason": "11 Hyslop Street Ltd looks like a separate licence-holding company, not the RSL Sub-Branch charity."
+    },
+    {
+      "pair_id": "L00575",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L01519",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00586",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L01554",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00544",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00521",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00320",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00264",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00194",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "L00502",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00541",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00908",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00408",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00899",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00569",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00312",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00343",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00701",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00634",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00578",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00692",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00311",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00793",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00478",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00826",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00545",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00398",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00727",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00526",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00636",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00443",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00217",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00705",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00504",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00596",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00753",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00910",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00285",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00758",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00576",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00182",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U01009",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00969",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00888",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00589",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00279",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00947",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00305",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00923",
+      "same_business": "no",
+      "reason": "Grill'D Leasing Pty Ltd is a distinct leasing entity from the operating company Grill'D Pty Ltd."
+    },
+    {
+      "pair_id": "U00642",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00989",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00306",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00310",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00219",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00818",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00886",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00552",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00490",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00598",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    },
+    {
+      "pair_id": "U00606",
+      "same_business": "yes",
+      "reason": "Same legal name and matching location corroborate this is the same entity."
+    }
+  ]
+}

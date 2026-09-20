@@ -1,0 +1,163 @@
+{
+ "engine_version": "0.1",
+ "sources": 6,
+ "observations": 6000,
+ "with_abn_or_acn": 4967,
+ "seconds": 1.36,
+ "model_calls": 0,
+ "usd": 0.0,
+ "note": "The engine makes no model calls. Per-record cost is zero. All model spend happened once, when the agent wrote the configs.",
+ "per_source": [
+  {
+   "source_id": "acnc-registered-charities-b050b242",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "file": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/b050b242-4487-4306-abf5-07ca073e5594_fb2fca939f.bin",
+   "rows_in": 1000,
+   "observations": 1000,
+   "with_abn_or_acn": 982,
+   "fields": {
+    "entity.abn": 0.982,
+    "entity.legal_name": 0.999,
+    "entity.trading_name": 0.123,
+    "entity.website": 0.655,
+    "entity.date_registered": 0.997,
+    "address.locality": 0.875,
+    "address.state": 0.874,
+    "address.postcode": 0.875,
+    "address.country": 0.867
+   },
+   "failures": [],
+   "seconds": 0.03,
+   "model_calls": 0,
+   "usd": 0.0,
+   "output_file": "/Users/dao.lq/Projects/firmable_assignment/outputs/observations/acnc-registered-charities-b050b242.jsonl"
+  },
+  {
+   "source_id": "asic-company-dataset-7b8656f9",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "file": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/7b8656f9-606d-4337-af29-66b89b2eeefb_0be90ff4e1.bin",
+   "rows_in": 1000,
+   "observations": 1000,
+   "with_abn_or_acn": 1000,
+   "fields": {
+    "entity.legal_name": 1.0,
+    "entity.acn": 1.0,
+    "entity.abn": 0.95,
+    "entity.entity_type": 1.0,
+    "entity.status": 1.0,
+    "entity.date_registered": 1.0
+   },
+   "failures": [],
+   "seconds": 0.02,
+   "model_calls": 0,
+   "usd": 0.0,
+   "output_file": "/Users/dao.lq/Projects/firmable_assignment/outputs/observations/asic-company-dataset-7b8656f9.jsonl"
+  },
+  {
+   "source_id": "historical-australian-government-contrac-5c7fa69b",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "file": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/5c7fa69b-b0e9-4553-b8df-2a022dd2e982_52910016d8.bin",
+   "rows_in": 1000,
+   "observations": 1000,
+   "with_abn_or_acn": 992,
+   "fields": {
+    "entity.legal_name": 1.0,
+    "entity.abn": 0.992,
+    "address.full": 1.0,
+    "address.locality": 1.0,
+    "address.state": 1.0,
+    "address.postcode": 0.99,
+    "address.country": 1.0
+   },
+   "failures": [
+    {
+     "canonical_field": "address.postcode",
+     "source_field": "Supplier Postcode",
+     "problem": "dropped a value the source had",
+     "count": 7,
+     "examples": [
+      "801",
+      "97219",
+      "OX2 6DP"
+     ],
+     "share_of_rows": 0.007
+    }
+   ],
+   "seconds": 0.58,
+   "model_calls": 0,
+   "usd": 0.0,
+   "output_file": "/Users/dao.lq/Projects/firmable_assignment/outputs/observations/historical-australian-government-contrac-5c7fa69b.jsonl"
+  },
+  {
+   "source_id": "victorian-government-schools-abns-1ca29b03",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "file": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/1ca29b03-220d-4c19-b34e-c7932cd4508d_6dc3a5859f.bin",
+   "rows_in": 1000,
+   "observations": 1000,
+   "with_abn_or_acn": 993,
+   "fields": {
+    "entity.legal_name": 1.0,
+    "entity.abn": 0.993
+   },
+   "failures": [
+    {
+     "canonical_field": "entity.abn",
+     "source_field": "ABN",
+     "problem": "dropped a value the source had",
+     "count": 7,
+     "examples": [
+      "57 737 265 ",
+      "142 547 710",
+      "14 209 385 ",
+      "71 802 971 ",
+      "85 269 418 ",
+      "97 085 612 "
+     ],
+     "share_of_rows": 0.007
+    }
+   ],
+   "seconds": 0.03,
+   "model_calls": 0,
+   "usd": 0.0,
+   "output_file": "/Users/dao.lq/Projects/firmable_assignment/outputs/observations/victorian-government-schools-abns-1ca29b03.jsonl"
+  },
+  {
+   "source_id": "victorian-liquor-licences-by-location-6f1cc305",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "file": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/6f1cc305-a8b2-4748-bd40-c00754ad6504_83cb4a576b.bin",
+   "rows_in": 1000,
+   "observations": 1000,
+   "with_abn_or_acn": 0,
+   "fields": {
+    "entity.legal_name": 1.0,
+    "entity.trading_name": 0.992,
+    "address.full": 1.0,
+    "address.locality": 1.0,
+    "address.postcode": 0.994
+   },
+   "failures": [],
+   "seconds": 0.64,
+   "model_calls": 0,
+   "usd": 0.0,
+   "output_file": "/Users/dao.lq/Projects/firmable_assignment/outputs/observations/victorian-liquor-licences-by-location-6f1cc305.jsonl"
+  },
+  {
+   "source_id": "wgea-dataset-4d35cd80",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "file": "/Users/dao.lq/Projects/firmable_assignment/data/raw/sources/4d35cd80-2538-4705-82f3-d0d18e823d98_fc1f6228dd.bin",
+   "rows_in": 1000,
+   "observations": 1000,
+   "with_abn_or_acn": 1000,
+   "fields": {
+    "entity.legal_name": 1.0,
+    "entity.abn": 1.0,
+    "entity.industry_code": 1.0
+   },
+   "failures": [],
+   "seconds": 0.06,
+   "model_calls": 0,
+   "usd": 0.0,
+   "output_file": "/Users/dao.lq/Projects/firmable_assignment/outputs/observations/wgea-dataset-4d35cd80.jsonl"
+  }
+ ]
+}

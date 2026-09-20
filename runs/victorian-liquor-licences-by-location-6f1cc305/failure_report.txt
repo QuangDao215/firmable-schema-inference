@@ -1,0 +1,19 @@
+Your config was run over 800 rows that the profile was NOT built from. Here is what happened.
+
+FILL RATES. 'column' is how full the source column is, 'field' is how often your mapping produced a value.
+A field well below its column means the transforms are eating values.
+  entity.legal_name          from "Licensee" column 100% -> field 100%
+  entity.trading_name        from "Trading As" column 100% -> field 99%
+  address.full               from "Address" column 100% -> field 100%
+  address.locality           from "Suburb" column 100% -> field 100%
+  address.state              from "Postcode" column 100% -> field 0%  <-- produced almost nothing, fix or drop this mapping
+  address.postcode           from "Postcode" column 100% -> field 99%
+  address.country            from "Postcode" column 100% -> field 0%  <-- produced almost nothing, fix or drop this mapping
+
+FAILURES:
+  address.state              transform raised on 100% of rows (800 times)
+      real values that did this: ["3049", "3011", "3039", "3185", "3129"]
+  address.country            transform raised on 100% of rows (800 times)
+      real values that did this: ["3049", "3011", "3039", "3185", "3129"]
+  address.postcode           dropped a value the source had on 1% of rows (5 times)
+      real values that did this: ["1", "0"]

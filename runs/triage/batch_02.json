@@ -1,0 +1,212 @@
+{
+ "results": [
+  {
+   "dataset_id": "b87dd539-7997-4de4-bd77-1d7a86973ddc",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "trading_name",
+    "address_full",
+    "industry_code"
+   ],
+   "reason": "Each row represents a business establishment identified by trading name and location."
+  },
+  {
+   "dataset_id": "fb09c883-7139-494c-8adb-875dc7f26040",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "trading_name",
+    "address_full",
+    "industry_code"
+   ],
+   "reason": "Each row represents a business establishment identified by trading name and location."
+  },
+  {
+   "dataset_id": "6f1cc305-a8b2-4748-bd40-c00754ad6504",
+   "record_grain": "entity",
+   "confidence": 0.95,
+   "likely_fields": [
+    "legal_name",
+    "trading_name",
+    "address_full",
+    "postcode"
+   ],
+   "reason": "This is a register of licensed entities with their names and contact addresses."
+  },
+  {
+   "dataset_id": "980b6499-c0b4-491b-ba9c-1c7506368a50",
+   "record_grain": "entity",
+   "confidence": 0.95,
+   "likely_fields": [
+    "legal_name",
+    "entity_type",
+    "status"
+   ],
+   "reason": "This is a comprehensive register of licensed construction contractors."
+  },
+  {
+   "dataset_id": "21a0f174-2f9e-4b01-a73a-7569eefbb0c8",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Rows are specific contract awards, each naming the supplier business involved."
+  },
+  {
+   "dataset_id": "f0fb26d5-8e27-4494-85ac-1eac2da54b72",
+   "record_grain": "aggregate",
+   "confidence": 0.2,
+   "likely_fields": [],
+   "reason": "These are ad-hoc reports and summaries, mostly related to individuals rather than specific businesses."
+  },
+  {
+   "dataset_id": "8ff431a5-a5b0-41b2-9474-268a5de2e418",
+   "record_grain": "unknown",
+   "confidence": 0.1,
+   "likely_fields": [],
+   "reason": "This is a scientific survey dataset; businesses mentioned are incidental to the survey data."
+  },
+  {
+   "dataset_id": "70217369-ecd4-47b7-a6c2-69ca7c265b58",
+   "record_grain": "entity",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Licensee names represent the entities holding these mining and exploration rights."
+  },
+  {
+   "dataset_id": "e1a365fc-52f5-4798-8f0c-ed1d33d43b6d",
+   "record_grain": "aggregate",
+   "confidence": 0.1,
+   "likely_fields": [
+    "address_full",
+    "postcode"
+   ],
+   "reason": "G-NAF is a database of addresses, not a list of businesses."
+  },
+  {
+   "dataset_id": "4117fdec-3eff-44a1-9b78-869f7ec5c409",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "acn",
+    "status"
+   ],
+   "reason": "Direct listing of individual and corporate auditors registered with the regulator."
+  },
+  {
+   "dataset_id": "f642b13c-bbe3-4e17-b6dd-f91cf273e4d0",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "The dataset lists specific businesses holding outdoor dining permits."
+  },
+  {
+   "dataset_id": "4d35cd80-2538-4705-82f3-d0d18e823d98",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "This is a direct list of organizations reporting to the WGEA."
+  },
+  {
+   "dataset_id": "612ed57a-8e89-440a-87ad-c6c67df9017c",
+   "record_grain": "entity",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "This directory lists suppliers contracted by the Queensland Government."
+  },
+  {
+   "dataset_id": "9584dbb5-2d1f-4a73-9bba-e1bae966c124",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Rows are specific invoice events, identifying the supplier entity involved."
+  },
+  {
+   "dataset_id": "d61374dd-1a62-4132-913d-35d90cfdac81",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Provides an applicant-centric view of intellectual property filings."
+  },
+  {
+   "dataset_id": "b050b242-4487-4306-abf5-07ca073e5594",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "abn",
+    "status"
+   ],
+   "reason": "Official register of all ACNC-registered charities."
+  },
+  {
+   "dataset_id": "b4cce8aa-ebdb-48e5-948c-0c9b64854402",
+   "record_grain": "event",
+   "confidence": 0.5,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "This is a project-specific notice rather than a general business registry."
+  },
+  {
+   "dataset_id": "276ec1bc-4971-461c-88bc-be9f3c99a0f8",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contains annual report data submitted by registered charities."
+  },
+  {
+   "dataset_id": "4e03d50e-c62b-45d3-a9a1-565da40cf77b",
+   "record_grain": "entity",
+   "confidence": 0.8,
+   "likely_fields": [
+    "address_full",
+    "industry_code",
+    "locality"
+   ],
+   "reason": "Focuses on business establishments; useful for identifying business locations."
+  },
+  {
+   "dataset_id": "732d6bf3-2670-4226-9235-789bcf670288",
+   "record_grain": "entity",
+   "confidence": 0.8,
+   "likely_fields": [
+    "address_full",
+    "industry_code",
+    "locality"
+   ],
+   "reason": "Focuses on business establishments; useful for identifying business locations."
+  }
+ ],
+ "usage": {
+  "at": "2026-09-19T21:43:24",
+  "step": "triage_batch_2",
+  "model": "gemini-3.1-flash-lite",
+  "input_tokens": 4732,
+  "output_tokens": 2230,
+  "seconds": 6.7,
+  "usd": 0.004528
+ }
+}

@@ -1,0 +1,464 @@
+{
+ "columns_profiled": 15,
+ "rows_sampled": 400,
+ "columns": [
+  {
+   "name": "Company Name",
+   "index": 0,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 400,
+   "distinct_is_capped": false,
+   "max_length": 100,
+   "examples": [
+    "LOVINI HOLDINGS PTY LTD",
+    "MONAKA PTY LTD",
+    "CHRISTENSEN & ASSOCIATES PTY LTD",
+    "TASDARK PTY LTD",
+    "DHATA HOLDINGS PTY. LTD.",
+    "PATIA HOLDINGS PTY. LTD.",
+    "SAMOZI PTY LTD",
+    "W & L COMPUTER CONSULTANTS PTY LTD"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "ACN",
+   "index": 1,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 167,
+   "distinct_is_capped": false,
+   "max_length": 9,
+   "examples": [
+    "000003958",
+    "000000779",
+    "000001114",
+    "000004633",
+    "000007876",
+    "000000331",
+    "000000993",
+    "000002004"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 1.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Type",
+   "index": 2,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "APTY",
+    "APUB",
+    "FNOS"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "APTY",
+    "APUB",
+    "FNOS"
+   ]
+  },
+  {
+   "name": "Class",
+   "index": 3,
+   "filled": 398,
+   "of_rows": 400,
+   "null_rate": 0.005,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "LMSH",
+    "LMGT",
+    "LMSG"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "LMGT",
+    "LMSG",
+    "LMSH"
+   ]
+  },
+  {
+   "name": "Sub Class",
+   "index": 4,
+   "filled": 398,
+   "of_rows": 400,
+   "null_rate": 0.005,
+   "distinct": 6,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "PROP",
+    "LISN",
+    "ULST",
+    "ULSN",
+    "LIST",
+    "PSTC"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "LISN",
+    "LIST",
+    "PROP",
+    "PSTC",
+    "ULSN",
+    "ULST"
+   ]
+  },
+  {
+   "name": "Status",
+   "index": 5,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "REGD",
+    "EXAD",
+    "DRGD"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "DRGD",
+    "EXAD",
+    "REGD"
+   ]
+  },
+  {
+   "name": "Date of Registration",
+   "index": 6,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 165,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "27/03/1909",
+    "10/01/1878",
+    "24/06/1889",
+    "10/12/1910",
+    "06/08/1918",
+    "22/12/1887",
+    "12/11/1887",
+    "09/08/1898"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%d/%m/%Y",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Date of Deregistration",
+   "index": 7,
+   "filled": 3,
+   "of_rows": 400,
+   "null_rate": 0.993,
+   "distinct": 3,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "13/03/2026",
+    "24/06/2026",
+    "18/12/2025"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%d/%m/%Y",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": [
+    "13/03/2026",
+    "18/12/2025",
+    "24/06/2026"
+   ]
+  },
+  {
+   "name": "Previous State of Registration",
+   "index": 8,
+   "filled": 399,
+   "of_rows": 400,
+   "null_rate": 0.002,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 3,
+   "examples": [
+    "NSW"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 1.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "NSW"
+   ]
+  },
+  {
+   "name": "State Registration number",
+   "index": 9,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 186,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "00324602",
+    "00054605",
+    "00091843",
+    "00374141",
+    "00616536",
+    "00015520",
+    "00073747",
+    "00173840"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%Y%m%d",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  },
+  {
+   "name": "Modified since last report",
+   "index": 10,
+   "filled": 0,
+   "of_rows": 400,
+   "null_rate": 1.0,
+   "distinct": 0,
+   "distinct_is_capped": false,
+   "max_length": 0,
+   "examples": [],
+   "looks_like": {},
+   "all_values": null
+  },
+  {
+   "name": "Current Name Indicator",
+   "index": 11,
+   "filled": 167,
+   "of_rows": 400,
+   "null_rate": 0.583,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 1,
+   "examples": [
+    "Y"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Y"
+   ]
+  },
+  {
+   "name": "ABN",
+   "index": 12,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 157,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "0",
+    "44000003958",
+    "60000000779",
+    "67000001114",
+    "27000004633",
+    "11000007876",
+    "73000000331",
+    "21000000993"
+   ],
+   "looks_like": {
+    "abn_valid": 0.945,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Current Name",
+   "index": 13,
+   "filled": 233,
+   "of_rows": 400,
+   "null_rate": 0.417,
+   "distinct": 103,
+   "distinct_is_capped": false,
+   "max_length": 100,
+   "examples": [
+    "BPC FOODS PTY LIMITED",
+    "ANZ WEALTH AUSTRALIA PTY LTD",
+    "LENDLEASE CAPITAL SERVICES PTY LTD",
+    "MULPHA NORWEST PTY LIMITED",
+    "AMPOL PETROLEUM PTY LTD",
+    "ORIGIN (LGC) (AUST) PTY LIMITED",
+    "THE TRUST COMPANY (AUSTRALIA) LIMITED",
+    "RURAL PUBLISHERS PTY. LIMITED"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "Current Name Start Date",
+   "index": 14,
+   "filled": 228,
+   "of_rows": 400,
+   "null_rate": 0.43,
+   "distinct": 96,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "24/10/2014",
+    "24/09/2003",
+    "22/01/2021",
+    "20/04/2018",
+    "08/02/2008",
+    "28/08/2003",
+    "28/05/2014",
+    "12/10/2020"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": [
+     {
+      "format": "%d/%m/%Y",
+      "share": 1.0
+     }
+    ]
+   },
+   "all_values": null
+  }
+ ]
+}

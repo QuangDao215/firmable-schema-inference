@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Firmable mapping config",
+  "description": "The contract between the agent that writes a mapping and the one engine that reads it. The agent emits this. The engine consumes it. Nothing else passes between them, and no code is ever passed.",
+  "type": "object",
+  "required": [
+    "config_version",
+    "source_id",
+    "resource",
+    "record_id",
+    "observation",
+    "field_mappings",
+    "unmapped_source_fields",
+    "unfilled_canonical_fields"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "config_version": {
+      "type": "string",
+      "description": "Schema version this config was written against."
+    },
+    "source_id": {
+      "type": "string",
+      "description": "Stable id for the dataset. Goes on every observation."
+    },
+    "generated_by": {
+      "type": "object",
+      "description": "Who made this config. Kept so a bad mapping can be traced back to a model and a prompt version.",
+      "properties": {
+        "agent_version": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "revisions": {
+          "type": "integer",
+          "description": "How many correction rounds it took."
+        },
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string"
+        }
+      }
+    },
+    "resource": {
+      "type": "object",
+      "description": "How to open the file. Filled by the probe step from real bytes, not from the catalogue's format label.",
+      "required": [
+        "url",
+        "real_format"
+      ],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "catalogue_format": {
+          "type": "string",
+          "description": "What the publisher claimed."
+        },
+        "real_format": {
+          "type": "string",
+          "enum": [
+            "CSV",
+            "TSV",
+            "XLSX",
+            "XLS",
+            "JSON",
+            "JSONL",
+            "XML",
+            "ZIP"
+          ]
+        },
+        "encoding": {
+          "type": "string",
+          "default": "utf-8"
+        },
+        "delimiter": {
+          "type": "string"
+        },
+        "header_row": {
+          "type": "integer",
+          "default": 0
+        },
+        "sheet": {
+          "type": "string",
+          "description": "For spreadsheets."
+        },
+        "zip_member": {
+          "type": "string",
+          "description": "Which file inside the archive holds the records."
+        },
+        "json_record_path": {
+          "type": "string",
+          "description": "Dotted path to the list of records, e.g. 'result.records'."
+        },
+        "xml_record_tag": {
+          "type": "string",
+          "description": "The element that repeats once per record."
+        },
+        "skip_rows": {
+          "type": "integer",
+          "default": 0
+        }
+      }
+    },
+    "record_id": {
+      "type": "object",
+      "description": "The ontology requires source_record_id to be traceable back to the exact raw record. If the source has no key we build one and write down how.",
+      "required": [
+        "strategy"
+      ],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": [
+            "source_field",
+            "hash_of_fields",
+            "row_number"
+          ]
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string",
+          "description": "Why this choice. Required when strategy is not source_field."
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "description": "The envelope every emitted record carries.",
+      "required": [
+        "licence"
+      ],
+      "properties": {
+        "licence": {
+          "type": "string",
+          "description": "From CKAN metadata. 'unknown' is allowed and is a finding, not a blocker."
+        },
+        "observed_at": {
+          "type": "object",
+          "description": "When the source stated it. A field if the source says, otherwise the dataset's modified date.",
+          "properties": {
+            "from_field": {
+              "type": "string"
+            },
+            "formats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fallback_constant": {
+              "type": "string"
+            }
+          }
+        },
+        "valid_from": {
+          "type": "object",
+          "properties": {
+            "from_field": {
+              "type": "string"
+            },
+            "formats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "valid_to": {
+          "type": "object",
+          "properties": {
+            "from_field": {
+              "type": "string"
+            },
+            "formats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "source_reliability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How much we trust this publisher on this kind of claim. One value per source. Kept apart from field_confidence."
+        }
+      }
+    },
+    "field_mappings": {
+      "type": "array",
+      "description": "One entry per canonical field we can fill. The assignment requires all four of: source field, canonical field, transformation, confidence.",
+      "items": {
+        "type": "object",
+        "required": [
+          "canonical_field",
+          "field_confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "canonical_field": {
+            "type": "string",
+            "enum": [
+              "entity.legal_name",
+              "entity.trading_name",
+              "entity.abn",
+              "entity.acn",
+              "entity.nzbn",
+              "entity.entity_type",
+              "entity.status",
+              "entity.website",
+              "entity.industry_code",
+              "entity.date_registered",
+              "address.full",
+              "address.locality",
+              "address.state",
+              "address.postcode",
+              "address.country"
+            ]
+          },
+          "source_field": {
+            "type": "string",
+            "description": "Omitted only when the first transform is concat, coalesce or constant."
+          },
+          "transforms": {
+            "type": "array",
+            "description": "Ops applied in order, from config/transforms.yaml. The agent picks names. It never writes code.",
+            "items": {
+              "type": "object",
+              "required": [
+                "op"
+              ],
+              "properties": {
+                "op": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "field_confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "How sure we are this mapping and parse are right. Not blended with anything else."
+          },
+          "derivation_level": {
+            "type": "string",
+            "enum": [
+              "L0",
+              "L1",
+              "L2",
+              "L3",
+              "L4"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "unmapped_source_fields": {
+      "type": "array",
+      "description": "Source columns we chose not to map. The assignment says list them, do not guess at them.",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_field",
+          "reason"
+        ],
+        "properties": {
+          "source_field": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "example_values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "unfilled_canonical_fields": {
+      "type": "array",
+      "description": "Ontology fields this source cannot fill. Absent, not blank, not guessed.",
+      "items": {
+        "type": "object",
+        "required": [
+          "canonical_field",
+          "reason"
+        ],
+        "properties": {
+          "canonical_field": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Filled by the test step, not by the model. This is what the human approving the config actually reads.",
+      "properties": {
+        "rows_tested": {
+          "type": "integer"
+        },
+        "rows_emitted": {
+          "type": "integer"
+        },
+        "failures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "canonical_field": {
+                "type": "string"
+              },
+              "problem": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer"
+              },
+              "example_values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

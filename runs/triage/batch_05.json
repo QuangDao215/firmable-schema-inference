@@ -1,0 +1,210 @@
+{
+ "results": [
+  {
+   "dataset_id": "14a6d909-44f0-4da0-b9e4-3a9eccdf7fb3",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "This is a record of specific government contracts awarded to businesses."
+  },
+  {
+   "dataset_id": "e5f3e38a-8f32-4d0b-b0f5-88507bec9ebd",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "A report detailing individual procurement contracts with suppliers."
+  },
+  {
+   "dataset_id": "883be566-6964-4a0d-afde-4d593ff2e6e9",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "A list of government contracts awarded to various service providers."
+  },
+  {
+   "dataset_id": "76a4ad30-4920-4f69-9e90-45607dc05d30",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure lists usually contain supplier names for specific awarded deals."
+  },
+  {
+   "dataset_id": "b1badaa3-754d-4e90-adb5-3ce86842c7d1",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contract disclosure reports name the external business entities receiving contracts."
+  },
+  {
+   "dataset_id": "944d1b3c-94c1-4233-81d8-45cdefa4a620",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Discloses details of contracts awarded to entities by the fire department."
+  },
+  {
+   "dataset_id": "bfd4fe84-0f9e-420e-881a-9f8e92947662",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Quarterly contract lists typically identify the businesses contracted by the authority."
+  },
+  {
+   "dataset_id": "08bf1418-f1d1-4ef9-bf38-1f3926d3a899",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Treasury contract disclosure reports list suppliers and business entities awarded contracts."
+  },
+  {
+   "dataset_id": "c6557251-de2d-4dde-87e0-1a2e6a31a119",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Contains records of specific procurement contract events involving external business entities."
+  },
+  {
+   "dataset_id": "f4e5fd07-eb6a-420c-a857-6eda213ba6a3",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "trading_name",
+    "address_full",
+    "postcode"
+   ],
+   "reason": "Lists specific business premises holding liquor licences."
+  },
+  {
+   "dataset_id": "36a1f36a-6542-47ad-80e3-db4529954ec5",
+   "record_grain": "aggregate",
+   "confidence": 0.1,
+   "likely_fields": [],
+   "reason": "This is a social research survey dataset, not a register of business entities."
+  },
+  {
+   "dataset_id": "b7868b35-945e-4fa7-bc4e-91370af406c0",
+   "record_grain": "aggregate",
+   "confidence": 0.2,
+   "likely_fields": [],
+   "reason": "The title suggests statistical counts of organizations rather than a list of entities."
+  },
+  {
+   "dataset_id": "ee007f74-f10c-42c1-9f3b-77fc347acd60",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Reports on individual supply chain contracts with specific contractors."
+  },
+  {
+   "dataset_id": "0fcab826-225b-4226-aef2-d62085c41cfc",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "Discloses specific contracts awarded to third-party contractors."
+  },
+  {
+   "dataset_id": "0a882fea-a1f2-420d-8d5e-eee5783ffbd5",
+   "record_grain": "entity",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state"
+   ],
+   "reason": "A permit register likely contains names of the permit-holding businesses."
+  },
+  {
+   "dataset_id": "0a32fd99-cebc-453f-a7e8-b753a3f9d123",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "Records a specific regulatory notice for a single infrastructure project area."
+  },
+  {
+   "dataset_id": "1840d506-e62d-4926-ac70-d810dfbf8175",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "Documents a specific infrastructure anticipatory notice for a project area."
+  },
+  {
+   "dataset_id": "6c5c19b1-3c62-4186-ad42-0fa06cab7ab2",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "Records an infrastructure notification for a specific development project."
+  },
+  {
+   "dataset_id": "121316ec-fdd3-486d-9c56-e8bd2c03e88d",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "Lists multiple service area declarations for a telecommunications provider."
+  },
+  {
+   "dataset_id": "8596e349-8ef9-4cd7-a14b-01341d25f5e9",
+   "record_grain": "event",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "Declarations for service areas provided by a specific network operator."
+  }
+ ],
+ "usage": {
+  "at": "2026-09-19T21:43:43",
+  "step": "triage_batch_5",
+  "model": "gemini-3.1-flash-lite",
+  "input_tokens": 4870,
+  "output_tokens": 2038,
+  "seconds": 6.3,
+  "usd": 0.004274
+ }
+}

@@ -1,0 +1,192 @@
+{
+ "holdout_rows": 800,
+ "holdout_note": "",
+ "rows_out": 800,
+ "failures": [
+  {
+   "canonical_field": "address.postcode",
+   "source_field": "Supplier Postcode",
+   "problem": "dropped a value the source had",
+   "count": 10,
+   "examples": [
+    "801",
+    "97219",
+    "OX2 6DP",
+    "FY1 9JN",
+    "60603",
+    "200"
+   ],
+   "share_of_rows": 0.013
+  }
+ ],
+ "coverage": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Supplier Name",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "Supplier ABN",
+   "filled": 790,
+   "of_rows": 800,
+   "fill_rate": 0.988,
+   "claimed_confidence": 0.98,
+   "source_column_filled": 0.998
+  },
+  {
+   "canonical_field": "address.full",
+   "source_field": "Supplier Address",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.9,
+   "source_column_filled": 0.835
+  },
+  {
+   "canonical_field": "address.locality",
+   "source_field": "Supplier Suburb",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "address.state",
+   "source_field": "Supplier State",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.98,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "address.postcode",
+   "source_field": "Supplier Postcode",
+   "filled": 786,
+   "of_rows": 800,
+   "fill_rate": 0.983,
+   "claimed_confidence": 0.98,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "address.country",
+   "source_field": "Supplier Country",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.98,
+   "source_column_filled": 1.0
+  }
+ ],
+ "serious_failures": 0,
+ "dead_fields": [],
+ "losing_values": [],
+ "needs_revision": true,
+ "sample_observations": [
+  {
+   "source_id": "historical-australian-government-contrac-5c7fa69b",
+   "source_record_id": "CN3650314",
+   "observed_at": "2019-12-23T00:00:00",
+   "ingested_at": "2026-09-19T16:54:06+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.85,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 0.98,
+     "address.full": 0.9,
+     "address.locality": 0.95,
+     "address.state": 0.98,
+     "address.postcode": 0.98,
+     "address.country": 0.98
+    }
+   },
+   "valid_from": "2019-12-02",
+   "valid_to": "2020-12-08",
+   "entity": {
+    "legal_name": "DIGITAL TRANSFORMATION AGENCY",
+    "abn": "96257979159"
+   },
+   "address": {
+    "full": "9880 GPO BOX, CANBERRA, ACT, 2601, Australia",
+    "locality": "CANBERRA",
+    "state": "ACT",
+    "postcode": "2601",
+    "country": "Australia"
+   }
+  },
+  {
+   "source_id": "historical-australian-government-contrac-5c7fa69b",
+   "source_record_id": "CN3654193",
+   "observed_at": "2020-01-20T00:00:00",
+   "ingested_at": "2026-09-19T16:54:06+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.85,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 0.98,
+     "address.full": 0.9,
+     "address.locality": 0.95,
+     "address.state": 0.98,
+     "address.postcode": 0.98,
+     "address.country": 0.98
+    }
+   },
+   "valid_from": "2019-07-01",
+   "valid_to": "2020-06-30",
+   "entity": {
+    "legal_name": "Launch Recruitment",
+    "abn": "54119140840"
+   },
+   "address": {
+    "full": "Sydney, NSW, 2000, AUSTRALIA",
+    "locality": "Sydney",
+    "state": "NSW",
+    "postcode": "2000",
+    "country": "AUSTRALIA"
+   }
+  },
+  {
+   "source_id": "historical-australian-government-contrac-5c7fa69b",
+   "source_record_id": "CN3468654-A2",
+   "observed_at": "2017-11-14T00:00:00",
+   "ingested_at": "2026-09-19T16:54:06+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.85,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 0.98,
+     "address.full": 0.9,
+     "address.locality": 0.95,
+     "address.state": 0.98,
+     "address.postcode": 0.98,
+     "address.country": 0.98
+    }
+   },
+   "valid_from": "2017-11-10",
+   "valid_to": "2018-11-09",
+   "entity": {
+    "legal_name": "Code from the Corner Pty Ltd",
+    "abn": "29102997071"
+   },
+   "address": {
+    "full": "1/44 Shadforth Street, MOSMAN, NSW, 2088, AUSTRALIA",
+    "locality": "MOSMAN",
+    "state": "NSW",
+    "postcode": "2088",
+    "country": "AUSTRALIA"
+   }
+  }
+ ]
+}

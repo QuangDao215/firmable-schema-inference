@@ -1,0 +1,8 @@
+{
+ "approved": true,
+ "by": "dao.lq",
+ "at": "2026-09-19T23:56:51",
+ "note": "0.9% of ABN column holds 9-digit values, likely ACNs, dropped rather than guessed",
+ "unresolved_failures": 1,
+ "reviewed_card": "/Users/dao.lq/Projects/firmable_assignment/runs/victorian-government-schools-abns-1ca29b03/review_card.md"
+}

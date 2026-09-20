@@ -1,0 +1,105 @@
+{
+ "holdout_rows": 800,
+ "holdout_note": "",
+ "rows_out": 800,
+ "failures": [
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "problem": "dropped a value the source had",
+   "count": 7,
+   "examples": [
+    "142 547 710",
+    "14 209 385 ",
+    "71 802 971 ",
+    "85 269 418 ",
+    "97 085 612 ",
+    "85 100 276 "
+   ],
+   "share_of_rows": 0.009
+  }
+ ],
+ "coverage": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "SchoolName",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "filled": 793,
+   "of_rows": 800,
+   "fill_rate": 0.991,
+   "claimed_confidence": 0.9,
+   "source_column_filled": 1.0
+  }
+ ],
+ "serious_failures": 0,
+ "dead_fields": [],
+ "losing_values": [],
+ "needs_revision": true,
+ "sample_observations": [
+  {
+   "source_id": "victorian-government-schools-abns-1ca29b03",
+   "source_record_id": "2265",
+   "observed_at": "2015-07-15T06:32:28.103000",
+   "ingested_at": "2026-09-19T16:53:53+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.85,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 0.9
+    }
+   },
+   "entity": {
+    "legal_name": "Koondrook Primary School",
+    "abn": "57761295834"
+   }
+  },
+  {
+   "source_id": "victorian-government-schools-abns-1ca29b03",
+   "source_record_id": "2269",
+   "observed_at": "2015-07-14T06:31:58.197000",
+   "ingested_at": "2026-09-19T16:53:53+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.85,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 0.9
+    }
+   },
+   "entity": {
+    "legal_name": "Katunga South Primary School",
+    "abn": "12060022547"
+   }
+  },
+  {
+   "source_id": "victorian-government-schools-abns-1ca29b03",
+   "source_record_id": "2271",
+   "observed_at": "2015-07-06T06:30:37.587000",
+   "ingested_at": "2026-09-19T16:53:53+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.85,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 0.9
+    }
+   },
+   "entity": {
+    "legal_name": "Magpie Primary School",
+    "abn": "61567681482"
+   }
+  }
+ ]
+}

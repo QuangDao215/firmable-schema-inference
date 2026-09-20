@@ -1,0 +1,152 @@
+{
+ "holdout_rows": 800,
+ "holdout_note": "",
+ "rows_out": 800,
+ "failures": [],
+ "coverage": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "Company Name",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.acn",
+   "source_field": "ACN",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 1.0,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "ABN",
+   "filled": 768,
+   "of_rows": 800,
+   "fill_rate": 0.96,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "source_field": "Type",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.status",
+   "source_field": "Status",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "source_field": "Date of Registration",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  }
+ ],
+ "serious_failures": 0,
+ "dead_fields": [],
+ "losing_values": [],
+ "needs_revision": false,
+ "sample_observations": [
+  {
+   "source_id": "asic-company-dataset-7b8656f9",
+   "source_record_id": "7ad50e8c885954a4",
+   "observed_at": "2026-09-14T15:25:32.406572",
+   "ingested_at": "2026-09-19T16:52:49+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.98,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.acn": 1.0,
+     "entity.abn": 0.95,
+     "entity.entity_type": 0.95,
+     "entity.status": 0.95,
+     "entity.date_registered": 0.95
+    }
+   },
+   "valid_from": "1920-02-09",
+   "entity": {
+    "legal_name": "DAVID BROWN SANTASALO AUSTRALIA PTY LTD",
+    "acn": "000008640",
+    "abn": "15000008640",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1920-02-09"
+   }
+  },
+  {
+   "source_id": "asic-company-dataset-7b8656f9",
+   "source_record_id": "4c8e5e78e38a2da6",
+   "observed_at": "2026-09-14T15:25:32.406572",
+   "ingested_at": "2026-09-19T16:52:49+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.98,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.acn": 1.0,
+     "entity.abn": 0.95,
+     "entity.entity_type": 0.95,
+     "entity.status": 0.95,
+     "entity.date_registered": 0.95
+    }
+   },
+   "valid_from": "1920-02-12",
+   "entity": {
+    "legal_name": "CHARLES PARSONS & CO PTY LTD",
+    "acn": "000008668",
+    "abn": "96000008668",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1920-02-12"
+   }
+  },
+  {
+   "source_id": "asic-company-dataset-7b8656f9",
+   "source_record_id": "dd31659ce545702f",
+   "observed_at": "2026-09-14T15:25:32.406572",
+   "ingested_at": "2026-09-19T16:52:49+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.98,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.acn": 1.0,
+     "entity.abn": 0.95,
+     "entity.entity_type": 0.95,
+     "entity.status": 0.95,
+     "entity.date_registered": 0.95
+    }
+   },
+   "valid_from": "1920-02-27",
+   "entity": {
+    "legal_name": "ALLIED PINNACLE NSW PTY LIMITED",
+    "acn": "000008739",
+    "abn": "24000008739",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1920-02-27"
+   }
+  }
+ ]
+}

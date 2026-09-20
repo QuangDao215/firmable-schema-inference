@@ -1,0 +1,208 @@
+{
+ "results": [
+  {
+   "dataset_id": "df5c20c8-8009-46d0-ac49-12c15ba8dd3e",
+   "record_grain": "unknown",
+   "confidence": 0.0,
+   "likely_fields": [],
+   "reason": "This is a geophysical survey dataset, not a list of businesses."
+  },
+  {
+   "dataset_id": "490c9485-9943-4b06-9103-9302f0e13341",
+   "record_grain": "unknown",
+   "confidence": 0.0,
+   "likely_fields": [],
+   "reason": "This is a geophysical and geological survey dataset."
+  },
+  {
+   "dataset_id": "88373011-9b73-4a09-b0b4-da1538b25440",
+   "record_grain": "unknown",
+   "confidence": 0.0,
+   "likely_fields": [],
+   "reason": "This dataset pertains to environmental locations for wildlife and does not list businesses."
+  },
+  {
+   "dataset_id": "3312bed1-bfbd-4580-aa8d-fee94fd9a06b",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "abn"
+   ],
+   "reason": "These reports contain records of individual contracts awarded to businesses."
+  },
+  {
+   "dataset_id": "4e426da6-2de9-48ea-8136-06616c6b5b32",
+   "record_grain": "event",
+   "confidence": 0.5,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "The dataset documents a procurement event, though it notes no vendor was selected."
+  },
+  {
+   "dataset_id": "10189fd8-8259-456e-9ac3-7376b9600525",
+   "record_grain": "event",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Contains records of individual contracts awarded by the agency."
+  },
+  {
+   "dataset_id": "9180324e-beac-46c9-b347-0e69b42395fd",
+   "record_grain": "entity",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Lists entities that hold production licenses for petroleum resources."
+  },
+  {
+   "dataset_id": "878e08bb-732a-49dd-bf66-bfce88cccefd",
+   "record_grain": "event",
+   "confidence": 0.4,
+   "likely_fields": [
+    "legal_name",
+    "industry_code"
+   ],
+   "reason": "Contains individual training contracts between businesses and apprentices."
+  },
+  {
+   "dataset_id": "b546a6f2-c4c9-485f-add8-58ed0130317a",
+   "record_grain": "entity",
+   "confidence": 0.7,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Lists entities currently holding exploration license applications."
+  },
+  {
+   "dataset_id": "5715b850-a989-4343-a1e8-e779ec729de4",
+   "record_grain": "entity",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Contains intellectual property rights application data linked to businesses and individuals."
+  },
+  {
+   "dataset_id": "ec471ddf-f61f-45de-bb33-724780c62427",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Declaration records for a specific corporation at various locations."
+  },
+  {
+   "dataset_id": "8750aeb3-c289-4db4-8840-16906f16ef32",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Declaration records for a specific corporation at a service area."
+  },
+  {
+   "dataset_id": "14233aa8-58c4-4dcd-bb2d-eb2113dbaf35",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Declaration records for a specific corporation at a service area."
+  },
+  {
+   "dataset_id": "3fdf9546-53e9-4271-bd7a-44481ca10571",
+   "record_grain": "entity",
+   "confidence": 0.9,
+   "likely_fields": [
+    "legal_name",
+    "address_full",
+    "state",
+    "postcode"
+   ],
+   "reason": "Declaration records for a specific corporation at a service area."
+  },
+  {
+   "dataset_id": "388c5a74-fa9e-4b48-8881-95467e92fe6a",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "acn",
+    "status",
+    "date_registered"
+   ],
+   "reason": "This is a direct list of liquidators registered with ASIC."
+  },
+  {
+   "dataset_id": "17692814-a018-470e-8d4f-30ddee5b8b2b",
+   "record_grain": "event",
+   "confidence": 0.3,
+   "likely_fields": [
+    "legal_name"
+   ],
+   "reason": "Contains gifts/benefits records which may involve external business names."
+  },
+  {
+   "dataset_id": "cf3fb933-34a2-4200-9c6e-c806bbc58a1f",
+   "record_grain": "entity",
+   "confidence": 1.0,
+   "likely_fields": [
+    "legal_name",
+    "date_registered"
+   ],
+   "reason": "Historical index of registered Queensland companies."
+  },
+  {
+   "dataset_id": "dd8789bd-4d4f-41af-adba-6e2a3a71ada8",
+   "record_grain": "entity",
+   "confidence": 0.8,
+   "likely_fields": [
+    "legal_name",
+    "address_full"
+   ],
+   "reason": "Lists entities issued with environmental statutory orders."
+  },
+  {
+   "dataset_id": "767b84b8-6756-460a-96c9-9c073153485a",
+   "record_grain": "aggregate",
+   "confidence": 0.2,
+   "likely_fields": [
+    "state",
+    "postcode"
+   ],
+   "reason": "These are statistics on registered vehicles, not a list of businesses."
+  },
+  {
+   "dataset_id": "47c5f54a-8878-4026-849f-12fcefe2389e",
+   "record_grain": "aggregate",
+   "confidence": 0.1,
+   "likely_fields": [],
+   "reason": "This is an annual report containing statistics on medical procedures."
+  }
+ ],
+ "usage": {
+  "at": "2026-09-19T21:43:49",
+  "step": "triage_batch_6",
+  "model": "gemini-3.1-flash-lite",
+  "input_tokens": 4654,
+  "output_tokens": 2019,
+  "seconds": 6.1,
+  "usd": 0.004192
+ }
+}

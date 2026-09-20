@@ -1,0 +1,277 @@
+{
+ "what_this_is": "Measured, not estimated. Read from runs/*/state.json and runs/llm_calls.jsonl, both written while the pipeline ran.",
+ "as_built": {
+  "note": "Includes every rerun, rejected config and replaced approach. What the development actually cost.",
+  "by_phase": {
+   "one-off: checking the API before spending": {
+    "calls": 3,
+    "input": 7136,
+    "output": 3069,
+    "usd": 0.01165,
+    "seconds": 12.3
+   },
+   "Part 1: model triage of 120 datasets": {
+    "calls": 6,
+    "input": 27696,
+    "output": 12654,
+    "usd": 0.02591,
+    "seconds": 40.8
+   },
+   "Part 1: checking 20 shortlisted files against their data": {
+    "calls": 103,
+    "input": 94644,
+    "output": 11327,
+    "usd": 0.11345,
+    "seconds": 203.4
+   },
+   "Part 2: proposing a mapping": {
+    "calls": 13,
+    "input": 46212,
+    "output": 46199,
+    "usd": 0.2079,
+    "seconds": 145.3
+   },
+   "Part 2: correcting a mapping": {
+    "calls": 21,
+    "input": 56542,
+    "output": 54191,
+    "usd": 0.24562,
+    "seconds": 167.2
+   },
+   "superseded: an earlier precision check, redone by a different model outside the pipeline": {
+    "calls": 15,
+    "input": 37573,
+    "output": 8240,
+    "usd": 0.05908,
+    "seconds": 65.8
+   }
+  },
+  "total": {
+   "calls": 161,
+   "input_tokens": 269803,
+   "output_tokens": 135680,
+   "seconds": 634.8,
+   "usd": 0.6636
+  },
+  "per_source": [
+   {
+    "source_id": "acnc-registered-charities-b050b242",
+    "title": "ACNC Registered Charities",
+    "steps": [
+     "probe",
+     "profile",
+     "propose",
+     "validate",
+     "revise",
+     "review",
+     "freeze"
+    ],
+    "step_count": 7,
+    "seconds_per_step": {
+     "probe": 2.36,
+     "profile": 0.03,
+     "propose": 16.95,
+     "validate": 0.05,
+     "revise": 0.0,
+     "review": 0.01,
+     "freeze": 0
+    },
+    "wall_clock_seconds": 19.4,
+    "model_calls": 2,
+    "input_tokens": 10707,
+    "output_tokens": 10757,
+    "usd": 0.04837,
+    "revision_rounds": 0,
+    "reviewer_rejections": 0,
+    "approved_by": "dao.lq",
+    "unresolved_failures": 0
+   },
+   {
+    "source_id": "asic-company-dataset-7b8656f9",
+    "title": "ASIC - Company Dataset",
+    "steps": [
+     "probe",
+     "profile",
+     "propose",
+     "validate",
+     "revise",
+     "review",
+     "freeze"
+    ],
+    "step_count": 7,
+    "seconds_per_step": {
+     "probe": 1.84,
+     "profile": 0.02,
+     "propose": 10.78,
+     "validate": 0.03,
+     "revise": 11.01,
+     "review": 0.0,
+     "freeze": 0
+    },
+    "wall_clock_seconds": 23.68,
+    "model_calls": 10,
+    "input_tokens": 27912,
+    "output_tokens": 30512,
+    "usd": 0.13535,
+    "revision_rounds": 1,
+    "reviewer_rejections": 1,
+    "approved_by": "dao.lq",
+    "unresolved_failures": 0
+   },
+   {
+    "source_id": "historical-australian-government-contrac-5c7fa69b",
+    "title": "Historical Australian Government Contract Notice Data",
+    "steps": [
+     "probe",
+     "profile",
+     "propose",
+     "validate",
+     "revise",
+     "review",
+     "freeze"
+    ],
+    "step_count": 7,
+    "seconds_per_step": {
+     "probe": 9.59,
+     "profile": 0.04,
+     "propose": 13.29,
+     "validate": 0.05,
+     "revise": 11.57,
+     "review": 0.01,
+     "freeze": 0
+    },
+    "wall_clock_seconds": 34.55,
+    "model_calls": 5,
+    "input_tokens": 21492,
+    "output_tokens": 18167,
+    "usd": 0.08425,
+    "revision_rounds": 1,
+    "reviewer_rejections": 0,
+    "approved_by": "dao.lq",
+    "unresolved_failures": 1
+   },
+   {
+    "source_id": "victorian-government-schools-abns-1ca29b03",
+    "title": "Victorian Government Schools ABNs",
+    "steps": [
+     "probe",
+     "profile",
+     "propose",
+     "validate",
+     "revise",
+     "review",
+     "freeze"
+    ],
+    "step_count": 7,
+    "seconds_per_step": {
+     "probe": 2.78,
+     "profile": 0.01,
+     "propose": 6.12,
+     "validate": 0.02,
+     "revise": 13.42,
+     "review": 0.0,
+     "freeze": 0
+    },
+    "wall_clock_seconds": 22.35,
+    "model_calls": 8,
+    "input_tokens": 16554,
+    "output_tokens": 14824,
+    "usd": 0.068,
+    "revision_rounds": 2,
+    "reviewer_rejections": 0,
+    "approved_by": "dao.lq",
+    "unresolved_failures": 1
+   },
+   {
+    "source_id": "victorian-liquor-licences-by-location-6f1cc305",
+    "title": "Victorian liquor licences by location",
+    "steps": [
+     "probe",
+     "profile",
+     "propose",
+     "validate",
+     "revise",
+     "review",
+     "freeze"
+    ],
+    "step_count": 7,
+    "seconds_per_step": {
+     "probe": 5.92,
+     "profile": 0.02,
+     "propose": 9.64,
+     "validate": 0.03,
+     "revise": 9.03,
+     "review": 0.01,
+     "freeze": 0
+    },
+    "wall_clock_seconds": 24.65,
+    "model_calls": 7,
+    "input_tokens": 20272,
+    "output_tokens": 19507,
+    "usd": 0.08835,
+    "revision_rounds": 1,
+    "reviewer_rejections": 0,
+    "approved_by": "dao.lq",
+    "unresolved_failures": 0
+   },
+   {
+    "source_id": "wgea-dataset-4d35cd80",
+    "title": "WGEA Dataset",
+    "steps": [
+     "probe",
+     "profile",
+     "propose",
+     "validate",
+     "revise",
+     "review",
+     "freeze"
+    ],
+    "step_count": 7,
+    "seconds_per_step": {
+     "probe": 10.74,
+     "profile": 0.02,
+     "propose": 8.01,
+     "validate": 0.02,
+     "revise": 0.0,
+     "review": 0.01,
+     "freeze": 0
+    },
+    "wall_clock_seconds": 18.8,
+    "model_calls": 2,
+    "input_tokens": 5817,
+    "output_tokens": 6623,
+    "usd": 0.0292,
+    "revision_rounds": 0,
+    "reviewer_rejections": 0,
+    "approved_by": "dao.lq",
+    "unresolved_failures": 0
+   }
+  ]
+ },
+ "steady_state": {
+  "sources": 6,
+  "model_calls": 11,
+  "input_tokens": 35540,
+  "output_tokens": 35309,
+  "seconds": 114.5,
+  "usd": 0.15906,
+  "usd_per_source": 0.02651,
+  "seconds_per_source": 19.1
+ },
+ "one_time_vs_per_record": {
+  "config_generation": "one-time, per source",
+  "extraction_per_record_usd": 0.0,
+  "extraction_model_calls": 0,
+  "matching_model_calls": 0,
+  "profile_model_calls": 0
+ },
+ "where_a_run_can_fail": {
+  "probe": "download dies or the format is unreadable. Retry costs the download only.",
+  "profile": "a column will not parse. It is profiled as unknown and the run continues.",
+  "propose": "the model returns unusable JSON. Retry costs one call.",
+  "validate": "the engine raises on a row. It is counted as a failure and the run continues.",
+  "revise": "no convergence in two rounds. The source is flagged for a human and the config is kept as a draft.",
+  "review": "a person rejects. Their note is kept and propose through review rerun with it.",
+  "freeze": "only runs on approval. Nothing else can write to configs/."
+ }
+}

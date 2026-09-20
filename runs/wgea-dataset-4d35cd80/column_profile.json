@@ -1,0 +1,568 @@
+{
+ "columns_profiled": 20,
+ "rows_sampled": 400,
+ "columns": [
+  {
+   "name": "reporting_year",
+   "index": 0,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 7,
+   "examples": [
+    "2024-25"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "2024-25"
+   ]
+  },
+  {
+   "name": "corporate_group_name",
+   "index": 1,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 338,
+   "distinct_is_capped": false,
+   "max_length": 125,
+   "examples": [
+    "Drake Supermarkets Pty Ltd",
+    "NEXUS DAY HOSPITALS HOLDINGS PTY LTD",
+    "Apollo Care Operations Pty Limited",
+    "Lumia Care Services Pty Ltd",
+    "SPL INVESTMENTS PTY. LTD.",
+    "SALTER BROTHERS HOSPITALITY RETREAT COMPANY PTY LTD",
+    "Australasian Landscape Services Holdco Pty Ltd",
+    "Agility Staffing Pty Ltd"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "employer_name",
+   "index": 2,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 400,
+   "distinct_is_capped": false,
+   "max_length": 125,
+   "examples": [
+    "ROYAL MOTOR YACHT CLUB BROKEN BAY NEW SOUTH WALES",
+    "Toowoomba Motors Pty Ltd",
+    "ANZUK Education Services Pty Ltd",
+    "EMBRACE THE CHI PTY LTD",
+    "MARROARCHI PTY LTD",
+    "G R & D M WILKIE PTY. LTD.",
+    "Receivables People Solutions Pty Ltd",
+    "COAST & COUNTRY PRIMARY CARE LIMITED"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "employer_abn",
+   "index": 3,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 400,
+   "distinct_is_capped": false,
+   "max_length": 11,
+   "examples": [
+    "70001040811",
+    "76153536406",
+    "19123730521",
+    "43639336226",
+    "12647225929",
+    "53006714450",
+    "70667888566",
+    "85603048808"
+   ],
+   "looks_like": {
+    "abn_valid": 1.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "is_relevant_employer",
+   "index": 4,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "TRUE"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "TRUE"
+   ]
+  },
+  {
+   "name": "employer_size",
+   "index": 5,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 5,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "<250",
+    "250- 499",
+    "500- 999",
+    "1000- 4999",
+    "5000+"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "1000- 4999",
+    "250- 499",
+    "500- 999",
+    "5000+",
+    "<250"
+   ]
+  },
+  {
+   "name": "anzsic_code",
+   "index": 6,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 151,
+   "distinct_is_capped": false,
+   "max_length": 4,
+   "examples": [
+    "8790",
+    "4511",
+    "7211",
+    "8601",
+    "7000",
+    "4530",
+    "4400",
+    "4110"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 1.0,
+    "state": 0.0,
+    "numeric": 1.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "anzsic_division",
+   "index": 7,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 19,
+   "distinct_is_capped": false,
+   "max_length": 47,
+   "examples": [
+    "Health Care and Social Assistance",
+    "Accommodation and Food Services",
+    "Professional, Scientific and Technical Services",
+    "Administrative and Support Services",
+    "Manufacturing",
+    "Wholesale Trade",
+    "Construction",
+    "Retail Trade"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Accommodation and Food Services",
+    "Administrative and Support Services",
+    "Agriculture, Forestry and Fishing",
+    "Arts and Recreation Services",
+    "Construction",
+    "Education and Training",
+    "Electricity, Gas, Water and Waste Services",
+    "Financial and Insurance Services",
+    "Health Care and Social Assistance",
+    "Information Media and Telecommunications",
+    "Manufacturing",
+    "Mining",
+    "Other Services",
+    "Professional, Scientific and Technical Services",
+    "Public Administration and Safety",
+    "Rental, Hiring and Real Estate Services",
+    "Retail Trade",
+    "Transport, Postal and Warehousing",
+    "Wholesale Trade"
+   ]
+  },
+  {
+   "name": "anzsic_subdivision",
+   "index": 8,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 59,
+   "distinct_is_capped": false,
+   "max_length": 100,
+   "examples": [
+    "Food and Beverage Services",
+    "Professional, Scientific and Technical Services (Except Computer System Design and Related Services)",
+    "Administrative Services",
+    "Social Assistance Services",
+    "Residential Care Services",
+    "Personal and Other Services",
+    "Construction Services",
+    "Machinery and Equipment Wholesaling"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "anzsic_group",
+   "index": 9,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 104,
+   "distinct_is_capped": false,
+   "max_length": 72,
+   "examples": [
+    "Cafes, Restaurants and Takeaway Food Services",
+    "Other Social Assistance Services",
+    "Employment Services",
+    "Residential Care Services",
+    "Computer System Design and Related Services",
+    "Other Machinery and Equipment Wholesaling",
+    "Clubs (Hospitality)",
+    "Accommodation"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "anzsic_class",
+   "index": 10,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 151,
+   "distinct_is_capped": false,
+   "max_length": 71,
+   "examples": [
+    "Other Social Assistance Services",
+    "Cafes and Restaurants",
+    "Employment Placement and Recruitment Services",
+    "Aged Care Residential Services",
+    "Computer System Design and Related Services",
+    "Clubs (Hospitality)",
+    "Accommodation",
+    "Supermarket and Grocery Stores"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": null
+  },
+  {
+   "name": "section",
+   "index": 11,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 25,
+   "examples": [
+    "Action on gender equality"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Action on gender equality"
+   ]
+  },
+  {
+   "name": "subsection",
+   "index": 12,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 14,
+   "examples": [
+    "Gender Pay Gap"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Gender Pay Gap"
+   ]
+  },
+  {
+   "name": "question_index",
+   "index": 13,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 10,
+   "examples": [
+    "EAct.Act.N"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "EAct.Act.N"
+   ]
+  },
+  {
+   "name": "upper_question_text",
+   "index": 14,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 101,
+   "examples": [
+    "2.2 Have you conducted an analysis to determine if there are remuneration gaps between women and men?"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "2.2 Have you conducted an analysis to determine if there are remuneration gaps between women and men?"
+   ]
+  },
+  {
+   "name": "question_text",
+   "index": 15,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 83,
+   "examples": [
+    "2.2c Did you take any actions as a result of your gender remuneration gap analysis?"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "2.2c Did you take any actions as a result of your gender remuneration gap analysis?"
+   ]
+  },
+  {
+   "name": "additional_question_info_1",
+   "index": 16,
+   "filled": 0,
+   "of_rows": 400,
+   "null_rate": 1.0,
+   "distinct": 0,
+   "distinct_is_capped": false,
+   "max_length": 0,
+   "examples": [],
+   "looks_like": {},
+   "all_values": null
+  },
+  {
+   "name": "additional_question_info_2",
+   "index": 17,
+   "filled": 0,
+   "of_rows": 400,
+   "null_rate": 1.0,
+   "distinct": 0,
+   "distinct_is_capped": false,
+   "max_length": 0,
+   "examples": [],
+   "looks_like": {},
+   "all_values": null
+  },
+  {
+   "name": "response_type",
+   "index": 18,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 6,
+   "examples": [
+    "Select"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "Select"
+   ]
+  },
+  {
+   "name": "response",
+   "index": 19,
+   "filled": 400,
+   "of_rows": 400,
+   "null_rate": 0.0,
+   "distinct": 1,
+   "distinct_is_capped": false,
+   "max_length": 2,
+   "examples": [
+    "No"
+   ],
+   "looks_like": {
+    "abn_valid": 0.0,
+    "acn_valid": 0.0,
+    "postcode": 0.0,
+    "state": 0.0,
+    "numeric": 0.0,
+    "url": 0.0,
+    "email": 0.0,
+    "date_formats": []
+   },
+   "all_values": [
+    "No"
+   ]
+  }
+ ]
+}

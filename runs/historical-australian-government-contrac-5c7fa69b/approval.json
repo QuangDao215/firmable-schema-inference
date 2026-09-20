@@ -1,0 +1,8 @@
+{
+ "approved": true,
+ "by": "dao.lq",
+ "at": "2026-09-19T23:56:52",
+ "note": "international suppliers: non-AU postcodes dropped, transform list cannot condition on country",
+ "unresolved_failures": 1,
+ "reviewed_card": "/Users/dao.lq/Projects/firmable_assignment/runs/historical-australian-government-contrac-5c7fa69b/review_card.md"
+}

@@ -1,0 +1,189 @@
+{
+ "record_id": {
+  "strategy": "hash_of_fields",
+  "fields": [
+   "employer_abn",
+   "question_index",
+   "reporting_year"
+  ],
+  "note": "Composite key ensuring unique identification per employer questionnaire response record."
+ },
+ "observed_at": {
+  "from_field": "",
+  "formats": [],
+  "note": "No exact observation timestamp column is available in the source data."
+ },
+ "valid_from": {
+  "from_field": "",
+  "formats": [],
+  "note": "No validity start date column is available in the source data."
+ },
+ "valid_to": {
+  "from_field": "",
+  "formats": [],
+  "note": "No validity end date column is available in the source data."
+ },
+ "source_reliability": 0.95,
+ "field_mappings": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "employer_name",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "collapse_spaces"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Legal name of the employer submitting the WGEA report."
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "employer_abn",
+   "transforms": [
+    {
+     "op": "strip"
+    },
+    {
+     "op": "abn_normalize"
+    }
+   ],
+   "field_confidence": 1.0,
+   "note": "Australian Business Number validated against standard ABN checksum."
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "source_field": "anzsic_code",
+   "transforms": [
+    {
+     "op": "strip"
+    }
+   ],
+   "field_confidence": 0.95,
+   "note": "Four-digit ANZSIC industry classification code."
+  }
+ ],
+ "unmapped_source_fields": [
+  {
+   "source_field": "reporting_year",
+   "reason": "Represents a reporting period range rather than a specific date timestamp."
+  },
+  {
+   "source_field": "corporate_group_name",
+   "reason": "Refers to the parent corporate group rather than the specific employer entity."
+  },
+  {
+   "source_field": "is_relevant_employer",
+   "reason": "Administrative compliance flag not modeled in canonical entity ontology."
+  },
+  {
+   "source_field": "employer_size",
+   "reason": "Categorical headcount bracket not modeled in canonical entity ontology."
+  },
+  {
+   "source_field": "anzsic_division",
+   "reason": "Text description of ANZSIC division represented by anzsic_code."
+  },
+  {
+   "source_field": "anzsic_subdivision",
+   "reason": "Text description of ANZSIC subdivision represented by anzsic_code."
+  },
+  {
+   "source_field": "anzsic_group",
+   "reason": "Text description of ANZSIC group represented by anzsic_code."
+  },
+  {
+   "source_field": "anzsic_class",
+   "reason": "Text description of ANZSIC class represented by anzsic_code."
+  },
+  {
+   "source_field": "section",
+   "reason": "Questionnaire structure metadata."
+  },
+  {
+   "source_field": "subsection",
+   "reason": "Questionnaire structure metadata."
+  },
+  {
+   "source_field": "question_index",
+   "reason": "Question identifier code."
+  },
+  {
+   "source_field": "upper_question_text",
+   "reason": "Survey question prompt text."
+  },
+  {
+   "source_field": "question_text",
+   "reason": "Survey question prompt text."
+  },
+  {
+   "source_field": "additional_question_info_1",
+   "reason": "Empty field with 100% null rate."
+  },
+  {
+   "source_field": "additional_question_info_2",
+   "reason": "Empty field with 100% null rate."
+  },
+  {
+   "source_field": "response_type",
+   "reason": "Survey metadata describing response input type."
+  },
+  {
+   "source_field": "response",
+   "reason": "Survey answer payload not modeled in canonical business ontology."
+  }
+ ],
+ "unfilled_canonical_fields": [
+  {
+   "canonical_field": "entity.trading_name",
+   "reason": "Source does not distinguish or provide separate trading names."
+  },
+  {
+   "canonical_field": "entity.acn",
+   "reason": "ACN is not explicitly provided in the dataset."
+  },
+  {
+   "canonical_field": "entity.nzbn",
+   "reason": "Dataset contains Australian entities only."
+  },
+  {
+   "canonical_field": "entity.entity_type",
+   "reason": "Legal entity type is not provided in source data."
+  },
+  {
+   "canonical_field": "entity.status",
+   "reason": "Entity operational status is not recorded."
+  },
+  {
+   "canonical_field": "entity.website",
+   "reason": "Entity website URL is not provided."
+  },
+  {
+   "canonical_field": "entity.date_registered",
+   "reason": "Entity registration date is not provided."
+  },
+  {
+   "canonical_field": "address.full",
+   "reason": "No address details are included in the dataset."
+  },
+  {
+   "canonical_field": "address.locality",
+   "reason": "Locality is not provided in the dataset."
+  },
+  {
+   "canonical_field": "address.state",
+   "reason": "State is not provided in the dataset."
+  },
+  {
+   "canonical_field": "address.postcode",
+   "reason": "Postcode is not provided in the dataset."
+  },
+  {
+   "canonical_field": "address.country",
+   "reason": "Country address is not provided in the dataset."
+  }
+ ],
+ "_unpack_problems": []
+}

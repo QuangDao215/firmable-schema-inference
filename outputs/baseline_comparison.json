@@ -1,0 +1,46 @@
+{
+ "what_this_is": "Comparison only. The pipeline does not use an unaimed crawl.",
+ "top_k": 50,
+ "no_search_terms": {
+  "name": "no search terms",
+  "crawled": 300,
+  "machine_readable": 75,
+  "top_k_readable": 37,
+  "top_k_best": 0.15,
+  "top_k_median": 0.075,
+  "top_k_worst": 0.0,
+  "top_k_zero": 7
+ },
+ "chosen_search_terms": {
+  "name": "chosen search terms",
+  "crawled": 376,
+  "machine_readable": 376,
+  "top_k_readable": 50,
+  "top_k_best": 1.0,
+  "top_k_median": 0.3375,
+  "top_k_worst": 0.25,
+  "top_k_zero": 0
+ },
+ "unaimed_top_5": [
+  {
+   "score": 0.15,
+   "title": "Fiber Asset Management - Declaration - Mays Hill NSW - February 2023"
+  },
+  {
+   "score": 0.15,
+   "title": "Tandem Drive 3.1 With Conditions"
+  },
+  {
+   "score": 0.15,
+   "title": "School Locations 2024"
+  },
+  {
+   "score": 0.15,
+   "title": "DSROPG Contracts Disclosure FY 2025-26"
+  },
+  {
+   "score": 0.15,
+   "title": "Register of Native Title Claims"
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+Your config was run over 800 rows that the profile was NOT built from. Here is what happened.
+
+FILL RATES. 'column' is how full the source column is, 'field' is how often your mapping produced a value.
+A field well below its column means the transforms are eating values.
+  entity.legal_name          from "Company Name" column 100% -> field 100%
+  entity.legal_name          from "Current Name" column 58% -> field 100%
+  entity.acn                 from "ACN" column 100% -> field 100%
+  entity.abn                 from "ABN" column 100% -> field 96%
+  entity.entity_type         from "Type" column 100% -> field 100%
+  entity.status              from "Status" column 100% -> field 100%
+  entity.date_registered     from "Date of Registration" column 100% -> field 100%
+
+FAILURES:
+  entity.legal_name          two mappings write this one canonical field on 100% of rows (800 times)
+      real values that did this: ["Company Name", "Current Name"]
+  entity.status              value not in the enum, fell back to default on 2% of rows (12 times)
+      real values that did this: ["SOFF"]

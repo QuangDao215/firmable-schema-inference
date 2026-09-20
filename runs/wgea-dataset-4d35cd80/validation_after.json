@@ -1,0 +1,104 @@
+{
+ "holdout_rows": 800,
+ "holdout_note": "",
+ "rows_out": 800,
+ "failures": [],
+ "coverage": [
+  {
+   "canonical_field": "entity.legal_name",
+   "source_field": "employer_name",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.abn",
+   "source_field": "employer_abn",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 1.0,
+   "source_column_filled": 1.0
+  },
+  {
+   "canonical_field": "entity.industry_code",
+   "source_field": "anzsic_code",
+   "filled": 800,
+   "of_rows": 800,
+   "fill_rate": 1.0,
+   "claimed_confidence": 0.95,
+   "source_column_filled": 1.0
+  }
+ ],
+ "serious_failures": 0,
+ "dead_fields": [],
+ "losing_values": [],
+ "needs_revision": false,
+ "sample_observations": [
+  {
+   "source_id": "wgea-dataset-4d35cd80",
+   "source_record_id": "ae8d00fecf9591ca",
+   "observed_at": "2026-01-09T11:03:34.645736",
+   "ingested_at": "2026-09-19T16:52:57+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.95,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 1.0,
+     "entity.industry_code": 0.95
+    }
+   },
+   "entity": {
+    "legal_name": "Mayflower Brighton",
+    "abn": "57004507644",
+    "industry_code": "8601"
+   }
+  },
+  {
+   "source_id": "wgea-dataset-4d35cd80",
+   "source_record_id": "83421f60b01fd5c0",
+   "observed_at": "2026-01-09T11:03:34.645736",
+   "ingested_at": "2026-09-19T16:52:57+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.95,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 1.0,
+     "entity.industry_code": 0.95
+    }
+   },
+   "entity": {
+    "legal_name": "Mayflower Reservoir Limited",
+    "abn": "73130299544",
+    "industry_code": "8601"
+   }
+  },
+  {
+   "source_id": "wgea-dataset-4d35cd80",
+   "source_record_id": "f8c219754f88c67c",
+   "observed_at": "2026-01-09T11:03:34.645736",
+   "ingested_at": "2026-09-19T16:52:57+00:00",
+   "licence": "Creative Commons Attribution 3.0 Australia",
+   "extractor_version": "engine0.1/config1.0",
+   "confidence": {
+    "source_reliability": 0.95,
+    "field_confidence": {
+     "entity.legal_name": 0.95,
+     "entity.abn": 1.0,
+     "entity.industry_code": 0.95
+    }
+   },
+   "entity": {
+    "legal_name": "Loscam Australia Pty Ltd",
+    "abn": "26006440991",
+    "industry_code": "6639"
+   }
+  }
+ ]
+}

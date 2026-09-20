@@ -1,0 +1,4908 @@
+{
+ "question": "For each pair below, decide whether the two records describe THE\nSAME BUSINESS.\n\n  \"yes\"          the same legal entity\n  \"no\"           different entities. A parent and its subsidiary are different.\n                 A foundation and its college are different. Two schools with\n                 the same name in different states are different. A person and\n                 a company are different.\n  \"cannot_tell\"  not enough in the records to decide\n\nAn Australian Business Number identifies one entity: two records with the same\nvalid ABN are the same entity. The same NAME does not mean the same entity.\n",
+ "seed": 20260920,
+ "matcher_version": "matcher0.1",
+ "answer_format": {
+  "pair_id": "copy exactly",
+  "same_business": "yes | no | cannot_tell",
+  "reason": "one sentence, under 20 words"
+ },
+ "write_answers_to": "outputs/precision_verdicts.json",
+ "pairs": [
+  {
+   "pair_id": "L01200",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "NUIX PTY LTD",
+    "abn": "80117140235",
+    "address_full": "ULTIMO, NSW, 2007, AUSTRALIA",
+    "address_locality": "ULTIMO",
+    "address_state": "NSW",
+    "address_postcode": "2007",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-22"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "NUIX LIMITED",
+    "abn": "80117140235",
+    "industry_code": "7000",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:80117140235"
+  },
+  {
+   "pair_id": "L01295",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Piper Alderman",
+    "abn": "42843327183",
+    "address_full": "GPO Box 65, ADELAIDE, SA, 5001, Australia",
+    "address_locality": "ADELAIDE",
+    "address_state": "SA",
+    "address_postcode": "5001",
+    "address_country": "Australia",
+    "observed_at": "2019-12-20"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "S.M Adams & Others",
+    "abn": "42843327183",
+    "industry_code": "6931",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:42843327183"
+  },
+  {
+   "pair_id": "L01453",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Envirolab Services Pty Ltd",
+    "abn": "37112535645",
+    "address_full": "Chatswood, NSW, 2067, AUSTRALIA",
+    "address_locality": "Chatswood",
+    "address_state": "NSW",
+    "address_postcode": "2067",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-10-29"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Envirolab Services Pty Ltd",
+    "abn": "37112535645",
+    "industry_code": "6925",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:37112535645"
+  },
+  {
+   "pair_id": "L00573",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "91062546365",
+    "legal_name": "Wommin Bay Hostels",
+    "website": "www.feroscare.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Kingscliff",
+    "address_state": "NSW",
+    "address_postcode": "2487",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Wommin Bay Hostels",
+    "abn": "91062546365",
+    "industry_code": "8601",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:91062546365"
+  },
+  {
+   "pair_id": "L00261",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "90000049525",
+    "legal_name": "BaptistCare",
+    "website": "https://baptistcare.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Norwest",
+    "address_state": "NSW",
+    "address_postcode": "2153",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Baptistcare NSW & ACT",
+    "abn": "90000049525",
+    "industry_code": "9559",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:90000049525"
+  },
+  {
+   "pair_id": "L00927",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "J.J. RICHARDS & SONS PTY LTD",
+    "acn": "000805425",
+    "abn": "40000805425",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1970-06-30",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "J.J. Richards & Sons Pty Ltd",
+    "abn": "40000805425",
+    "industry_code": "2911",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:40000805425"
+  },
+  {
+   "pair_id": "L00839",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "SUTHERLAND INSTRUMENT SERVICE CO PTY LTD",
+    "acn": "000449178",
+    "abn": "61000449178",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1964-02-18",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "SUTHERLAND INSTRUMENT SERVICE",
+    "abn": "61000449178",
+    "address_full": "92 KARIMBLA RD MIRANDA NSW, MIRANDA, NSW, 2228, AUSTRALIA",
+    "address_locality": "MIRANDA",
+    "address_state": "NSW",
+    "address_postcode": "2228",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-18"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:61000449178"
+  },
+  {
+   "pair_id": "L00709",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "STOCKLAND DEVELOPMENT PTY LIMITED",
+    "acn": "000064835",
+    "abn": "71000064835",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1947-08-21",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Stockland Development Pty Limited",
+    "abn": "71000064835",
+    "industry_code": "3020",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:71000064835"
+  },
+  {
+   "pair_id": "L00494",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "63144947124",
+    "legal_name": "Achieve Commercial Limited",
+    "website": "www.achieveaustralia.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "North Ryde",
+    "address_state": "NSW",
+    "address_postcode": "2113",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Achieve Commercial Limited",
+    "abn": "63144947124",
+    "industry_code": "8790",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:63144947124"
+  },
+  {
+   "pair_id": "L00897",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "VINIDEX PTY LIMITED",
+    "acn": "000664942",
+    "abn": "42000664942",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1968-12-24",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Vinidex Pty Limited",
+    "abn": "42000664942",
+    "industry_code": "1912",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:42000664942"
+  },
+  {
+   "pair_id": "L00710",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "BARRON & RAWSON PTY LTD",
+    "acn": "000065636",
+    "abn": "69000065636",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1947-09-16",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "BARRON & RAWSON PTY LTD",
+    "abn": "69000065636",
+    "address_full": "REVESBY, NSW, 2212, AUSTRALIA",
+    "address_locality": "REVESBY",
+    "address_state": "NSW",
+    "address_postcode": "2212",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-19"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:69000065636"
+  },
+  {
+   "pair_id": "L00043",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "94643894384",
+    "legal_name": "Catholic Education Sandhurst Limited",
+    "website": "https://www.ceosand.catholic.edu.au/",
+    "date_registered": "2020-08-31",
+    "address_locality": "Bendigo",
+    "address_state": "VIC",
+    "address_postcode": "3550",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Catholic Education Sandhurst Limited",
+    "abn": "94643894384",
+    "industry_code": "8023",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:94643894384"
+  },
+  {
+   "pair_id": "L00259",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "48394787253",
+    "legal_name": "South Perth Hospital Inc",
+    "website": "www.sph.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "South Perth",
+    "address_state": "WA",
+    "address_postcode": "6151",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "South Perth Hospital Inc",
+    "abn": "48394787253",
+    "industry_code": "8401",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:48394787253"
+  },
+  {
+   "pair_id": "L01480",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "HAWKER PACIFIC PTY LTD",
+    "abn": "94001540316",
+    "address_full": "BANKSTOWN AIRPORT, NSW, 2200, AUSTRALIA",
+    "address_locality": "BANKSTOWN AIRPORT",
+    "address_state": "NSW",
+    "address_postcode": "2200",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-04-09"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Jet Aviation Australia Pty Ltd",
+    "abn": "94001540316",
+    "industry_code": "2394",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:94001540316"
+  },
+  {
+   "pair_id": "L00598",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "83153973481",
+    "legal_name": "Macquarie University Services Limited",
+    "date_registered": "2012-12-03",
+    "address_locality": "Macquarie Park",
+    "address_state": "NSW",
+    "address_postcode": "2113",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Mgsm Limited",
+    "abn": "83153973481",
+    "industry_code": "8790",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:83153973481"
+  },
+  {
+   "pair_id": "L01046",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "ASI SOLUTIONS",
+    "abn": "40068649972",
+    "address_full": "LOCKED BAG 8, BOTANY, NSW, 1455, Australia",
+    "address_locality": "BOTANY",
+    "address_state": "NSW",
+    "address_postcode": "1455",
+    "address_country": "Australia",
+    "observed_at": "2020-06-11"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Anabelle Bits Pty Ltd",
+    "abn": "40068649972",
+    "industry_code": "7000",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:40068649972"
+  },
+  {
+   "pair_id": "L00963",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "IQVIA Solutions Australia",
+    "abn": "19000967859",
+    "address_full": "St Leonards, NSW, 2065, AUSTRALIA",
+    "address_locality": "St Leonards",
+    "address_state": "NSW",
+    "address_postcode": "2065",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-10-29"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "IQVIA Solutions Australia Pty. Ltd.",
+    "abn": "19000967859",
+    "industry_code": "6962",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:19000967859"
+  },
+  {
+   "pair_id": "L00805",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "COTY AUSTRALIA PTY LTD",
+    "acn": "000303391",
+    "abn": "83000303391",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1960-03-03",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Coty Australia Pty Ltd",
+    "abn": "83000303391",
+    "industry_code": "3720",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:83000303391"
+  },
+  {
+   "pair_id": "L00254",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "43000106829",
+    "legal_name": "The College Of Nursing",
+    "website": "www.acn.edu.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Deakin",
+    "address_state": "ACT",
+    "address_postcode": "2600",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "THE COLLEGE OF NURSING",
+    "acn": "000106829",
+    "abn": "43000106829",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1952-06-02",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:43000106829"
+  },
+  {
+   "pair_id": "L00140",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "74925853734",
+    "legal_name": "La Mama Inc",
+    "website": "www.lamama.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Carlton",
+    "address_state": "VIC",
+    "address_postcode": "3053",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LA MAMA INC",
+    "trading_name": "LA MAMA",
+    "address_full": "205 FARADAY STREET, CARLTON, 3053",
+    "address_locality": "Carlton",
+    "address_postcode": "3053",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:74925853734"
+  },
+  {
+   "pair_id": "L00384",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "61006067349",
+    "legal_name": "Rmit Training Pty Ltd",
+    "website": "https://www.rmit.edu.au/up",
+    "date_registered": "2012-12-03",
+    "address_locality": "Melbourne",
+    "address_state": "VIC",
+    "address_postcode": "3000",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "RMIT TRAINING PTY LTD",
+    "abn": "61006067349",
+    "address_full": "MELBOURNE, VIC, 8006, AUSTRALIA",
+    "address_locality": "MELBOURNE",
+    "address_state": "VIC",
+    "address_postcode": "8006",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-03-30"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:61006067349"
+  },
+  {
+   "pair_id": "L00514",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Meat & Livestock Australia Limited",
+    "abn": "39081678364",
+    "address_full": "Sydney, NSW, 2060, AUSTRALIA",
+    "address_locality": "Sydney",
+    "address_state": "NSW",
+    "address_postcode": "2060",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-01-22"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Meat & Livestock Australia Limited",
+    "abn": "39081678364",
+    "industry_code": "6910",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:39081678364"
+  },
+  {
+   "pair_id": "L00879",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "KENTUCKY FRIED CHICKEN PTY LTD",
+    "acn": "000587780",
+    "abn": "79000587780",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1967-08-25",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Kentucky Fried Chicken Pty Ltd",
+    "abn": "79000587780",
+    "industry_code": "4512",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:79000587780"
+  },
+  {
+   "pair_id": "L00378",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "22009943435",
+    "legal_name": "Aboriginal And Torres Strait Islander Community Health Service Brisbane Limited",
+    "trading_name": "Previously known as \u2018Aboriginal And Torres Strait Islander Community Health Service Brisbane Limited\u2019 ABN 40084136508",
+    "website": "http://www.atsichsbrisbane.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Woolloongabba",
+    "address_state": "QLD",
+    "address_postcode": "4102",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Aboriginal And Torres Strait Islander Community Health Service Brisbane Limited",
+    "abn": "22009943435",
+    "industry_code": "8539",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:22009943435"
+  },
+  {
+   "pair_id": "L00774",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "CANTERBURY LEAGUE CLUB LIMITED",
+    "acn": "000191248",
+    "abn": "84000191248",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1956-12-13",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Canterbury League Club Limited",
+    "abn": "84000191248",
+    "industry_code": "4530",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:84000191248"
+  },
+  {
+   "pair_id": "L01010",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "JANDS PTY LTD",
+    "acn": "001187837",
+    "abn": "45001187837",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1973-11-05",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Jands Pty Ltd",
+    "abn": "45001187837",
+    "industry_code": "3494",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:45001187837"
+  },
+  {
+   "pair_id": "L00978",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "BELMONT 16FT SAILING CLUB LTD",
+    "acn": "001020471",
+    "abn": "50001020471",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1972-06-30",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Belmont 16Ft Sailing Club Ltd",
+    "abn": "50001020471",
+    "industry_code": "4530",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:50001020471"
+  },
+  {
+   "pair_id": "L01147",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "KONEKT AUSTRALIA PTY LTD",
+    "abn": "64083660093",
+    "address_full": "MELBOURNE, NSW, 3000, AUSTRALIA",
+    "address_locality": "MELBOURNE",
+    "address_state": "NSW",
+    "address_postcode": "3000",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-12-11"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Konekt Australia Pty Ltd",
+    "abn": "64083660093",
+    "industry_code": "8539",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:64083660093"
+  },
+  {
+   "pair_id": "L00450",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "67008559331",
+    "legal_name": "Canberra Girls Grammar School",
+    "website": "http://www.cggs.act.edu.au/",
+    "date_registered": "2012-12-03",
+    "address_locality": "Deakin",
+    "address_state": "ACT",
+    "address_postcode": "2600",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Canberra Girls Grammar School",
+    "abn": "67008559331",
+    "industry_code": "8023",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:67008559331"
+  },
+  {
+   "pair_id": "L00661",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "MCPHERSON'S CONSUMER PRODUCTS PTY LTD",
+    "acn": "000020495",
+    "abn": "36000020495",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1928-12-18",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "McPherson's Consumer Products Pty Ltd",
+    "abn": "36000020495",
+    "industry_code": "3739",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:36000020495"
+  },
+  {
+   "pair_id": "L01420",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Digital61 Pty Ltd",
+    "abn": "82005914796",
+    "address_full": "Macquarie Park, NSW, 2113, AUSTRALIA",
+    "address_locality": "Macquarie Park",
+    "address_state": "NSW",
+    "address_postcode": "2113",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-11-15"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Becton Dickinson Pty. Ltd.",
+    "abn": "82005914796",
+    "industry_code": "8599",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:82005914796"
+  },
+  {
+   "pair_id": "L01339",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "TECH DATA ADVANCED SOLUTIONS (ANZ) LIMITED",
+    "abn": "77107656833",
+    "address_full": "NORTH RYDE, NSW, 2113, AUSTRALIA",
+    "address_locality": "NORTH RYDE",
+    "address_state": "NSW",
+    "address_postcode": "2113",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-12-23"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Tech Data Advanced Solutions (Anz) Limited",
+    "abn": "77107656833",
+    "industry_code": "3492",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:77107656833"
+  },
+  {
+   "pair_id": "L01071",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Hodson Global resources Pty Ltd",
+    "abn": "21002888762",
+    "address_full": "Canberra City, ACT, 2601, AUSTRALIA",
+    "address_locality": "Canberra City",
+    "address_state": "ACT",
+    "address_postcode": "2601",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-30"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Hudson Global Resources (Aust) Pty Limited",
+    "abn": "21002888762",
+    "industry_code": "7211",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:21002888762"
+  },
+  {
+   "pair_id": "L01023",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "NEC AUSTRALIA PTY LTD",
+    "acn": "001217527",
+    "abn": "86001217527",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1974-05-03",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "NEC Australia Pty Ltd",
+    "abn": "86001217527",
+    "industry_code": "5801",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:86001217527"
+  },
+  {
+   "pair_id": "L00728",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "LENDLEASE CONSTRUCTION PTY LIMITED",
+    "acn": "000098162",
+    "abn": "97000098162",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1951-07-11",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Lendlease Building Pty Ltd",
+    "abn": "97000098162",
+    "address_full": "Sydney, NSW, 2000, AUSTRALIA",
+    "address_locality": "Sydney",
+    "address_state": "NSW",
+    "address_postcode": "2000",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-12-16"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:97000098162"
+  },
+  {
+   "pair_id": "L00956",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "SGS AUSTRALIA PTY LTD",
+    "acn": "000964278",
+    "abn": "44000964278",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1971-11-29",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "SGS Australia Pty Ltd",
+    "abn": "44000964278",
+    "industry_code": "6925",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:44000964278"
+  },
+  {
+   "pair_id": "L00467",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "12000637267",
+    "legal_name": "Autism Spectrum Australia (Aspect)",
+    "website": "www.aspect.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Chatswood",
+    "address_state": "NSW",
+    "address_postcode": "2067",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "AUTISM SPECTRUM AUSTRALIA (ASPECT)",
+    "acn": "000637267",
+    "abn": "12000637267",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1969-04-10",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:12000637267"
+  },
+  {
+   "pair_id": "L01121",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "FAIRFAX MEDIA PUBLICATIONS PTY LIMITED",
+    "abn": "33003357720",
+    "address_full": "MELBOURNE, VIC, 3001, AUSTRALIA",
+    "address_locality": "MELBOURNE",
+    "address_state": "VIC",
+    "address_postcode": "3001",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-04"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Fairfax Media Publications Pty Limited",
+    "abn": "33003357720",
+    "industry_code": "5411",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:33003357720"
+  },
+  {
+   "pair_id": "L00857",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Crown Equipment Pty Ltd",
+    "abn": "79000514858",
+    "address_full": "Smithfield, NSW, 2164, AUSTRALIA",
+    "address_locality": "Smithfield",
+    "address_state": "NSW",
+    "address_postcode": "2164",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-17"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Crown Equipment Pty. Limited",
+    "abn": "79000514858",
+    "industry_code": "3419",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:79000514858"
+  },
+  {
+   "pair_id": "L01269",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Amart Furniture Pty Ltd",
+    "abn": "65009810324",
+    "address_full": "Benowa, QLD, 4217, AUSTRALIA",
+    "address_locality": "Benowa",
+    "address_state": "QLD",
+    "address_postcode": "4217",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-10-04"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Amart Furniture Pty Ltd",
+    "abn": "65009810324",
+    "industry_code": "4211",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:65009810324"
+  },
+  {
+   "pair_id": "L00444",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "92456457335",
+    "legal_name": "Australian Disability Network Ltd",
+    "trading_name": "Australian Network on Disability",
+    "website": "https://www.australiandisabilitynetwork.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "North Sydney",
+    "address_state": "NSW",
+    "address_postcode": "2060",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "AUSTRALIAN NETWORK ON DISABILITY",
+    "abn": "92456457335",
+    "address_full": "QVB POST OFFICE (EFTE), NSW, 1230, AUSTRALIA",
+    "address_locality": "QVB POST OFFICE (EFTE)",
+    "address_state": "NSW",
+    "address_postcode": "1230",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-23"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:92456457335"
+  },
+  {
+   "pair_id": "L00070",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "68846923225",
+    "legal_name": "IPC Health",
+    "website": "http://www.ipchealth.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Deer Park",
+    "address_state": "VIC",
+    "address_postcode": "3023",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "IPC Health Ltd",
+    "abn": "68846923225",
+    "industry_code": "8599",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:68846923225"
+  },
+  {
+   "pair_id": "L00303",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "63826265059",
+    "legal_name": "Good Samaritan Industries trading as Good Sammy Enterprises",
+    "website": "https://goodsammy.com.au/",
+    "date_registered": "2012-12-03",
+    "address_locality": "Canning Vale",
+    "address_state": "WA",
+    "address_postcode": "6155",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Good Samaritan Industries Trading As Good Sammy Enterprises",
+    "abn": "63826265059",
+    "industry_code": "8790",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:63826265059"
+  },
+  {
+   "pair_id": "L00731",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "3M AUSTRALIA PTY LTD",
+    "acn": "000100096",
+    "abn": "90000100096",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1951-09-07",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "3M AUSTRALIA PTY LTD",
+    "abn": "90000100096",
+    "address_full": "BUILDING A, 1 RIVETT RD NORTH RYDE NSW, NORTH RYDE, NSW, 2113, AUSTRALIA",
+    "address_locality": "NORTH RYDE",
+    "address_state": "NSW",
+    "address_postcode": "2113",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-05-06"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:90000100096"
+  },
+  {
+   "pair_id": "L00908",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "WINC AUSTRALIA PTY LIMITED",
+    "abn": "94000728398",
+    "address_full": "PO Box P/BAG 16, ALEXANDRIA, ACT, 1435, Australia",
+    "address_locality": "ALEXANDRIA",
+    "address_state": "ACT",
+    "address_postcode": "1435",
+    "address_country": "Australia",
+    "observed_at": "2020-06-25"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Winc Australia Pty Limited",
+    "abn": "94000728398",
+    "industry_code": "3736",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:94000728398"
+  },
+  {
+   "pair_id": "L01154",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "NEC IT Solutions Australia Pty Ltd",
+    "abn": "58009378643",
+    "address_full": "DOCKLANDS, VIC, 3008, AUSTRALIA",
+    "address_locality": "DOCKLANDS",
+    "address_state": "VIC",
+    "address_postcode": "3008",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-26"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "NEC IT Solutions Australia Pty Ltd",
+    "abn": "58009378643",
+    "industry_code": "7000",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:58009378643"
+  },
+  {
+   "pair_id": "L01385",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Linfox Armaguard - Top Up",
+    "abn": "83099701872",
+    "address_full": "Melbourne, VIC, 3004, AUSTRALIA",
+    "address_locality": "Melbourne",
+    "address_state": "VIC",
+    "address_postcode": "3004",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-11-07"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Linfox Armaguard Pty Ltd",
+    "abn": "83099701872",
+    "industry_code": "7712",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:83099701872"
+  },
+  {
+   "pair_id": "L01088",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "GRANT THORNTON AUSTRALIA LTD",
+    "abn": "41127556389",
+    "address_full": "LEVEL 14, 383 KENT STREET, SYDNEY, NSW, 2000, AUSTRALIA",
+    "address_locality": "SYDNEY",
+    "address_state": "NSW",
+    "address_postcode": "2000",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-05-05"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Grant Thornton Australia Limited",
+    "abn": "41127556389",
+    "industry_code": "6932",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:41127556389"
+  },
+  {
+   "pair_id": "L01585",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "LAING O'ROURKE AUSTRALIA CONSTRUCTION PTY LTD",
+    "abn": "39112099000",
+    "address_full": "NORTH SYDNEY, NSW, 2060, AUSTRALIA",
+    "address_locality": "NORTH SYDNEY",
+    "address_state": "NSW",
+    "address_postcode": "2060",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2018-12-06"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Laing O'rourke Australia Construction Pty Ltd",
+    "abn": "39112099000",
+    "industry_code": "3109",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:39112099000"
+  },
+  {
+   "pair_id": "L01238",
+   "sample": "headline",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Greenbox Group Pty Ltd",
+    "abn": "53635351870",
+    "address_full": "Hemmant, QLD, 4174, AUSTRALIA",
+    "address_locality": "Hemmant",
+    "address_state": "QLD",
+    "address_postcode": "4174",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-10-18"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Greenbox Group Pty Ltd",
+    "abn": "53635351870",
+    "industry_code": "3492",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": true,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "abn_exact",
+   "_our_confidence": 0.99,
+   "_canonical_entity_key": "abn:53635351870"
+  },
+  {
+   "pair_id": "L00129",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "50071444409",
+    "legal_name": "Marcus Oldham College",
+    "website": "marcusoldham.vic.edu.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Waurn Ponds",
+    "address_state": "VIC",
+    "address_postcode": "3216",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MARCUS OLDHAM COLLEGE",
+    "trading_name": "MARCUS OLDHAM COLLEGE",
+    "address_full": "145 PIGDONS ROAD, WAURN PONDS, 3216",
+    "address_locality": "Waurn Ponds",
+    "address_postcode": "3216",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:50071444409"
+  },
+  {
+   "pair_id": "L00409",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "40688918764",
+    "legal_name": "Traralgon Rsl Sub Branch Inc",
+    "date_registered": "2012-12-03",
+    "address_locality": "Traralgon",
+    "address_state": "VIC",
+    "address_postcode": "3844",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "TRARALGON RSL SUB-BRANCH INC.",
+    "trading_name": "TRARALGON RSL",
+    "address_full": "109-115 GREY STREET, TRARALGON, 3844",
+    "address_locality": "Traralgon",
+    "address_postcode": "3844",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:40688918764"
+  },
+  {
+   "pair_id": "L00344",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "21849701767",
+    "legal_name": "Jan Juc Surf Life Saving Club Inc",
+    "website": "www.janjucsurfclub.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Jan Juc",
+    "address_state": "VIC",
+    "address_postcode": "3228",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "JAN JUC SURF LIFE SAVING CLUB INC",
+    "trading_name": "JAN JUC SURF LIFE SAVING CLUB",
+    "address_full": "10 CLUBHOUSE ROAD, JAN JUC, 3228",
+    "address_locality": "Jan Juc",
+    "address_postcode": "3228",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:21849701767"
+  },
+  {
+   "pair_id": "L00191",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "51903763953",
+    "legal_name": "Black Rock Life Saving Club Inc",
+    "website": "www.brlsc.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Black Rock",
+    "address_state": "VIC",
+    "address_postcode": "3193",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "BLACK ROCK LIFE SAVING CLUB INC",
+    "trading_name": "BLACK ROCK LIFE SAVING CLUB",
+    "address_full": "BEACH ROAD, BLACK ROCK, 3193",
+    "address_locality": "Black Rock",
+    "address_postcode": "3193",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:51903763953"
+  },
+  {
+   "pair_id": "L00192",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "52006106556",
+    "legal_name": "St Leonard's College",
+    "website": "www.stleonards.vic.edu.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Brighton East",
+    "address_state": "VIC",
+    "address_postcode": "3187",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ST. LEONARD'S COLLEGE",
+    "trading_name": "ST. LEONARD'S COLLEGE",
+    "address_full": "163 SOUTH ROAD, BRIGHTON EAST, 3187",
+    "address_locality": "Brighton East",
+    "address_postcode": "3187",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:52006106556"
+  },
+  {
+   "pair_id": "L00140",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "74925853734",
+    "legal_name": "La Mama Inc",
+    "website": "www.lamama.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Carlton",
+    "address_state": "VIC",
+    "address_postcode": "3053",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LA MAMA INC",
+    "trading_name": "LA MAMA",
+    "address_full": "205 FARADAY STREET, CARLTON, 3053",
+    "address_locality": "Carlton",
+    "address_postcode": "3053",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:74925853734"
+  },
+  {
+   "pair_id": "L00170",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "29019119373",
+    "legal_name": "Seaford Rsl Sub-Branch Inc",
+    "website": "ww.seafordrsl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Seaford",
+    "address_state": "VIC",
+    "address_postcode": "3198",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "SEAFORD RSL SUB BRANCH INC",
+    "trading_name": "SEAFORD RSL SUB BRANCH",
+    "address_full": "STATION STREET, SEAFORD, 3198",
+    "address_locality": "Seaford",
+    "address_postcode": "3198",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:29019119373"
+  },
+  {
+   "pair_id": "L00136",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "60558714821",
+    "legal_name": "Chinese Association Of Victoria Inc",
+    "website": "www.cavinc.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Wantirna",
+    "address_state": "VIC",
+    "address_postcode": "3152",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "CHINESE ASSOCIATION OF VICTORIA INC",
+    "trading_name": "CHINESE ASSOCIATION OF VICTORIA INC",
+    "address_full": "8 ASHLEY STREET, WANTIRNA, 3152",
+    "address_locality": "Wantirna",
+    "address_postcode": "3152",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:60558714821"
+  },
+  {
+   "pair_id": "L00447",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "62038119394",
+    "legal_name": "Highett Rsl Sub-Branch Inc.",
+    "website": "www.highettrsl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Highett",
+    "address_state": "VIC",
+    "address_postcode": "3190",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "HIGHETT RSL SUB-BRANCH INC",
+    "trading_name": "HIGHETT RETURNED & SERVICES CLUB",
+    "address_full": "1 STATION STREET, HIGHETT, 3190",
+    "address_locality": "Highett",
+    "address_postcode": "3190",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:62038119394"
+  },
+  {
+   "pair_id": "L00144",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "55610664963",
+    "legal_name": "The Graduate Union Of The University Of Melbourne Inc",
+    "website": "https://www.graduatehouse.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Carlton",
+    "address_state": "VIC",
+    "address_postcode": "3053",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "THE GRADUATE UNION OF THE UNIVERSITY OF MELBOURNE INC",
+    "trading_name": "THE GRADUATE UNION OF THE UNIVERSITY OF MELBOURNE",
+    "address_full": "210-228 LEICESTER STREET, CARLTON, 3053",
+    "address_locality": "Carlton",
+    "address_postcode": "3053",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:55610664963"
+  },
+  {
+   "pair_id": "L00098",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "87005140303",
+    "legal_name": "Footscray Community Arts Centre Limited",
+    "website": "footscrayarts.com",
+    "date_registered": "2012-12-03",
+    "address_locality": "Footscray",
+    "address_state": "VIC",
+    "address_postcode": "3011",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "FOOTSCRAY COMMUNITY ARTS CENTRE LIMITED",
+    "trading_name": "FOOTSCRAY COMMUNITY ARTS CENTRE",
+    "address_full": "43 MORELAND STREET, FOOTSCRAY, 3011",
+    "address_locality": "Footscray",
+    "address_postcode": "3011",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:87005140303"
+  },
+  {
+   "pair_id": "L00541",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "59048912615",
+    "legal_name": "Longbeach RSL Sub Branch Inc",
+    "website": "www.longbeachrsl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Chelsea",
+    "address_state": "VIC",
+    "address_postcode": "3196",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LONGBEACH RSL SUB-BRANCH INC",
+    "trading_name": "LONGBEACH RSL SUB-BRANCH",
+    "address_full": "4 THAMES PROMENADE, CHELSEA, 3196",
+    "address_locality": "Chelsea",
+    "address_postcode": "3196",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:59048912615"
+  },
+  {
+   "pair_id": "L01081",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "SPOTLESS FACILITY SERVICES PTY LTD",
+    "abn": "83072293880",
+    "address_full": "MELBOURNE, VIC, 3004, AUSTRALIA",
+    "address_locality": "MELBOURNE",
+    "address_state": "VIC",
+    "address_postcode": "3004",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-25"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "SPOTLESS FACILITY SERVICES PTY LTD",
+    "trading_name": "ALLIANCE CATERING",
+    "address_full": "549 ST KILDA ROAD, MELBOURNE, 3004",
+    "address_locality": "Melbourne",
+    "address_postcode": "3004",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:83072293880"
+  },
+  {
+   "pair_id": "L00437",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "23537722608",
+    "legal_name": "Mentone Life Saving Club Incorporated",
+    "website": "www.mentonelsc.com",
+    "date_registered": "2012-12-03",
+    "address_locality": "Mentone",
+    "address_state": "VIC",
+    "address_postcode": "3194",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MENTONE LIFE SAVING CLUB INC",
+    "trading_name": "MENTONE LIFE SAVING CLUB",
+    "address_full": "BEACH ROAD, MENTONE, 3194",
+    "address_locality": "Mentone",
+    "address_postcode": "3194",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:23537722608"
+  },
+  {
+   "pair_id": "L00333",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "21102927364",
+    "legal_name": "Life Saving Victoria Limited",
+    "website": "lsv.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Port Melbourne",
+    "address_state": "VIC",
+    "address_postcode": "3207",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIFE SAVING VICTORIA LIMITED",
+    "trading_name": "THE VIEWS - PORT MELBOURNE",
+    "address_full": "200 THE BOULEVARD, PORT MELBOURNE, 3207",
+    "address_locality": "Port Melbourne",
+    "address_postcode": "3207",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:21102927364"
+  },
+  {
+   "pair_id": "L00153",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "79800190162",
+    "legal_name": "Foster Rsl Sub Branch",
+    "website": "fosterrsl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Foster",
+    "address_state": "VIC",
+    "address_postcode": "3960",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "FOSTER RSL SUB BRANCH INC",
+    "trading_name": "FOSTER RSL SUB BRANCH",
+    "address_full": "46 MAIN STREET, FOSTER, 3960",
+    "address_locality": "Foster",
+    "address_postcode": "3960",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:79800190162"
+  },
+  {
+   "pair_id": "L00037",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "58637295973",
+    "legal_name": "QUEEN'S COLLEGE LTD",
+    "website": "https://queens.unimelb.edu.au/",
+    "date_registered": "2019-11-07",
+    "address_locality": "Parkville",
+    "address_state": "VIC",
+    "address_postcode": "3052",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "QUEEN'S COLLEGE",
+    "trading_name": "QUEEN'S COLLEGE",
+    "address_full": "1-17 COLLEGE CRESCENT, PARKVILLE, 3052",
+    "address_locality": "Parkville",
+    "address_postcode": "3052",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:58637295973"
+  },
+  {
+   "pair_id": "L00455",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "51818692256",
+    "legal_name": "Federation University Australia",
+    "website": "www.federation.edu.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Mt Helen",
+    "address_state": "VIC",
+    "address_postcode": "3350",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "UNIVERSITY OF BALLARAT",
+    "trading_name": "FEDERATION UNIVERSITY AUSTRALIA",
+    "address_full": "107 LYDIARD STREET SOUTH, BALLARAT, 3350",
+    "address_locality": "Ballarat",
+    "address_postcode": "3350",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:51818692256"
+  },
+  {
+   "pair_id": "L00515",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "55828716915",
+    "legal_name": "Darebin RSL Sub-Branch Inc.",
+    "website": "www.darebinrsl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Preston",
+    "address_state": "VIC",
+    "address_postcode": "3072",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "DAREBIN RSL SUB-BRANCH INC",
+    "trading_name": "DAREBIN RSL SUB-BRANCH",
+    "address_full": "402 BELL STREET, PRESTON, 3072",
+    "address_locality": "Preston",
+    "address_postcode": "3072",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:55828716915"
+  },
+  {
+   "pair_id": "L00083",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "59732409277",
+    "legal_name": "Templestowe Rsl Sub-Branch",
+    "website": "https://rsltemplestowe.com.au/",
+    "date_registered": "2012-12-03",
+    "address_locality": "Templestowe",
+    "address_state": "VIC",
+    "address_postcode": "3106",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "TEMPLESTOWE RSL SUB-BRANCH INCORPORATED",
+    "trading_name": "TEMPLESTOWE RETURNED SERVICES CLUB",
+    "address_full": "156 PARKER STREET, TEMPLESTOWE, 3106",
+    "address_locality": "Templestowe",
+    "address_postcode": "3106",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:59732409277"
+  },
+  {
+   "pair_id": "L00310",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "78007306283",
+    "legal_name": "Australian National Memorial Theatre Limited",
+    "website": "www.thenationaltheatre.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "St Kilda",
+    "address_state": "VIC",
+    "address_postcode": "3182",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "AUSTRALIAN NATIONAL MEMORIAL THEATRE LTD",
+    "trading_name": "THE NATIONAL THEATRE",
+    "address_full": "CNR BARKLY & CARLISLE STREETS, ST KILDA, 3182",
+    "address_locality": "St Kilda",
+    "address_postcode": "3182",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:78007306283"
+  },
+  {
+   "pair_id": "L00028",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "27639552499",
+    "legal_name": "SALAMATEA HOUSE LIMITED",
+    "website": "www.salamatea.org",
+    "date_registered": "2020-03-04",
+    "address_locality": "Sunshine",
+    "address_state": "VIC",
+    "address_postcode": "3020",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "SALAMATEA HOUSE LIMITED",
+    "trading_name": "SALAMA TEA HOUSE",
+    "address_full": "21 DICKSON ST, SUNSHINE, 3020",
+    "address_locality": "Sunshine",
+    "address_postcode": "3020",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:27639552499"
+  },
+  {
+   "pair_id": "L00279",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "45613017682",
+    "legal_name": "Free to Ltd",
+    "trading_name": "Free to Feed",
+    "website": "www.freetofeed.org.au",
+    "date_registered": "2016-06-15",
+    "address_locality": "Northcote",
+    "address_state": "VIC",
+    "address_postcode": "3070",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "FREE TO LTD",
+    "trading_name": "FREE TO LTD",
+    "address_full": "539 HIGH ST, NORTHCOTE, 3070",
+    "address_locality": "Northcote",
+    "address_postcode": "3070",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:45613017682"
+  },
+  {
+   "pair_id": "L00528",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "31866225413",
+    "legal_name": "Woodside Beach Surf Life Saving Club Inc",
+    "date_registered": "2012-12-03",
+    "address_locality": "Woodside Beach",
+    "address_state": "VIC",
+    "address_postcode": "3874",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WOODSIDE BEACH SURF LIFE SAVING CLUB INC",
+    "trading_name": "WOODSIDE BEACH SURF LIFE SAVING CLUB",
+    "address_full": "BEN RENDALL DRIVE, WOODSIDE BEACH, 3874",
+    "address_locality": "Woodside Beach",
+    "address_postcode": "3874",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:31866225413"
+  },
+  {
+   "pair_id": "L00256",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "25619898672",
+    "legal_name": "St Hilda's College Limited",
+    "website": "www.hildas.unimelb.edu.au",
+    "date_registered": "2017-08-15",
+    "address_locality": "Parkville",
+    "address_state": "VIC",
+    "address_postcode": "3052",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ST HILDA'S COLLEGE LIMITED",
+    "trading_name": "ST HILDA'S COLLEGE LIMITED",
+    "address_full": "19 - 27 COLLEGE CRESCENT, PARKVILLE, 3052",
+    "address_locality": "Parkville",
+    "address_postcode": "3052",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:25619898672"
+  },
+  {
+   "pair_id": "L00257",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "68426085488",
+    "legal_name": "St Hilda's College",
+    "date_registered": "2012-12-03",
+    "address_locality": "Parkville",
+    "address_state": "VIC",
+    "address_postcode": "3052",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ST HILDA'S COLLEGE LIMITED",
+    "trading_name": "ST HILDA'S COLLEGE LIMITED",
+    "address_full": "19 - 27 COLLEGE CRESCENT, PARKVILLE, 3052",
+    "address_locality": "Parkville",
+    "address_postcode": "3052",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:68426085488"
+  },
+  {
+   "pair_id": "L00553",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "54116818613",
+    "legal_name": "Ararat Retirement Village Inc",
+    "website": "www.gorrinnvillage.weebly.com",
+    "date_registered": "2012-12-03",
+    "address_locality": "ARARAT",
+    "address_state": "VIC",
+    "address_postcode": "3377",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ARARAT RETIREMENT VILLAGE INC",
+    "trading_name": "ARARAT RETIREMENT VILLAGE",
+    "address_full": "25-27 ALBERT STREET, ARARAT, 3377",
+    "address_locality": "Ararat",
+    "address_postcode": "3377",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:54116818613"
+  },
+  {
+   "pair_id": "L00386",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "95473757479",
+    "legal_name": "Oakleigh-Carnegie Rsl Sub-Branch Inc",
+    "website": "www.oakleighcarnegiersl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Oakleigh",
+    "address_state": "VIC",
+    "address_postcode": "3166",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "OAKLEIGH-CARNEGIE RSL SUB-BRANCH INC",
+    "trading_name": "OAKLEIGH-CARNEGIE RSL SUB-BRANCH",
+    "address_full": "95-97 DRUMMOND STREET, OAKLEIGH, 3166",
+    "address_locality": "Oakleigh",
+    "address_postcode": "3166",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:95473757479"
+  },
+  {
+   "pair_id": "L00536",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "64073889586",
+    "legal_name": "Christian Brothers Vic Property Ltd",
+    "website": "https://edmundrice.org",
+    "date_registered": "2012-12-03",
+    "address_locality": "Parkville",
+    "address_state": "VIC",
+    "address_postcode": "3052",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "CHRISTIAN BROTHERS VIC PROPERTY LTD",
+    "trading_name": "TREACY CENTRE",
+    "address_full": "126 THE AVENUE, PARKVILLE, 3052",
+    "address_locality": "Parkville",
+    "address_postcode": "3052",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:64073889586"
+  },
+  {
+   "pair_id": "L00346",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "87112051457",
+    "legal_name": "Westmont Aged Care Services Limited",
+    "website": "www.westmont.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Baranduda",
+    "address_state": "VIC",
+    "address_postcode": "3691",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WESTMONT AGED CARE SERVICES LIMITED",
+    "trading_name": "WESTMONT VILLAGE",
+    "address_full": "265 BARANDUDA BOULEVARD, BARANDUDA, 3691",
+    "address_locality": "Baranduda",
+    "address_postcode": "3691",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:87112051457"
+  },
+  {
+   "pair_id": "L01209",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Aitken Hill",
+    "abn": "46615017582",
+    "address_full": "Yuroke, VIC, 3063, AUSTRALIA",
+    "address_locality": "Yuroke",
+    "address_state": "VIC",
+    "address_postcode": "3063",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-01-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ZHONG AO ZHI HONG INVESTMENT HOLDING PTY LTD",
+    "trading_name": "AITKEN HILL",
+    "address_full": "20 DUNHELEN LANE, YUROKE, 3063",
+    "address_locality": "Yuroke",
+    "address_postcode": "3063",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:46615017582"
+  },
+  {
+   "pair_id": "L01049",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Pullman Melbourne Albert Park",
+    "abn": "81122720772",
+    "address_full": "65 Queen Rd, MELBOURNE, VIC, 3004, Australia",
+    "address_locality": "MELBOURNE",
+    "address_state": "VIC",
+    "address_postcode": "3004",
+    "address_country": "Australia",
+    "observed_at": "2019-11-04"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ASCENDAS HOTEL INVESTMENT COMPANY PTY LTD",
+    "trading_name": "PULLMAN MELBOURNE ALBERT PARK",
+    "address_full": "63 QUEENS ROAD, MELBOURNE, 3004",
+    "address_locality": "Melbourne",
+    "address_postcode": "3004",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:81122720772"
+  },
+  {
+   "pair_id": "L00138",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "28302359029",
+    "legal_name": "University Of Melbourne-Melbourne Theatre Company",
+    "date_registered": "2012-12-03",
+    "address_locality": "Southbank",
+    "address_state": "VIC",
+    "address_postcode": "3006",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "UNIVERSITY OF MELBOURNE - MELBOURNE THEATRE COMPANY",
+    "trading_name": "MELBOURNE THEATRE COMPANY",
+    "address_full": "MTC THEATRE, 140 SOUTHBANK BLVD PART OF GROUND FLOOR & FIRST FLOOR, SOUTHBANK, 3006",
+    "address_locality": "Southbank",
+    "address_postcode": "3006",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:28302359029"
+  },
+  {
+   "pair_id": "L00476",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "57816895087",
+    "legal_name": "Djerriwarrh Employment & Education Services Inc.",
+    "website": "https://www.djerriwarrh.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Melton",
+    "address_state": "VIC",
+    "address_postcode": "3337",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "DJERRIWARRH EMPLOYMENT & EDUCATION SERVICES INC",
+    "trading_name": "DJERRIWARRH EMPLOYMENT & EDUCATION SERVICES",
+    "address_full": "241 STATION ROAD, MELTON, 3337",
+    "address_locality": "Melton",
+    "address_postcode": "3337",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:57816895087"
+  },
+  {
+   "pair_id": "L00505",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "69084604020",
+    "legal_name": "Geelong Rsl Sub Branch Inc",
+    "website": "www.geelongrsl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Belmont",
+    "address_state": "VIC",
+    "address_postcode": "3216",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "GEELONG RSL SUB-BRANCH INC",
+    "trading_name": "GEELONG R.S.L. CLUB",
+    "address_full": "50 BARWON HEADS ROAD, BELMONT, 3216",
+    "address_locality": "Belmont",
+    "address_postcode": "3216",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:69084604020"
+  },
+  {
+   "pair_id": "L00180",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "46460156080",
+    "legal_name": "Steamrail Victoria Inc",
+    "website": "www.steamrail.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Newport",
+    "address_state": "VIC",
+    "address_postcode": "3015",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "STEAMRAIL VICTORIA INC",
+    "trading_name": "STEAMRAIL VICTORIA INC",
+    "address_full": "SHEA ST, NEWPORT, 3015",
+    "address_locality": "Newport",
+    "address_postcode": "3015",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:46460156080"
+  },
+  {
+   "pair_id": "L00033",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "37616876594",
+    "legal_name": "WE LOVE OLIVINE LTD",
+    "website": "www.sharedcup.com.au",
+    "date_registered": "2020-05-25",
+    "address_locality": "Donnybrook",
+    "address_state": "VIC",
+    "address_postcode": "3064",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WE LOVE OLIVINE LTD",
+    "trading_name": "SHARED CUP",
+    "address_full": "1025 DONNYBROOK RD, DONNYBROOK, 3064",
+    "address_locality": "Donnybrook",
+    "address_postcode": "3064",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:37616876594"
+  },
+  {
+   "pair_id": "L01526",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "BERETTA AUSTRALIA PTY LTD",
+    "abn": "78090585283",
+    "address_full": "DANDENONG SOUTH, VIC, 3175, AUSTRALIA",
+    "address_locality": "DANDENONG SOUTH",
+    "address_state": "VIC",
+    "address_postcode": "3175",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-08-20"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "BERETTA AUSTRALIA PTY LTD",
+    "trading_name": "BERETTA AUSTRALIA PTY LTD",
+    "address_full": "80 REMINGTON DRIVE, DANDENONG, 3175",
+    "address_locality": "Dandenong",
+    "address_postcode": "3175",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:78090585283"
+  },
+  {
+   "pair_id": "L00397",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "70741686273",
+    "legal_name": "Hampton Life Saving Club",
+    "website": "www.hlsc.org.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Hampton",
+    "address_state": "VIC",
+    "address_postcode": "3188",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "HAMPTON LIFE SAVING CLUB INC",
+    "trading_name": "HAMPTON LIFE SAVING CLUB",
+    "address_full": "BEACH ROAD, HAMPTON, 3188",
+    "address_locality": "Hampton",
+    "address_postcode": "3188",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:70741686273"
+  },
+  {
+   "pair_id": "L00436",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "61716225567",
+    "legal_name": "Burwood Rsl Sub-Branch",
+    "date_registered": "2012-12-03",
+    "address_locality": "Glen Iris",
+    "address_state": "VIC",
+    "address_postcode": "3146",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "11 HYSLOP STREET LTD",
+    "trading_name": "BURWOOD RSL SUB-BRANCH",
+    "address_full": "11 HYSLOP STREET, GLEN IRIS, 3146",
+    "address_locality": "Glen Iris",
+    "address_postcode": "3146",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:61716225567"
+  },
+  {
+   "pair_id": "L00575",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "91004224211",
+    "legal_name": "University College",
+    "website": "http://www.unicol.unimelb.edu.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Parkville",
+    "address_state": "VIC",
+    "address_postcode": "3052",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "UNIVERSITY COLLEGE",
+    "trading_name": "UNIVERSITY COLLEGE",
+    "address_full": "40 COLLEGE CRESCENT, PARKVILLE, 3052",
+    "address_locality": "Parkville",
+    "address_postcode": "3052",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:91004224211"
+  },
+  {
+   "pair_id": "L01519",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "WODONGA INSTITUTE OF TAFE",
+    "abn": "68437423269",
+    "address_full": "WODONGA, VIC, 3690, AUSTRALIA",
+    "address_locality": "WODONGA",
+    "address_state": "VIC",
+    "address_postcode": "3690",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-04-24"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WODONGA INSTITUTE OF TAFE",
+    "trading_name": "THE VALLEYS RESTAURANT",
+    "address_full": "87 MCKOY STREET, WODONGA, 3690",
+    "address_locality": "Wodonga",
+    "address_postcode": "3690",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:68437423269"
+  },
+  {
+   "pair_id": "L00586",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "60267302546",
+    "legal_name": "Hamilton RSL Sub-Branch Inc",
+    "date_registered": "2012-12-03",
+    "address_locality": "Hamilton",
+    "address_state": "VIC",
+    "address_postcode": "3300",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "HAMILTON RSL SUB BRANCH INC",
+    "trading_name": "HAMILTON RSL SUB BRANCH",
+    "address_full": "81 KENNEDY STREET, HAMILTON, 3300",
+    "address_locality": "Hamilton",
+    "address_postcode": "3300",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:60267302546"
+  },
+  {
+   "pair_id": "L01554",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "MELBOURNE JET BASE PTY LIMITED",
+    "abn": "44625174110",
+    "address_full": "MELBOURNE AIRPORT, VIC, 3045, AUSTRALIA",
+    "address_locality": "MELBOURNE AIRPORT",
+    "address_state": "VIC",
+    "address_postcode": "3045",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-05-12"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MELBOURNE JET BASE PTY LTD",
+    "trading_name": "MELBOURNE JET BASE",
+    "address_full": "GATE 24, OPERATIONS ROAD, MELBOURNE AIRPORT, 3045",
+    "address_locality": "Melbourne Airport",
+    "address_postcode": "3045",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:44625174110"
+  },
+  {
+   "pair_id": "L00544",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "38306868571",
+    "legal_name": "East Malvern Rsl Sub Branch Incorporated",
+    "website": "eastmalvernrsl.org",
+    "date_registered": "2012-12-03",
+    "address_locality": "East Malvern",
+    "address_state": "VIC",
+    "address_postcode": "3145",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "EAST MALVERN RSL SUB-BRANCH INC.",
+    "trading_name": "EAST MALVERN RSL",
+    "address_full": "STANLEY GROSE DRIVE, MALVERN EAST, 3145",
+    "address_locality": "Malvern East",
+    "address_postcode": "3145",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:38306868571"
+  },
+  {
+   "pair_id": "L00521",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "23672833616",
+    "legal_name": "Dandenong Ranges Community Cultural Centre Inc",
+    "website": "https://burrinja.org.au/",
+    "date_registered": "2015-10-01",
+    "address_locality": "Upwey",
+    "address_state": "VIC",
+    "address_postcode": "3158",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "DANDENONG RANGES COMMUNITY CULTURAL CENTRE INC",
+    "trading_name": "BURRINJA",
+    "address_full": "18 MATSON DRIVE, UPWEY, 3158",
+    "address_locality": "Upwey",
+    "address_postcode": "3158",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:23672833616"
+  },
+  {
+   "pair_id": "L00320",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "98128097579",
+    "legal_name": "Fawkner Rsl Sub-Branch Inc",
+    "website": "www.rslvic.com.au/rsl-network/victorian-map-of-all-branches/fawkner/",
+    "date_registered": "2012-12-03",
+    "address_locality": "Fawkner",
+    "address_state": "VIC",
+    "address_postcode": "3060",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "FAWKNER RSL SUB-BRANCH INC",
+    "trading_name": "FAWKNER RSL SUB-BRANCH",
+    "address_full": "135 LORNE STREET, FAWKNER, 3060",
+    "address_locality": "Fawkner",
+    "address_postcode": "3060",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:98128097579"
+  },
+  {
+   "pair_id": "L00264",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "27141628138",
+    "legal_name": "Sunshine Rsl Sub-Branch Incorporated",
+    "website": "www.sunshinersl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Sunshine",
+    "address_state": "VIC",
+    "address_postcode": "3020",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "SUNSHINE RSL SUB-BRANCH INC",
+    "trading_name": "SUNSHINE RSL CLUB",
+    "address_full": "99 DICKSON STREET, SUNSHINE, 3020",
+    "address_locality": "Sunshine",
+    "address_postcode": "3020",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:27141628138"
+  },
+  {
+   "pair_id": "L00194",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "35916972848",
+    "legal_name": "Werribee Rsl Sub Branch Inc",
+    "website": "www.werribeersl.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Werribee",
+    "address_state": "VIC",
+    "address_postcode": "3030",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WERRIBEE RSL SUB-BRANCH INC",
+    "trading_name": "WERRIBEE RSL SUB-BRANCH",
+    "address_full": "KELLY PARK SYNOTT STREET, WERRIBEE, 3030",
+    "address_locality": "Werribee",
+    "address_postcode": "3030",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:35916972848"
+  },
+  {
+   "pair_id": "L00502",
+   "sample": "weak_tier",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "37766767683",
+    "legal_name": "Warrnambool Surf Life Saving Club Inc",
+    "website": "https://www.warrnamboolslsc.org.au/",
+    "date_registered": "2012-12-03",
+    "address_locality": "Warrnambool",
+    "address_state": "VIC",
+    "address_postcode": "3280",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WARRNAMBOOL SURF LIFE SAVING CLUB INC",
+    "trading_name": "WARRNAMBOOL SURF LIFE SAVING CLUB",
+    "address_full": "PERTOBE ROAD, WARRNAMBOOL, 3280",
+    "address_locality": "Warrnambool",
+    "address_postcode": "3280",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": true
+   },
+   "_method": "name_geo",
+   "_our_confidence": 0.75,
+   "_canonical_entity_key": "abn:37766767683"
+  },
+  {
+   "pair_id": "U00541",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "SHOP M001, CHADSTONE SHOPPING CENTRE 1341 DANDENONG ROAD, CHADSTONE, 3148",
+    "address_locality": "Chadstone",
+    "address_postcode": "3148",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00908",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "DELAWARE NORTH VENUE SERVICES PTY LTD",
+    "trading_name": "CHURCHILL ISLAND CAFE",
+    "address_full": "CHURCHILL ISLAND, CHURCHILL ISLAND, 3925",
+    "address_locality": "Churchill Island",
+    "address_postcode": "3925",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Delaware North Venue Services Pty Ltd",
+    "abn": "67006682113",
+    "industry_code": "4513",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:67006682113"
+  },
+  {
+   "pair_id": "U00408",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "AUSTRALIAN LEISURE AND HOSPITALITY GROUP PTY LIMITED",
+    "trading_name": "WESTMEADOWS TAVERN HOTEL",
+    "address_full": "10 ARDLIE STREET, WESTMEADOWS, 3049",
+    "address_locality": "Westmeadows",
+    "address_postcode": "3049",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Australian Leisure and Hospitality Group Pty Ltd",
+    "abn": "37067391511",
+    "industry_code": "4520",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:37067391511"
+  },
+  {
+   "pair_id": "U00899",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LOVELY PANCAKES PTY LTD",
+    "trading_name": "THE PANCAKE PARLOUR",
+    "address_full": "LEVEL 3 SHOP 319 360 ELIZABETH STREET, MELBOURNE, 3000",
+    "address_locality": "Melbourne",
+    "address_postcode": "3000",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Lovely Pancakes Pty. Ltd.",
+    "abn": "56006426599",
+    "industry_code": "4511",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:56006426599"
+  },
+  {
+   "pair_id": "U00569",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "338-390 RACECOURSE ROAD, NEWMARKET, 3031",
+    "address_locality": "Newmarket",
+    "address_postcode": "3031",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00312",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MONASH UNIVERSITY",
+    "trading_name": "GEORGE JENKINS THEATRE",
+    "address_full": "PENINSULA CAMPUS MONASH UNIVERSITY MCMAHONS ROAD, FRANKSTON, 3199",
+    "address_locality": "Frankston",
+    "address_postcode": "3199",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Monash University",
+    "abn": "12377614012",
+    "industry_code": "8102",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:12377614012"
+  },
+  {
+   "pair_id": "U00343",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Mildura Airport Pty Ltd",
+    "abn": "54131457700",
+    "address_full": "Mildura South, VIC, 3501, AUSTRALIA",
+    "address_locality": "Mildura South",
+    "address_state": "VIC",
+    "address_postcode": "3501",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2019-07-29"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MILDURA AIRPORT PTY LTD",
+    "trading_name": "MILDURA AIRPORT CAFE",
+    "address_full": "NINETEENTH STREET MILDURA AIRPORT TERMINAL, MILDURA SOUTH, 3500",
+    "address_locality": "Mildura South",
+    "address_postcode": "3500",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:54131457700"
+  },
+  {
+   "pair_id": "U00701",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "LIQUORLAND",
+    "address_full": "SHOP 2M WESTFIELD SHOPPING CENTRE, AIRPORT WEST, 3042",
+    "address_locality": "Airport West",
+    "address_postcode": "3042",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00634",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "55 THE CENTREWAY, LARA, 3212",
+    "address_locality": "Lara",
+    "address_postcode": "3212",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00578",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "CRN PRINCESS HWY AND CARDINIA RD, OFFICER, 3809",
+    "address_locality": "Officer",
+    "address_postcode": "3809",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00692",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "LIQUORLAND",
+    "address_full": "KILSYTH SHOPPING CENTRE 520-526 MT DANDENONG ROAD, KILSYTH, 3137",
+    "address_locality": "Kilsyth",
+    "address_postcode": "3137",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00311",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Monash University",
+    "abn": "12377614012",
+    "address_full": "Mulgrave, VIC, 3170, AUSTRALIA",
+    "address_locality": "Mulgrave",
+    "address_state": "VIC",
+    "address_postcode": "3170",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-25"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MONASH UNIVERSITY",
+    "trading_name": "MONASH UNIVERSITY CONFERENCE CENTRE",
+    "address_full": "LEVEL 7/30 COLLINS STREET, MELBOURNE, 3000",
+    "address_locality": "Melbourne",
+    "address_postcode": "3000",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:12377614012"
+  },
+  {
+   "pair_id": "U00793",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "LIQUORLAND",
+    "address_full": "CHIRNSIDE PARK SHOPPING CENTRE CNR MAROONDAH HIGHWAY & BLACKSPRINGS ROAD, CHIRNSIDE PARK, 3140",
+    "address_locality": "Chirnside Park",
+    "address_postcode": "3140",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00478",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "SAFEWAY HYPERMART DEER PARK SHOPPING CENTRE NEAL, DEER PARK, 3023",
+    "address_locality": "Deer Park",
+    "address_postcode": "3023",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00826",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "VINTAGE CELLARS",
+    "address_full": "259-261 LYGON STREET, CARLTON, 3053",
+    "address_locality": "Carlton",
+    "address_postcode": "3053",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00545",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "CNR GRIMSHAW & HENRY STREETS, GREENSBOROUGH, 3088",
+    "address_locality": "Greensborough",
+    "address_postcode": "3088",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00398",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "AUSTRALIAN LEISURE AND HOSPITALITY GROUP PTY LTD",
+    "trading_name": "BOUNDARY TAVERNER",
+    "address_full": "726 CENTRE ROAD, BENTLEIGH EAST, 3165",
+    "address_locality": "Bentleigh East",
+    "address_postcode": "3165",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Australian Leisure and Hospitality Group Pty Ltd",
+    "abn": "37067391511",
+    "industry_code": "4520",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:37067391511"
+  },
+  {
+   "pair_id": "U00727",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "LIQUORLAND",
+    "address_full": "BACCHUS MARSH VILLAGE S/CENTRE 178-180 MAIN STREET, BACCHUS MARSH, 3340",
+    "address_locality": "Bacchus Marsh",
+    "address_postcode": "3340",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00526",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "CORNER WILSON AND DARLOT STREETS, HORSHAM, 3400",
+    "address_locality": "Horsham",
+    "address_postcode": "3400",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00636",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "2-16 BROMFIELD STREET, COLAC, 3250",
+    "address_locality": "Colac",
+    "address_postcode": "3250",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00443",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "CANTERBURY RD, FOREST HILL, 3131",
+    "address_locality": "Forest Hill",
+    "address_postcode": "3131",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00217",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "94284074898",
+    "legal_name": "Hope Media Ltd",
+    "website": "www.hope1032.com.au",
+    "date_registered": "2012-12-03",
+    "address_locality": "Seven Hills",
+    "address_state": "NSW",
+    "address_postcode": "2147",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "asic-company-dataset",
+    "legal_name": "HOPE MEDIA LTD",
+    "acn": "000456468",
+    "entity_type": "company",
+    "status": "active",
+    "date_registered": "1964-04-24",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:94284074898"
+  },
+  {
+   "pair_id": "U00705",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "LIQUORLAND",
+    "address_full": "SHOP 1 83-109 MANNINGHAM ROAD, BULLEEN, 3105",
+    "address_locality": "Bulleen",
+    "address_postcode": "3105",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00504",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "TOWN & COUNTRY SHOPPING WORLD PIONEER ROAD, WAURN PONDS, 3216",
+    "address_locality": "Waurn Ponds",
+    "address_postcode": "3216",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00596",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER WINE SPIRITS",
+    "address_full": "315 GLENELG HWY, SMYTHES CREEK, 3351",
+    "address_locality": "Smythes Creek",
+    "address_postcode": "3351",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00753",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "LIQUORLAND",
+    "address_full": "500-540 TORQUAY RD, ARMSTRONG CREEK, 3217",
+    "address_locality": "Armstrong Creek",
+    "address_postcode": "3217",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00910",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "DELAWARE NORTH VENUE SERVICES PTY LTD",
+    "trading_name": "MARVEL STADIUM",
+    "address_full": "MARVEL STADIUM, DOCKLANDS, 3008",
+    "address_locality": "Docklands",
+    "address_postcode": "3008",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Delaware North Venue Services Pty Ltd",
+    "abn": "67006682113",
+    "industry_code": "4513",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:67006682113"
+  },
+  {
+   "pair_id": "U00285",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "SINGAPORE AIRLINES LTD",
+    "trading_name": "SINGAPORE AIRLINES SILVER KRIS LOUNGE",
+    "address_full": "SATELLITE ARRIVALS LEVEL INTERNATIONAL TERMINAL, MELBOURNE AIRPORT, 3045",
+    "address_locality": "Melbourne Airport",
+    "address_postcode": "3045",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Singapore Airlines Ltd",
+    "abn": "52001056195",
+    "industry_code": "4900",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:52001056195"
+  },
+  {
+   "pair_id": "U00758",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "VINTAGE CELLARS",
+    "address_full": "140 UNION ROAD, SURREY HILLS, 3127",
+    "address_locality": "Surrey Hills",
+    "address_postcode": "3127",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00576",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "585 WARBURTON HIGHWAY, SEVILLE, 3139",
+    "address_locality": "Seville",
+    "address_postcode": "3139",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00182",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "SOUTHERN CROSS CARE (SA, NT & VIC) INCORPORATED",
+    "trading_name": "MORNINGTON RETIREMENT VILLAGE & SHEARWATER APARTME",
+    "address_full": "150 MORNINGTON-TYABB ROAD, MORNINGTON, 3931",
+    "address_locality": "Mornington",
+    "address_postcode": "3931",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Southern Cross Care (Sa, Nt & Vic) Incorporated",
+    "abn": "53682143626",
+    "industry_code": "8601",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:53682143626"
+  },
+  {
+   "pair_id": "U01009",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "AUSTRALIAN FOOTBALL LEAGUE (VICTORIA) LIMITED",
+    "trading_name": "AUSTRALIAN FOOTBALL LEAGUE (VICTORIA)",
+    "address_full": "HIGHGATE RECREATION RESERVE 229-275 GRAND BOULEVARD, CRAIGIEBURN, 3064",
+    "address_locality": "Craigieburn",
+    "address_postcode": "3064",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Australian Football League (Victoria) Limited",
+    "abn": "24147664579",
+    "industry_code": "9114",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:24147664579"
+  },
+  {
+   "pair_id": "U00969",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "AAPC PROPERTIES PTY LIMITED",
+    "trading_name": "QANTAS FIRST LOUNGE",
+    "address_full": "LEVEL 3 INTERNATIONAL TERMINAL MELBOURNE AIRPORT, TULLAMARINE, 3043",
+    "address_locality": "Tullamarine",
+    "address_postcode": "3043",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Aapc Properties Pty Limited",
+    "abn": "17065560885",
+    "industry_code": "4400",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:17065560885"
+  },
+  {
+   "pair_id": "U00888",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "RICHMOND FOOTBALL CLUB LIMITED",
+    "trading_name": "RICHMOND FOOTBALL CLUB SOCIAL CLUB",
+    "address_full": "BRUNTON AVENUE, RICHMOND, 3121",
+    "address_locality": "Richmond",
+    "address_postcode": "3121",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Richmond Football Club Limited",
+    "abn": "25679793340",
+    "industry_code": "9112",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:25679793340"
+  },
+  {
+   "pair_id": "U00589",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "13 PRATT STREET, MOONEE PONDS, 3039",
+    "address_locality": "Moonee Ponds",
+    "address_postcode": "3039",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00279",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "WINC AUSTRALIA PTY LIMITED",
+    "abn": "94000728398",
+    "address_full": "PO Box P/BAG 16, ALEXANDRIA, ACT, 1435, Australia",
+    "address_locality": "ALEXANDRIA",
+    "address_state": "ACT",
+    "address_postcode": "1435",
+    "address_country": "Australia",
+    "observed_at": "2020-06-25"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "WINC AUSTRALIA PTY LIMITED",
+    "trading_name": "WINC AUSTRALIA PTY LIMITED",
+    "address_full": "111 TURNER STREET, PORT MELBOURNE, 3207",
+    "address_locality": "Port Melbourne",
+    "address_postcode": "3207",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:94000728398"
+  },
+  {
+   "pair_id": "U00947",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "NANDO'S AUSTRALIA PTY LTD",
+    "trading_name": "NANDO'S HIGHPOINT",
+    "address_full": "SHOP 1106 120-200 ROSAMOND ROAD, MARIBYRNONG, 3032",
+    "address_locality": "Maribyrnong",
+    "address_postcode": "3032",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Nando's Australia Pty Ltd",
+    "abn": "20079066407",
+    "industry_code": "4512",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:20079066407"
+  },
+  {
+   "pair_id": "U00305",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "UNIVERSITY OF MELBOURNE",
+    "abn": "84002705224",
+    "address_full": "WERRIBEE, VIC, 3030, Australia",
+    "address_locality": "WERRIBEE",
+    "address_state": "VIC",
+    "address_postcode": "3030",
+    "address_country": "Australia",
+    "observed_at": "2020-06-19"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "UNIVERSITY OF MELBOURNE",
+    "trading_name": "THE UNIVERSITY OF MELBOURNE/INSTITUTE OF LAND & FO",
+    "address_full": "MAIN DRIVE DOOKIE COLLEGE, DOOKIE COLLEGE, 3647",
+    "address_locality": "Dookie College",
+    "address_postcode": "3647",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:84002705224"
+  },
+  {
+   "pair_id": "U00923",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "GRILL'D LEASING PTY LTD",
+    "trading_name": "GRILL'D",
+    "address_full": "350 LYGON STREET, CARLTON, 3053",
+    "address_locality": "Carlton",
+    "address_postcode": "3053",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Grill'D Pty Ltd",
+    "abn": "17106297394",
+    "industry_code": "4511",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": false,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:17106297394"
+  },
+  {
+   "pair_id": "U00642",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "OPEN DOOR PUB CO. PTY LTD",
+    "trading_name": "OPEN DOOR PUB CO",
+    "address_full": "[NOT APPLICABLE] -, 0",
+    "address_locality": "[Not Applicable] -",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Open Door Pub Co. Pty Limited",
+    "abn": "48089164803",
+    "industry_code": "4520",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:48089164803"
+  },
+  {
+   "pair_id": "U00989",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "P MANETTAS & CO TECHNICAL PTY LTD",
+    "trading_name": "BIDFOOD PORT MELBOURNE",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "P Manettas & Co Technical Pty Ltd",
+    "abn": "95003044997",
+    "industry_code": "3609",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:95003044997"
+  },
+  {
+   "pair_id": "U00306",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "UNIVERSITY OF MELBOURNE",
+    "trading_name": "THE UNIVERSITY OF MELBOURNE/INSTITUTE OF LAND & FO",
+    "address_full": "MAIN DRIVE DOOKIE COLLEGE, DOOKIE COLLEGE, 3647",
+    "address_locality": "Dookie College",
+    "address_postcode": "3647",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "University Of Melbourne",
+    "abn": "84002705224",
+    "industry_code": "8102",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:84002705224"
+  },
+  {
+   "pair_id": "U00310",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "historical-australian-government-contrac",
+    "legal_name": "Monash University",
+    "abn": "12377614012",
+    "address_full": "Mulgrave, VIC, 3170, AUSTRALIA",
+    "address_locality": "Mulgrave",
+    "address_state": "VIC",
+    "address_postcode": "3170",
+    "address_country": "AUSTRALIA",
+    "observed_at": "2020-06-25"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "MONASH UNIVERSITY",
+    "trading_name": "THE MONASH MERCHANT",
+    "address_full": "MONASH UNIVERSITY GROUND FLOOR, 28 SPORTS WALK, CLAYTON, 3800",
+    "address_locality": "Clayton",
+    "address_postcode": "3800",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:12377614012"
+  },
+  {
+   "pair_id": "U00219",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "acnc-registered-charities",
+    "abn": "21412481916",
+    "legal_name": "Half Moon Bay Life Saving And Swimming Club Inc.",
+    "website": "http://halfmoonbayslsc.com.au/",
+    "date_registered": "2012-12-03",
+    "address_country": "Australia",
+    "observed_at": "2026-09-13"
+   },
+   "record_b": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "HALF MOON BAY LIFE SAVING AND SWIMMING CLUB INC",
+    "trading_name": "HALF MOON BAY LIFE SAVING AND SWIMMING CLUB",
+    "address_full": "HALF MOON BAY BEACH BEACH ROAD, BLACK ROCK, 3193",
+    "address_locality": "Black Rock",
+    "address_postcode": "3193",
+    "observed_at": "2026-09-14"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:21412481916"
+  },
+  {
+   "pair_id": "U00818",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "LIQUORLAND (AUSTRALIA) PTY LTD",
+    "trading_name": "VINTAGE CELLARS",
+    "address_full": "1ST FLOOR 481 TOORAK ROAD, TOORAK, 3142",
+    "address_locality": "Toorak",
+    "address_postcode": "3142",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Liquorland (Australia) Pty. Ltd.",
+    "abn": "82007512414",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:82007512414"
+  },
+  {
+   "pair_id": "U00886",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "FOOTSCRAY FOOTBALL CLUB LIMITED",
+    "trading_name": "BARKERS CAFE",
+    "address_full": "WHITTEN OVAL 417 BARKLY STREET, FOOTSCRAY WEST, 3012",
+    "address_locality": "Footscray West",
+    "address_postcode": "3012",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Footscray Football Club Limited",
+    "abn": "68005226595",
+    "industry_code": "9112",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:68005226595"
+  },
+  {
+   "pair_id": "U00552",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "SHOP 1 LOTS 13-18 PUNT ROAD, COBRAM, 3644",
+    "address_locality": "Cobram",
+    "address_postcode": "3644",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00490",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "132 YORK STREET, SOUTH MELBOURNE, 3205",
+    "address_locality": "South Melbourne",
+    "address_postcode": "3205",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00598",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER, WINE, SPIRITS",
+    "address_full": "TAYLORS LAKES COMMUNITY SHOPPING CENTRE KEILOR-MELTON ROAD, TAYLORS LAKES, 3038",
+    "address_locality": "Taylors Lakes",
+    "address_postcode": "3038",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  },
+  {
+   "pair_id": "U00606",
+   "sample": "below_threshold",
+   "record_a": {
+    "dataset": "victorian-liquor-licences-by-location",
+    "legal_name": "ENDEAVOUR GROUP LIMITED",
+    "trading_name": "BWS - BEER WINE SPIRITS",
+    "address_full": "2107 - 2125 PRINCES HIGHWAY, CLAYTON, 3168",
+    "address_locality": "Clayton",
+    "address_postcode": "3168",
+    "observed_at": "2026-09-14"
+   },
+   "record_b": {
+    "dataset": "wgea-dataset",
+    "legal_name": "Endeavour Group Limited",
+    "abn": "77159767843",
+    "industry_code": "4123",
+    "observed_at": "2026-01-09"
+   },
+   "facts": {
+    "abn_equal": false,
+    "acn_equal": false,
+    "name_equal_normalised": true,
+    "state_conflict": false,
+    "postcode_equal": false
+   },
+   "_method": "name_only",
+   "_our_confidence": 0.45,
+   "_canonical_entity_key": "abn:77159767843"
+  }
+ ]
+}
