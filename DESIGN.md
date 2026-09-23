@@ -1148,92 +1148,91 @@ given model version produced.
 
 `src/engine.py`, `src/extract.py`
 
-Six configs, one engine. Nothing in the engine knows anything about any
-particular source. It reads a config, opens the file the config describes, and
-writes canonical observations.
+6 configs, 1 engine. The engine knows nothing about any source: it reads a
+config, opens the file that config describes, applies the transform chains, and
+writes canonical observations. That is what makes 6 configs different from 6
+scripts.
 
-**The same code runs twice.** In the validate step, over rows the profile was
-not built from, to find what a draft gets wrong. In canonical extraction, over
-a full sample, to produce the
+**The same code runs twice.** Inside the agent's validate step, over held-out
+rows, to find what a draft gets wrong. Here, over a full sample, to produce the
 deliverable. So what the agent was checked against is exactly what ships.
 
-**The file is opened from the config's own `resource` section**, not from
-anything the agent left behind, which proves a config is sufficient on its own.
+**The file is opened from the config's `resource` block**, never from anything
+the agent left behind, which proves a config is sufficient on its own.
 
 ## The run
 
-| source | observations | with ABN or ACN |
-|---|---|---|
-| ACNC Registered Charities | 1,000 | 982 |
-| ASIC Company Dataset | 1,000 | 1,000 |
-| Finance contract notices | 1,000 | 992 |
-| Victorian schools ABNs | 1,000 | 993 |
-| Victorian liquor licences | 1,000 | 0 |
-| WGEA | 1,000 | 1,000 |
-| **total** | **6,000** | **4,967** |
+| source | observations | with ABN or ACN | share |
+|---|---|---|---|
+| ASIC Company Dataset | 1,000 | 1,000 | 100% |
+| WGEA | 1,000 | 1,000 | 100% |
+| Victorian schools ABNs | 1,000 | 993 | 99% |
+| Finance contract notices | 1,000 | 992 | 99% |
+| ACNC Registered Charities | 1,000 | 982 | 98% |
+| Victorian liquor licences | 1,000 | 0 | 0% |
+| **total** | **6,000** | **4,967** | **83%** |
 
-**6,000 observations in 1.3 seconds with zero model calls.** Per-record cost is
-$0.00 and that is measured, not claimed: `outputs/extraction_report.json`
-records zero model calls for the whole stage.
+**6,000 observations in 1.3 seconds, 0 model calls.** Per-record cost is $0.00
+and that is measured rather than claimed: `outputs/extraction_report.json`
+records the call count for the whole stage.
 
-The liquor source contributes 1,000 businesses with no identifier at all, known
-only by name and address. That is the hard case for Part 3 and it is useful to
-have one.
+The liquor register contributes 1,000 businesses with no identifier at all,
+known only by name and address. That is the hard case for Part 3, and it is
+useful to have one.
 
 ## What an observation looks like
 
 ```json
-{
- "source_id": "asic-company-dataset-7b8656f9",
- "source_record_id": "0eaa924bae48e834",
- "observed_at": "2026-09-14T15:25:32",
- "ingested_at": "2026-09-19T16:35:53+00:00",
- "licence": "Creative Commons Attribution 3.0 Australia",
- "extractor_version": "engine0.1/config1.0",
- "confidence": {
-  "source_reliability": 0.95,
-  "field_confidence": {"entity.legal_name": 0.95, "entity.acn": 1.0, ...}
- },
- "entity": {
-  "legal_name": "MONAKA PTY LTD", "acn": "000000019",
-  "abn": "89000000019", "entity_type": "company",
-  "status": "active", "date_registered": "1990-01-08"
- }
-}
+{ "source_id":         "asic-company-dataset-7b8656f9",
+  "source_record_id":  "0eaa924bae48e834",
+  "observed_at":       "2026-09-14T15:25:32",
+  "ingested_at":       "2026-09-19T16:35:53+00:00",
+  "valid_from":        "1990-01-08",
+  "licence":           "Creative Commons Attribution 3.0 Australia",
+  "extractor_version": "engine0.1/config1.0",
+  "confidence": {
+    "source_reliability": 0.98,
+    "field_confidence": { "entity.legal_name": 0.95, "entity.acn": 1.0, … } },
+  "entity": { "legal_name": "MONAKA PTY LTD", "acn": "000000019",
+              "abn": "89000000019", "entity_type": "company",
+              "status": "active", "date_registered": "1990-01-08" } }
 ```
 
-Fields we could not fill are absent, not blank and not guessed. The `entity` and
-`address` blocks only appear when they have something in them.
+Three things that envelope is doing.
 
-## The bug canonical extraction exposed
+- **`observed_at` and `ingested_at` are different dates.** When the source said
+  it, and when we read it. The ontology insists on both.
+- **The two confidences stay apart.** `source_reliability` is one number for
+  the publisher; `field_confidence` is one per field. They are never blended.
+- **Absent, not blank.** Fields no source supplied do not appear, and the
+  `entity` and `address` blocks only exist when they hold something.
 
-**On four of six sources, `observed_at` equalled `ingested_at` on every row.**
-The ontology is explicit that these are different and both matter.
+## The bug this stage exposed
 
-The cause was ours, not the agent's. Those four carry no date column, so the
-config falls back to a constant, and we never populated that constant. The
-dataset's `metadata_modified` was sitting in the crawl output and was not
+On 4/6 sources (67%), `observed_at` equalled `ingested_at` on every row. The
+ontology is explicit that these are different and both matter.
+
+The cause was ours, not the agent's. Those 4 sources carry no date column, so
+the config falls back to a constant — and we never populated that constant. The
+dataset's `metadata_modified` was sitting in the crawl output and was never
 carried through.
 
-**Fixed by carrying it through, then re-running from validate onwards and asking the
-reviewer to approve again.** The proposal drafts were reused, so the mappings came out
-byte-identical: the same 6, 4, 10 and 5 fields, still zero open failures. Only
-the envelope date moved.
+We fixed it by carrying it through, then re-running from validate onwards and
+asking the reviewer to approve again. The propose drafts were reused, so the
+mappings came out byte-identical — the same 6, 4, 10 and 5 fields, still 0 open
+failures. Only the envelope date moved.
 
 ```
 ASIC        2026-09-14    WGEA        2026-01-09
 ACNC        2026-09-13    Vic liquor  2026-09-14
 ```
 
-WGEA's is eight months older than the rest. That is real signal: when two
-sources disagree about a company in Part 4, we know which one spoke more
-recently.
+WGEA's is 8 months older than the rest, which is real signal: when two sources
+disagree about a company in Part 4, we know which one spoke more recently.
 
 **The process point.** Those configs were already approved. Rather than editing
 approved files in place, we regenerated and went back through the gate. *An
 approval that can be silently amended afterwards is not an approval.*
-
----
 
 ---
 
