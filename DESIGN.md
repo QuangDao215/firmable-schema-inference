@@ -154,8 +154,8 @@ mapping config, plus `runs/<source_id>/state.json` recording every step's
 duration and cost.
 
 Probe reads the file's first bytes to find its real format, unwraps zips,
-locates the header row, and extracts 2,000 records — the first 400 as a sample,
-the rest held back. Profile summarises each column into null rates, distinct
+locates the header row, and extracts 2,000 records. The first 400 are the sample and the
+rest are held back. Profile summarises each column into null rates, distinct
 counts, example values and checksum pass rates. `gemini-3.7-flash` reads the
 ontology, the 20 transforms and that profile, and returns a draft config. The
 draft runs over the held-back rows and every failure is counted. Failures go
@@ -203,7 +203,7 @@ field carries its own confidence. Fields no source supplied are absent.
 
 `gemini-3.1-flash-lite` for triage, `gemini-3.7-flash` for mapping.
 
-We read the live pricing page rather than working from memory, and two things
+We read the live pricing page instead of working from memory, and two things
 fell out of it:
 
 - A newer model is not always the dearer one. On the day we checked,
@@ -215,7 +215,7 @@ fell out of it:
   thinking off by default.
 
 Prices live in `config/settings.yaml`, read on 2026-09-19, so every call is
-priced from a table rather than estimated later.
+priced from a table, not estimated later.
 
 **Neither price is the real cost story.** The extractor makes zero model calls,
 so the per-record cost is zero whatever the token price does.
@@ -276,9 +276,9 @@ What goes into the propose prompt is three other things: the ontology rendered
 from `firmable_ontology.yaml`, the 20 transforms rendered from
 `config/transforms.yaml`, and the column profile.
 
-The model's output is constrained by a smaller, separate response schema — the
-`SCHEMA` constant in `src/agent/propose.py` — which covers only the parts the
-model is allowed to decide. `source_id`, `licence`, the `resource` block and
+The model's output is constrained by a smaller, separate response schema, the
+`SCHEMA` constant in `src/agent/propose.py`. It covers only the parts the model
+is allowed to decide. `source_id`, `licence`, the `resource` block and
 the whole `validation` block are facts we already hold and fill in ourselves.
 The model never gets to invent them.
 
@@ -445,7 +445,7 @@ Statement appeared 12 times in the pool, MIWB Contract Disclosure 5 times.
 
 We strip years, quarters and month names from the title, group by publisher
 plus the stripped title, keep the newest, and record the rest as
-`edition_siblings` on the survivor rather than deleting them — they are real
+`edition_siblings` on the survivor instead of deleting them. They are real
 datasets and a reviewer should be able to disagree.
 
 Without this we would pay the model to read one dataset twelve times, fill the
@@ -651,8 +651,8 @@ Download the head of every file on the shortlist and record what it really is:
 format from the bytes, header row, column names, column count, and whether the
 values look like businesses.
 
-Not one file per dataset but several — the easiest one plus an alternative per
-other format — because many publishers ship the same records as CSV and XLSX,
+Not one file per dataset but several: the easiest one, plus an alternative per
+other format. Many publishers ship the same records as CSV and XLSX,
 and Part 2 needs at least one source that is not a clean CSV.
 
 **95 files across 50 datasets. 59 files (62%) parsed, covering 30 datasets
@@ -695,7 +695,7 @@ agent has to survive.
 ## Bugs found in source selection, and what they taught
 
 - **A zip must be whole before it opens.** Its index sits at the end of the
-  file, so our 3 MB sample cap broke every zip — and every xlsx, since an xlsx
+  file, so our 3 MB sample cap broke every zip. And every xlsx, since an xlsx
   *is* a zip. Fixed by sniffing the first bytes and refetching in full when
   they say zip. *A sample is not always a smaller version of the thing.*
 
@@ -747,7 +747,7 @@ One per source at `runs/<source_id>/state.json`, written after every step.
 It does three jobs at once.
 
 - **It carries state between steps.** Propose needs what probe and profile
-  found, so each step reads the file rather than taking ten arguments.
+  found, so each step reads the file instead of taking ten arguments.
 - **It makes a crash cheap.** A step marked `done` is skipped on a rerun, so a
   failure in validate costs validate and not the download. A failed step
   records the exception and traceback and leaves everything before it intact.
@@ -837,9 +837,9 @@ brief says it marks down.
 | ACNC Registered Charities | 69 | 6,700 | 205,000 | 31x |
 
 **The cost, at $0.75 per million input tokens.** The ACNC source is $0.005 per
-attempt as a profile against $0.15 as raw rows — 30x. Across 6 sources at up to
-3 attempts each, that is $0.09 against $2.50: 4% of the cost, and the
-difference between a $10 budget holding and not.
+attempt as a profile against $0.15 as raw rows, or 30x. Across 6 sources at up to
+3 attempts each, that is $0.09 against $2.50. Four per cent of the cost, and the difference
+between a $10 budget holding and not.
 
 **And it is better input, not just cheaper.** 400 raw rows show the model 400
 examples of the same thing. The profile carries null rates, distinct counts,
@@ -921,7 +921,7 @@ Three things in the ASIC draft are worth pointing at.
 
 - **It covered the whole enum.** The profile sent all 3 distinct values of
   `Status`, so the model wrote a complete `map_values` for `REGD`, `DRGD` and
-  `EXAD` with a default of `unknown`, rather than guessing at categories it had
+  `EXAD` with a default of `unknown`, instead of guessing at categories it had
   not seen.
 - **It used the detected date format**, `%d/%m/%Y`, not a guess.
 - **It refused to invent a record id.** It chose `hash_of_fields` over ACN plus
@@ -939,9 +939,9 @@ and 3 of them are a school number, a financial period and a load timestamp.
 
 ## Step 4 — Validate (`c4_validate`)
 
-Run the draft config over rows 400–1,199 — 800 rows the profile was not built
-from. No model call, which is what makes the next step a correction rather than
-a second opinion.
+Run the draft config over rows 400–1,199. That is 800 rows the profile was not
+built from. No model call, which is what makes the next step a correction and not a
+second opinion.
 
 Two things come out.
 
@@ -1009,8 +1009,8 @@ was:  [Company Name] strip -> collapse_spaces
 now:  coalesce["Current Name", "Company Name"] -> strip -> collapse_spaces
 ```
 
-**The missing enum value.** `SOFF` — strike-off action in progress — appeared
-on 2% of the held-out rows and on none of the 400 the profile was built from.
+**The missing enum value.** `SOFF`, strike-off action in progress, appeared on
+2% of the held-out rows and on none of the 400 the profile was built from.
 Revise added it:
 
 ```
@@ -1025,7 +1025,7 @@ now:  map_values{REGD: active, DRGD: deregistered, EXAD: in_liquidation,
 where a company has no ABN. The draft already carried
 `null_if{values:["0"]} -> abn_normalize`, inferred from the example values in
 the profile. Without it, that placeholder would have been dropped by a checksum
-quietly failing rather than by a decision anyone could see.
+quietly failing, not by a decision anyone could see.
 
 ### Where it tried to cheat
 
@@ -1038,7 +1038,7 @@ as an Australian postcode.
 
 So "better" is no longer "fewer failures". Ops that *check* a value rather than
 reshape it — `abn_normalize`, `acn_normalize`, `postcode_extract`,
-`state_normalize`, `parse_date`, `map_values` — are tracked per field, and a
+`state_normalize`, `parse_date`, `map_values`. Each is tracked per field, and a
 revision that drops one is rejected whatever its numbers say:
 
 ```
@@ -1076,7 +1076,7 @@ what the agent decided and why, every field it mapped with the source column's
 fill rate beside the field's and the transform chain below it, everything it
 refused with a reason, and what broke on the 800 rows the model never saw. Then
 5 real records, raw beside canonical. Refusals sit above failures because that
-is where a reviewer is most likely to disagree — a failure is a fact, a refusal
+is where a reviewer is most likely to disagree. A failure is a fact; a refusal
 is a judgement. Nothing on the card is the model describing its own work; every
 number came from running the config. A reviewer approves or rejects from the
 command line, and a rejection carries their note back into the next propose
@@ -1125,7 +1125,7 @@ given model version produced.
 - **Two mappings can write one canonical field.** Asked to also map `Current
   Name`, the model mapped both it and `Company Name` to `entity.legal_name`.
   The engine applies mappings in order, so the later one won when it had a
-  value — producing the right answer by accident. The review card's fill-rate
+  value, producing the right answer by accident. The review card's fill-rate
   table, keyed by canonical field, showed nonsense as a result. A duplicate is
   now a failure validate raises before reading a single row, and revise is told
   the answer is `coalesce`. Round 1 took 3 failures to 0:
@@ -1173,7 +1173,7 @@ the agent left behind, which proves a config is sufficient on its own.
 | **total** | **6,000** | **4,967** | **83%** |
 
 **6,000 observations in 1.3 seconds, 0 model calls.** Per-record cost is $0.00
-and that is measured rather than claimed: `outputs/extraction_report.json`
+and that is measured, not claimed: `outputs/extraction_report.json`
 records the call count for the whole stage.
 
 The liquor register contributes 1,000 businesses with no identifier at all,
@@ -1213,13 +1213,13 @@ On 4/6 sources (67%), `observed_at` equalled `ingested_at` on every row. The
 ontology is explicit that these are different and both matter.
 
 The cause was ours, not the agent's. Those 4 sources carry no date column, so
-the config falls back to a constant — and we never populated that constant. The
+the config falls back to a constant, and we never populated that constant. The
 dataset's `metadata_modified` was sitting in the crawl output and was never
 carried through.
 
 We fixed it by carrying it through, then re-running from validate onwards and
 asking the reviewer to approve again. The propose drafts were reused, so the
-mappings came out byte-identical — the same 6, 4, 10 and 5 fields, still 0 open
+mappings came out byte-identical: the same 6, 4, 10 and 5 fields, still 0 open
 failures. Only the envelope date moved.
 
 ```
@@ -1270,7 +1270,7 @@ not to".
 **Why not blind clustering.** Transitive closure across weak edges causes
 catastrophic merges: A matches B, B matches C, and now A and C are one company
 on no evidence. Components are built only from links at or above threshold, and
-`entities.jsonl` is a view — rebuildable from the links, which are the record.
+`entities.jsonl` is a view, rebuildable from the links, which are the record.
 
 ### On a graph database
 
@@ -1285,7 +1285,7 @@ group, three hops out, with its current legal name" is one traversal in a graph
 database and a painful chain of self-joins anywhere else. With 1,609 links and
 17,095 relationship edges in a file you can `grep`, that convenience is not
 worth a server and a dependency inside a 6-hour budget. At 15M companies with
-ownership chains to walk it clearly is — and because the link table is already
+ownership chains to walk it clearly is. And because the link table is already
 an edge list, loading it into one is an import, not a migration.
 
 ### What a row looks like
@@ -1351,7 +1351,7 @@ association and a company with the same stem are different bodies.
 digits of an ABN are often the ACN, but not always." **It produced 0 links on
 these 6 sources**, because ASIC is the only source carrying an ACN and it
 carries an ABN too, so `abn_exact` always wins first. Built and tested,
-currently unused — saying so is better than leaving it looking like a working
+currently unused. Saying so is better than leaving it looking like a working
 feature.
 
 `link_confidence` is the only number in the score. Source reliability and the
@@ -1438,12 +1438,12 @@ Picking one would be a guess, and a wrong parent is worse than no parent.
 | parent name too generic | 1,243 | 10% |
 | parent name ambiguous | 105 | 1% |
 
-476 groups have more than one known child — Sonic Healthcare 24, ComfortDelGro
-21, Wesfarmers 19. 353 of those children and 101 of the parents are themselves
+476 groups have more than one known child. Sonic Healthcare has 24,
+ComfortDelGro 21, Wesfarmers 19. 353 of those children and 101 of the parents are themselves
 multi-source entities, so `relationships.jsonl` and `entities.jsonl` join on
 `canonical_entity_key`.
 
-**Three rules govern that file.** A relationship is never a sameness link — a
+**Three rules govern that file.** A relationship is never a sameness link. A
 subsidiary is not its parent, and merging them is tempting precisely because
 the names look alike. We record only what a source asserted, never inferring a
 parent from name similarity: `SALTER BROTHERS (CLOVELLY) PTY LTD` reads like a
@@ -1492,7 +1492,7 @@ human. 3/6 had the wrong format in the catalogue: a declared CSV that is TSV,
 another that is JSON, another that is a spreadsheet.
 
 That is the brief's own test — "if we handed your submission a seventh dataset
-tomorrow, could it produce a mapping config without you writing anything?" —
+tomorrow, could it produce a mapping config without you writing anything?" It was
 answered on 6 at once, by accident, because the catalogue moved.
 
 Run pinned instead and the agent reproduces this submission closely: field
@@ -1524,8 +1524,8 @@ errors live, and a random sample would have held about 2 of them.
 method, confidence and key stripped out; a reviewer answers into
 `precision_verdicts.json`; `merge` reports. `reviewed_by` is recorded, so the
 number always carries who produced it. The matcher is rules and the mapping was
-written by Gemini, so the reviewer is a third model family to both — letting
-one family grade its own work is not a check.
+written by Gemini, so the reviewer is a third model family to both. Letting one
+family grade its own work is not a check.
 
 ## The bug the clean run found
 
@@ -1534,8 +1534,8 @@ among the six it raised `FileNotFoundError`, and an entire Part 3 deliverable
 would have been missing.
 
 It now discovers its own group column: it scans every approved config for a
-column whose name suggests a link to a different business — group, parent,
-holding, ultimate, controlling, subsidiary, owner — and requires that column to
+column whose name suggests a link to a different business (group, parent,
+holding, ultimate, controlling, subsidiary, owner) and requires that column to
 actually disagree with the entity's own name on at least 5% of rows. A column
 that always equals the employer name is not a parent.
 
@@ -1566,9 +1566,9 @@ manages. They share an address, a postcode and most of a name, which is exactly
 what a name-based matcher falls for. It survived the legal-form check because
 "Foundation" is part of the name, not a suffix like PTY LTD.
 
-The fix is a marker list — FOUNDATION, COMMITTEE, AUXILIARY, FRIENDS, ALUMNI,
-SUB BRANCH, BRANCH, GUILD, TRUSTEE — **applied asymmetrically**: refuse only
-when one side carries a marker and the other does not, since two foundations
+The fix is a marker list: FOUNDATION, COMMITTEE, AUXILIARY, FRIENDS, ALUMNI,
+SUB BRANCH, BRANCH, GUILD, TRUSTEE. It is **applied asymmetrically**, refusing
+only when one side carries a marker and the other does not, since two foundations
 with the same name are still plausibly the same foundation. It is checked on
 trading names too, because the marker can sit there.
 
@@ -1599,10 +1599,10 @@ costs.
 ## How a field is decided
 
 Every observation resolving to the entity's key contributes, including the
-within-source duplicates the matcher collapsed — a company with 40 contract
-rows has 40 chances to state its address. Values are compared on a normalised
+within-source duplicates the matcher collapsed. A company with 40 contract rows
+has 40 chances to state its address. Values are compared on a normalised
 form and kept raw, so `Wilson Security Pty Ltd` and `WILSON SECURITY PTY. LTD.`
-count as agreement rather than manufactured conflict.
+count as agreement, not manufactured conflict.
 
 Then one of two policies applies, because the right answer differs by what kind
 of fact it is:
@@ -1620,7 +1620,7 @@ ladder decided it.
 **Confidence here is a third kind again.** The ontology's `field_confidence`
 means "we parsed this right". A profile needs "this is the right value for this
 business", which is a different question, so it is called `value_confidence`
-and its inputs stay visible beside it rather than blended into one number.
+and its inputs stay visible beside it instead of being blended into one number.
 Unanimous agreement across 3 sources is not the same claim as one source
 speaking alone.
 
@@ -1676,8 +1676,7 @@ split is the argument for keying on identifiers in the first place.
 
 `address.full` for Fujitsu holds **8 distinct values, all from one source**:
 Barton ACT, Macquarie Park NSW, Cheltenham VIC, North Ryde NSW, a GPO box in
-Canberra, and more. Its confidence reflects that — **0.765 against 0.931 for
-the name**.
+Canberra, and more. Its confidence reflects that: **0.765 against 0.931 for the name**.
 
 That is not a merge error. It is what a contract register is: each row records
 the supplier address for that contract, so a national company has many.
@@ -1685,7 +1684,7 @@ the supplier address for that contract, so a national company has many.
 **The limitation is the schema, not the data.** The ontology carries one
 address per entity. A real company has a registered office, a principal place
 of business and a site per contract. We take the most recent and list the rest
-with their dates rather than pretend there is one answer. Modelling address as
+with their dates instead of pretending there is one answer. Modelling address as
 a typed list is a schema change, not a bug fix.
 
 ## If we deleted one source
@@ -1709,7 +1708,7 @@ a winning value on 8 profiles, being the sole source of `entity_type`, `status`
 and `acn`.
 
 **The 2 Victorian sources carry no weight in these 50.** They are real,
-correctly mapped, and contribute nothing here — a direct consequence of the
+correctly mapped, and contribute nothing here, which follows directly from the
 selection rule above. Saying so is better than implying 6 sources pull equally.
 
 Written to `outputs/company_profiles.jsonl` and
