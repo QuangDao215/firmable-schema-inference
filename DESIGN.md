@@ -1581,144 +1581,139 @@ usefully the remaining errors are now different in kind.
 
 `src/profile.py`
 
-One record per business, merging what all six sources say. No model calls.
-This part is arithmetic over data we already have.
+One record per business, merging what all 6 sources say. No model calls — this
+part is arithmetic over data we already have.
 
-## Which 50
+## Which 50, and what that costs
 
 Ranked by how many sources an entity appears in, then by how many observations
-back it. A profile assembled from four disagreeing sources is worth more than
-one built from two identical rows.
+back it: 3 entities in four sources, 47 in three. A profile assembled from four
+disagreeing sources is worth more than one built from two identical rows.
 
-That gave 3 entities in four sources and 47 in three.
+That rule favours the big national sources, so **neither Victorian file appears
+in the 50 at all**. A selection spread across all 6 would produce a more
+flattering source-impact table and a less representative set of profiles. We
+kept the rule that picks the best-evidenced entities and reported what it
+costs.
 
-**The consequence is worth stating.** The rule favours the big national
-sources, so neither Victorian file appears in the 50 at all. A selection
-spread across all six sources would produce a more flattering
-source-impact table and a less representative set of profiles. We kept the
-rule that picks the best-evidenced entities and reported what it costs. The
-alternative is noted for the write-up.
+## How a field is decided
 
-## Collecting candidates
+Every observation resolving to the entity's key contributes, including the
+within-source duplicates the matcher collapsed — a company with 40 contract
+rows has 40 chances to state its address. Values are compared on a normalised
+form and kept raw, so `Wilson Security Pty Ltd` and `WILSON SECURITY PTY. LTD.`
+count as agreement rather than manufactured conflict.
 
-Every observation whose record resolves to the entity's key, including the
-within-source duplicates the matcher collapsed to a representative. A company
-with 40 contract rows has 40 chances to state its address.
+Then one of two policies applies, because the right answer differs by what kind
+of fact it is:
 
-Values are compared on a normalised form and kept raw. `Wilson Security Pty
-Ltd` and `WILSON SECURITY PTY. LTD.` are agreement, not conflict. Counting
-them as a conflict would manufacture disagreement that is not there.
-
-## Two policies, because the right answer differs by field
-
-| policy | fields | why |
+| policy | fields | ladder |
 |---|---|---|
-| `recency_wins` | legal_name, trading_name, status, website, entity_type, all address fields | facts that change. A company that moved has a new address, so the newest assertion is right |
-| `authority_wins` | abn, acn, nzbn, date_registered, industry_code | registry facts that do not change. Disagreement means one source is wrong, so the more reliable publisher wins |
+| `recency_wins` | legal_name, trading_name, status, website, entity_type, all address fields | still current beats expired → stated more recently → more reliable publisher → more sources agreeing |
+| `authority_wins` | abn, acn, nzbn, date_registered, industry_code | more reliable publisher → more sources agreeing → stated more recently |
 
-Each policy is a ladder and the profile records which rung decided it.
-`recency_wins` asks in order: is one claim still current while the other has
-expired, then which was stated more recently, then which source is more
-reliable, then how many sources agreed. `authority_wins` starts with
-reliability instead.
+Facts that change resolve by recency: a company that moved has a new address.
+Registry facts do not change, so disagreement means one source is wrong and the
+more reliable publisher should win. The profile records which rung of the
+ladder decided it.
 
-## A different kind of confidence, named as such
+**Confidence here is a third kind again.** The ontology's `field_confidence`
+means "we parsed this right". A profile needs "this is the right value for this
+business", which is a different question, so it is called `value_confidence`
+and its inputs stay visible beside it rather than blended into one number.
+Unanimous agreement across 3 sources is not the same claim as one source
+speaking alone.
 
-The ontology's `field_confidence` means "we parsed this right". A profile needs
-"this is the right value for this business", which is a different question. We
-call it `value_confidence` and keep its inputs visible beside it — sources
-agreeing, sources disagreeing, the best contributing parse confidence, and the
-winning source's reliability — rather than blending them into one opaque
-number.
+## What one field looks like
 
-Unanimous agreement across three sources is not the same claim as one source
-speaking alone, and the profile has to show which it was.
-
-## What it produced
-
-| | |
-|---|---|
-| Profiles | 50 |
-| Mean fields filled | 11.6 of 15 |
-| Fields with a conflict | 147 |
-
-| field | filled | conflicts |
-|---|---|---|
-| entity.legal_name | 50 | 31 |
-| entity.abn | 50 | 0 |
-| entity.industry_code | 50 | 0 |
-| address.locality | 50 | 31 |
-| address.postcode | 50 | 29 |
-| address.state | 50 | 20 |
-| address.full | 44 | 28 |
-| entity.acn | 39 | 0 |
-| entity.status | 39 | 0 |
-| entity.website | 18 | 0 |
-
-Identifiers never conflict, which is the point of using them as the key. Names
-and addresses conflict constantly.
-
-## Showing the working
-
-Fujitsu Australia, ABN 19001011427, assembled from 74 observations across three
+Fujitsu Australia, ABN 19001011427, assembled from 74 observations across 3
 sources:
 
-```
-entity.legal_name = "FUJITSU AUSTRALIA LIMITED"    value_confidence 0.931
-  3 sources agreed, 2 distinct values
-  decided_by: the losing claim had expired
-  lost: "FUJITSU"  (contract CN3619643, 2019-08-13)
+```json
+"entity.legal_name": {
+  "value": "FUJITSU AUSTRALIA LIMITED",
+  "value_confidence": 0.931,
+  "provenance": { "source_id": "historical-australian-government-contrac…",
+                  "source_record_id": "CN3692225",
+                  "observed_at": "2020-06-19",
+                  "field_confidence": 0.95,
+                  "source_reliability": 0.85 },
+  "agreement":  { "sources_agreeing": 3, "sources_disagreeing": 0,
+                  "distinct_values": 2 },
+  "conflict":   { "policy": "recency_wins",
+                  "decided_by": "the losing claim had expired",
+                  "losing_values": [ { "value": "FUJITSU",
+                                       "source_record_id": "CN3619643",
+                                       "observed_at": "2019-08-13" } ] } }
 ```
 
 **"The losing claim had expired" is `valid_to` earning its place.** That field
 was nearly shipped empty, and here it is deciding which of two names is
 current.
 
+## What it produced
+
+50 profiles, **11.6/15 fields filled on average (77%)**, 147 fields with a
+recorded conflict.
+
+| field | filled | conflicts |
+|---|---|---|
+| entity.legal_name | 50 | 31 |
+| address.locality | 50 | 31 |
+| address.postcode | 50 | 29 |
+| address.state | 50 | 20 |
+| address.full | 44 | 28 |
+| entity.abn | 50 | 0 |
+| entity.industry_code | 50 | 0 |
+| entity.acn | 39 | 0 |
+| entity.status | 39 | 0 |
+| entity.website | 18 | 0 |
+
+**Identifiers never conflict. Names and addresses conflict constantly.** That
+split is the argument for keying on identifiers in the first place.
+
 ## The address finding, and a known limitation
 
-`address.full` for Fujitsu has **eight distinct values** from a single source:
+`address.full` for Fujitsu holds **8 distinct values, all from one source**:
 Barton ACT, Macquarie Park NSW, Cheltenham VIC, North Ryde NSW, a GPO box in
-Canberra, and more.
+Canberra, and more. Its confidence reflects that — **0.765 against 0.931 for
+the name**.
 
 That is not a merge error. It is what a contract register is: each row records
 the supplier address for that contract, so a national company has many.
 
-Its confidence reflects it — **0.765, against 0.931 for the name**. One source,
-eight candidates. This is exactly the case per-field confidence exists for.
-
 **The limitation is the schema, not the data.** The ontology carries one
 address per entity. A real company has a registered office, a principal place
-of business and a site per contract, and the assignment's ontology subset does
-not model that. We pick the most recent and list the rest rather than pretend
-there is one answer. Carried to the write-up as a future improvement.
+of business and a site per contract. We take the most recent and list the rest
+with their dates rather than pretend there is one answer. Modelling address as
+a typed list is a schema change, not a bug fix.
 
 ## If we deleted one source
 
-Every profile rebuilt six times, once with each source removed.
+Every profile rebuilt 6 times, once with each source removed.
 
 | source removed | profiles gone | lose a field | a value moves |
 |---|---|---|---|
-| WGEA | 1 | **49** | 0 |
-| Finance contract notices | 1 | **43** | 0 |
-| ASIC Company Dataset | 0 | 39 | **8** |
-| ACNC Registered Charities | 0 | 18 | **7** |
+| WGEA | 1 | **49 (98%)** | 0 |
+| Finance contract notices | 1 | 43 (86%) | 0 |
+| ASIC Company Dataset | 0 | 39 (78%) | **8 (16%)** |
+| ACNC Registered Charities | 0 | 18 (36%) | 7 (14%) |
 | Victorian schools ABNs | 0 | 0 | 0 |
 | Victorian liquor licences | 0 | 0 | 0 |
 
-**WGEA is load-bearing for coverage.** Removing it costs a field on 49 of 50
-profiles, because it is the only source of `industry_code`.
+**WGEA is load-bearing for coverage**, costing a field on 49/50 profiles
+because it is the only source of `industry_code`.
 
-**ASIC is the one that changes answers, not just coverage.** Removing it moves
-a winning value on 8 profiles: it is the sole source of `entity_type`,
-`status` and `acn`.
+**ASIC is the one that changes answers**, not just coverage. Removing it moves
+a winning value on 8 profiles, being the sole source of `entity_type`, `status`
+and `acn`.
 
-**The two Victorian sources carry no weight in these 50.** They are real,
-correctly mapped, and contribute nothing here. Saying so is better than
-implying six sources all pull equally.
+**The 2 Victorian sources carry no weight in these 50.** They are real,
+correctly mapped, and contribute nothing here — a direct consequence of the
+selection rule above. Saying so is better than implying 6 sources pull equally.
 
 Written to `outputs/company_profiles.jsonl` and
 `outputs/profile_source_impact.json`.
-
 
 ---
 
