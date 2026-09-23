@@ -72,7 +72,6 @@ prices:
     input: 0.10
     output: 0.40
   gemini-3.7-flash:
-    # Promotional price, ends 2026-12-31. After that: 1.50 / 7.50.
     input: 0.75
     output: 3.75
   gemini-3.8-flash:

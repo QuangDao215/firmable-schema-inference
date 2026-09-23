@@ -60,6 +60,17 @@ Then:
 
 ### Long: discover sources from the live catalogue (~13 minutes)
 
+| step | what it does | time |
+|---|---|---|
+| crawl, score, triage, shortlist | 366 datasets down to 50 | 83s |
+| check against real data | 20 files downloaded and read | 110s |
+| probe | ~100 candidate files inspected | 387s |
+| pick six | deterministic | instant |
+| agent, six sources | six configs produced | 137s |
+| approve x6 | you read the cards | — |
+| extract, match, relationships, profiles | 126,540 observations | 16s |
+
+
 Everything above, but starting from a crawl:
 
 ```bash
@@ -139,6 +150,11 @@ else is ordinary code, which is why the per-record cost is zero.
 returned, so the long path can legitimately pick six different sources. It did
 exactly that on a clean-checkout test, and the agent mapped all six without a
 line of code from us. Use `--pinned` to get the six this submission used.
+
+**Pinned fixes the sources, not the mappings.** Rerun the pinned path and the
+agent reproduces this submission closely — field counts match on five of six,
+and both problem sources fail the same way — but the model's proposal varies
+run to run. The validate step is what makes that safe rather than alarming.
 
 **It takes about 13 minutes, not the ten the brief asks for.** The probe step is
 six and a half of those, downloading roughly a hundred files one after another.
