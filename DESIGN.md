@@ -1724,19 +1724,15 @@ Written to `outputs/company_profiles.jsonl` and
 | measure | value |
 |---|---|
 | Datasets in the catalogue | 141,297 |
-| With a machine-readable file | 30,079 |
-| HTTP calls in the full crawl | 24 |
-| Records crawled | 519, 376 unique |
-| Found by dataset text only | 313 |
-| Found by file name only | 45 |
-| Found by both channels | 18 |
-| Yearly editions folded | 54 |
-| Distinct sources | 322 |
+| With a machine-readable file | 30,079 (21%) |
+| HTTP calls to crawl | 24 |
+| Unique datasets crawled | 376 |
+| Found by file name only | 45 (12%) |
+| Yearly editions folded | 54 (14%) |
 | Judged by the model | 120 |
 | Shortlist | 50 |
 | Shortlist precision, readable files | 12/14 = 86% |
 | Shortlist precision, end to end | 12/20 = 60% |
-| Wall clock, crawl and score | about 43 seconds |
 
 ## Onboarding one source
 
@@ -1765,26 +1761,20 @@ it is the number worth quoting.
 
 | measure | value |
 |---|---|
-| Observations for Part 3, deeper pull | 126,540 |
-| With a validated ABN or ACN | 100,024 |
-| Cross-source ABN matches | 1,541 |
+| Observations matched over | 126,540 |
+| With a validated ABN or ACN | 100,024 (79%) |
 | Links proposed at threshold 0.70 | 1,609 |
-| By `abn_exact` / `name_geo` | 1,541 / 68 |
-| Refused | 1,025 |
+| Refused, with a reason | 1,025 |
 | Entities in more than one source | 1,434 |
-| In four sources / three / two | 3 / 83 / 1,348 |
-| Link precision, random 50 at 0.70 | 50/50 = 100% |
+| Link precision, random 50 | 50/50 = 100% |
 | Link precision, weak tier only | 45/50 = 90% |
-| Link precision, below threshold at 0.45 | 49/50 = 98% |
-| Parent-child assertions | 12,421 |
-| Both ends resolved to a key | 4,193 |
-| Sibling pairs recorded, unused | 4,674 |
-| Company profiles | 50 |
-| Mean fields filled per profile | 11.6 of 15 |
+| Parent edges, both ends resolved | 4,193 of 12,421 (34%) |
+| Profiles | 50 |
+| Mean fields filled | 11.6/15 = 77% |
 | Fields with a recorded conflict | 147 |
 
-Matching, relationships and profiles all run in about three seconds combined
-and make **zero model calls**.
+Matching, relationships and profiles run in about 3 seconds combined, with
+**0 model calls**.
 
 ## Cost, split the way Part 5 asks
 
