@@ -1822,25 +1822,22 @@ the brief marks down claims of full coverage.
 the same size as the system grows.
 
 
-# Four things to say out loud
+# Strengths
 
-**The crawler knows what it is looking for, and we measured what that is
-worth.** Twelve search terms chosen against the ontology's fields, on two
-channels. Run `python -m src.catalogue baseline` then
-`python -m src.baseline_report`: the best dataset an unaimed `q=*:*` crawl
-returns scores 0.15 and is a fibre-optic declaration for Mays Hill NSW. Ours
-returns the national business register.
+What this system does well, and the evidence for each. Built in 6 hours for
+$0.66 of model spend.
 
-**We push work to the server where it will take it.** CKAN filters by file
-format before sending anything. That turned a crawl of 600 records to keep 190
-into a crawl where every record is a candidate.
-
-**A model optimising for a number will pass the test by deleting the test.**
-Given a failing postcode check, it removed the check. The guard against that is
-now part of the loop, and it is the reason the revision step can be trusted at
-all.
-
-**The human gate found the thing we missed.** One rejection, "also map Current
-Name to entity.legal_name", exposed a duplicate-mapping bug in the engine, a
-rejection that did not unfreeze, and a reviewer note that went nowhere. None of
-those would have surfaced from the agent running cleanly.
+| # | strength | evidence |
+|---|---|---|
+| 1 | **The crawler knows what it is looking for, and we measured what that is worth.** | 12 terms chosen against the ontology's fields, on 2 channels. The best dataset an unaimed `q=*:*` crawl returns scores 0.15 and is a fibre-optic declaration for Mays Hill NSW. Ours returns the national business register. Reproduce with `src.catalogue baseline` then `src.baseline_report`. |
+| 2 | **It generalises to sources it has never seen.** | A clean-checkout run picked a completely different six — two NSW liquor registers, a City of Melbourne JSON with 3 columns — and the agent mapped all 6 with no code changes. 3/6 were mislabelled in the catalogue. |
+| 3 | **Per-record cost is zero, and that is measured.** | The extractor, matcher, relationship builder and profile assembler make 0 model calls between them. 126,540 records in 6.5 seconds, $0.00. All spend is one-time, when a config is written. |
+| 4 | **The agent corrects itself against facts, not opinions.** | Validate makes no model call. It runs the draft over 800 held-out rows and counts failed checksums, unparsed dates and enum fall-throughs. 4/6 sources converged without a person. |
+| 5 | **It refuses rather than guesses.** | 1,025 link refusals, each with a stated reason. 10/16 ontology fields declared unfillable for ASIC, each with a reason. 105 corporate parents left unresolved because two businesses share the name. Fields that cannot be filled are absent, never blank. |
+| 6 | **A model cannot pass the test by deleting the test.** | Given a failing postcode check, the model removed the check and the failure count went to zero. A revision that drops a validating transform is now rejected whatever its numbers say. |
+| 7 | **The human gate does real work.** | One rejection — "also map Current Name to entity.legal_name" — exposed a duplicate-mapping bug in the engine, a rejection that did not unfreeze a config, and a reviewer note that went nowhere. None would have surfaced from a clean run. |
+| 8 | **A matcher upgrade is a diff, not a rebuild.** | Every link carries its method, matcher version, evidence, threshold and any human verdict. Old and new can be joined pair by pair, and the refusal queue distinguishes "the new matcher found something" from "the old one never looked". |
+| 9 | **Every number is traceable to an artifact.** | Cost from `runs/llm_calls.jsonl`, one line per call. Timings from `runs/*/state.json`. Precision from `outputs/links_precision.csv`, with deterministic evidence beside every verdict and `reviewed_by` recorded. |
+| 10 | **Confidences are kept apart, as the ontology demands.** | `source_reliability` per publisher, `field_confidence` per parse, `link_confidence` per link, `value_confidence` per profile field. Four different questions, never blended into one score. |
+| 11 | **It fails cheaply.** | State is written after every step, so a crash costs one step rather than a download. 2 sources that would not converge were flagged for a person instead of being forced through. |
+| 12 | **We push work to the server where it will take it.** | CKAN filters by file format before sending anything. 141,297 datasets down to 30,079 (21%) before a single byte reaches us. |
