@@ -1791,49 +1791,36 @@ does.
 
 ---
 
-# Known gaps and deviations
+# Limitations and improvement directions
 
-Listed because the assignment marks down claims of full coverage.
+Everything here is either incomplete, or will break at scale. Listed because
+the brief marks down claims of full coverage.
 
-**The ontology carries one address per entity, and a real company has
-several.** A registered office, a principal place of business, and a site per
-contract. We pick the most recent and list every losing value with its date
-rather than pretend there is one answer. Modelling addresses as a typed list is
-a schema change, not a bug fix.
+| # | limitation | what we saw | how to improve it |
+|---|---|---|---|
+| 1 | **The transform list cannot express a condition.** | `97219` and `OX2 6DP` pass as Australian postcodes, and the agent's own fix was to delete the postcode check. | Add a `when(field, equals, then_ops)` transform, so a postcode is extracted only when the country is AU. |
+| 2 | **The ontology holds one address per entity.** | Fujitsu appears at 8 distinct addresses in one source: a registered office, several sites, a GPO box. | Model address as a typed list, each entry tagged registered / trading / site, with its own validity window. |
+| 3 | **No recall measurement.** | Precision measured 3 ways. There is no number at all for what the matcher misses. | Build a small truth set by hand within a few blocks, run the matcher over it, report what it failed to find. |
+| 4 | **Records are grouped by name alone.** | Aldi holds a liquor licence at every store: 21,458 comparisons from one name, and 225,587 refusals on a clean run over two overlapping registers. | Require a second signal before a name opens a group — name plus postcode, or name plus state. |
+| 5 | **Every config needs a person.** | 2/6 needed a human, so 500 sources implies around 167 cards to read. | Approve automatically when there are no unresolved failures and every field confidence clears a bar; route only the rest. |
+| 6 | **A frozen config pins column names and a URL, and nothing notices when they move.** | ASIC's config expects `Company Name`, `ACN`, `ABN`. A rename produces silent nulls, not an error. | Re-run each config against today's file on a schedule and compare fill rates to those recorded at approval. Costs nothing — that step makes no model calls. |
+| 7 | **The same records can arrive twice from different datasets.** | We already fold 54 yearly editions. The harder case is a federal register mirrored on a state portal, where a duplicate observation looks like a second source agreeing. | Compare a new source against those already loaded before onboarding it, and mark an observation as a copy rather than a corroboration. |
+| 8 | **Source reliability is a model's guess and it decides conflicts.** | Six values between 0.85 and 0.98, each proposed by the model and approved unchallenged. At 500 sources one bad rating silently wins conflicts across thousands of profiles. | Measure it: how often does this publisher agree with a registry we already trust. |
+| 9 | **Licences are recorded and never acted on.** | 9 distinct licence strings across just 50 shortlisted datasets, including `notspecified` and `Other`. | Filter by licence before a value reaches a profile, so a profile has one answer about what you may do with it. |
+| 10 | **The 15-field ontology subset is the binding constraint.** | 135 source columns across 6 sources recorded as unmappable, 60 from ACNC alone. | That list is the backlog. It says which fields to add next. |
+| 11 | **Name-only entity keys are untested.** | All 1,434 entities are keyed on a validated ABN. Not one rests on a name — luck from our source mix, not a property of the design. | Measure precision on the `nk:` tier specifically, before a source without identifiers carries real weight. |
+| 12 | **The 50 profiles were chosen by source count.** | Favours the big national sources; neither Victorian file contributes anything. | A selection spread across all 6 would read better and represent the data worse. Stated rather than fixed. |
+| 13 | **A rerun is reproducible in its sources, not its mappings.** | The pinned file fixes which 6 datasets are used; the model's proposal still varies, so a field count can move by one. | Pin the crawl as a dated snapshot too. The validate step is what makes the variance safe meanwhile. |
+| 14 | **A full discovered run takes ~13 minutes, not under 10.** | The probe step downloads ~100 files one after another. | Download them concurrently. An afternoon's work. |
+| 15 | **Triage confidence does not discriminate.** | 52/120 datasets (43%) scored 0.90 or above. `record_grain` is doing the real work. | Ask for a comparative judgement across the batch rather than an absolute score per dataset. |
+| 16 | **The shortlist check is a model, not a person.** | It reads real data rather than descriptions, is a different model from the one that judged, and every verdict carries deterministic evidence. It is still not a human. | A person spot-checks the rows where the model and the deterministic signals disagree. |
+| 17 | **20/50 shortlisted datasets cannot be downloaded today.** | HTTP 202, 403, 404 and dead links. We report precision both ways rather than quietly excluding them. | Retry 202 on a longer schedule; treat a 404 as a catalogue defect worth reporting upstream. |
+| 18 | **2/6 configs shipped with an open failure.** | 0.9% of the Victorian schools `ABN` column holds 9-digit values; the Finance register holds overseas postcodes. Both approved with a recorded note. | Limitation 1 fixes the second. The first needs the publisher. |
+| 19 | **`derivation_level` is in the config schema and never emitted.** | The ontology marks it optional, so nothing breaks. | Emit it per field: L0 stated, L1 computed, L3 model-inferred. |
 
-**The 50 profiles were chosen by source count**, which favours the big national
-sources and leaves both Victorian files contributing nothing. A selection
-spread across all six would read better and represent the data worse.
+**Limitations 4 to 9 are the ones that get worse with scale.** The rest stay
+the same size as the system grows.
 
-**A rerun is reproducible in its sources, not in its mappings.** The pinned
-file fixes which six datasets are used. The model's proposal still varies run
-to run, so a field count can move by one. The validate step is what makes that
-safe rather than alarming.
-
-**A full discovered run takes about 13 minutes, not under 10.** The probe step
-downloads 104 files. The pinned path avoids it.
-
-**`derivation_level` is in the config schema but not emitted on observations.**
-The ontology marks it optional.
-
-**Triage confidence does not discriminate.** 52 of 120 datasets scored 0.90 or
-above. `record_grain` is doing the real work.
-
-**The hand-check is a model, not a person.** It reads real data rather than
-descriptions, it is a different model from the one that made the judgment, and
-every verdict has deterministic evidence beside it. It is still not a human.
-
-**Twenty of the fifty shortlisted datasets cannot be downloaded today.** HTTP
-202, 403, 404 and dead links. We report precision both ways rather than quietly
-excluding them.
-
-**Two of the six configs were approved with an open failure**, each with a note
-recorded in the config: 0.9% of the Victorian schools ABN column holds 9-digit
-values we drop rather than guess, and the Finance register contains
-international suppliers whose postcodes we drop because the transform list
-cannot condition on country.
-
----
 
 # Four things to say out loud
 
