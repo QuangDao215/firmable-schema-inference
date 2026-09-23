@@ -647,24 +647,21 @@ No model calls. This is the programmed check the agent depends on.
 
 ## Probe
 
-We download the head of every file on the shortlist. Not one file per dataset,
-but several: the easiest one plus one alternative per other format. Many
-publishers ship the same records as CSV and XLSX, and Part 2 needs sources that
-are not clean CSVs.
+Download the head of every file on the shortlist and record what it really is:
+format from the bytes, header row, column names, column count, and whether the
+values look like businesses.
 
-**95 files across 50 datasets. 59 usable, on 30 datasets.**
+Not one file per dataset but several — the easiest one plus an alternative per
+other format — because many publishers ship the same records as CSV and XLSX,
+and Part 2 needs at least one source that is not a clean CSV.
 
-That is the measured version of "about a third of catalogue links do not serve
-a file". Twenty of the fifty shortlisted datasets cannot be processed at all
-today.
-
-What a probe records: the real format from the file's bytes, the header row,
-the column names, how many columns, and deterministic business signals.
+**95 files across 50 datasets. 59 files (62%) parsed, covering 30 datasets
+(60%).** The other 20 datasets (40%) cannot be processed at all today.
 
 ## The selection rule
 
-Written down, not chosen by taste, because the assignment asks whether the
-solution generalises.
+Written down, not chosen by taste, because the brief asks whether the solution
+generalises.
 
 1. Walk the shortlist in rank order, one dataset at a time.
 2. Skip a dataset whose publisher is already chosen. Six registers from one
@@ -688,39 +685,39 @@ Australian Government Contract Notice Data* so the six are not all registers.
 | 5 | XLSX | entity | 5 | Vic Dept of Education | Government Schools ABNs |
 | 6 | XLSX | event | 43 | Dept of Finance | Historical Contract Notices |
 
-Six publishers, four formats, both grains, five of six not a plain CSV, column
+Six publishers, four formats, both grains, 5/6 (83%) not a plain CSV, column
 counts from 5 to 69.
 
-**Source 1 is declared CSV in the catalogue and is actually tab separated.**
-Source 6 is declared CSV and is a spreadsheet. That is the kind of thing the
+**2/6 (33%) are mislabelled in the catalogue.** Source 1 is declared CSV and is
+tab separated. Source 6 is declared CSV and is a spreadsheet. That is what the
 agent has to survive.
 
 ## Bugs found in source selection, and what they taught
 
-**A zip must be whole to be opened.** Its index sits at the end, so the 3 MB
-sample cap broke every zip and every xlsx, because an xlsx is a zip. Fixed by
-sniffing the first bytes and going back for the whole file when it says zip.
+- **A zip must be whole before it opens.** Its index sits at the end of the
+  file, so our 3 MB sample cap broke every zip — and every xlsx, since an xlsx
+  *is* a zip. Fixed by sniffing the first bytes and refetching in full when
+  they say zip. *A sample is not always a smaller version of the thing.*
 
-**openpyxl refuses a file whose name it does not recognise.** Our cache files
-end in `.bin`, so it raised `InvalidFileException` on 16 perfectly good
-spreadsheets. Fixed by handing it an open file object instead of a path. *A
-library's error message can be about your filename rather than your data.*
+- **openpyxl judged our files by their names.** Cache files end in `.bin`, so
+  it raised `InvalidFileException` on 16 perfectly good spreadsheets. Fixed by
+  handing it an open file object instead of a path. *A library's error can be
+  about your filename rather than your data.*
 
-**A code list is not data.** The Finance contract dataset ships `AusTender
-Customised UNSPSC Codeset.xlsx` next to the contract records, and we picked the
-code list.
+- **A code list is not data.** The Finance contract dataset ships `AusTender
+  Customised UNSPSC Codeset.xlsx` alongside the contract records, and we picked
+  the code list. Now anything named codeset, lookup or reference data sorts
+  last. *Publishers put dictionaries next to records and name them similarly.*
 
-**Spreadsheets do not start at row one.** That same file has a title banner in
-row 1 and the real headers in row 2, which our parser read as 16,374 columns.
-Now we take the row with the most non-empty cells among the first six and
-record which row we chose, so a human can disagree. The mapping config carries
-`header_row`.
+- **Spreadsheets do not start at row one.** That same file opens with a title
+  banner and puts the real headers on row 2, which our parser read as 16,374
+  columns. Now we take the row with the most non-empty cells among the first
+  six, and record which row we chose so a reviewer can disagree. The mapping
+  config carries `header_row`.
 
-**A file that parses to one or two columns has not parsed.** Added as a gate:
-usable means at least three columns. It catches wrong delimiters and title rows
-the parser swallowed silently.
-
----
+- **A file that parses to one or two columns has not parsed.** Added as a gate:
+  usable means at least three columns. It catches wrong delimiters and title
+  rows the parser swallowed without complaint. *Silence is not success.*
 
 # Part 2b — Schema inference agent
 
