@@ -195,41 +195,9 @@ provenance. Mutable fields resolve by recency, registry fields by publisher
 reliability, and every losing value is kept with its source and date. Each
 field carries its own confidence. Fields no source supplied are absent.
 
-## Five things the diagram is meant to show
-
-**Model calls happen in four places and never after a config is frozen.**
-Triage and the data check in Part 1, propose and revise in Part 2. Extraction,
-matching, relationships and profiles are all plain code. That is what lets us
-report a per-record cost of exactly zero.
-
-**The correction loop is propose → validate → revise, and validate has no
-model in it.** The model is corrected by real parse failures and real checksum
-failures, not by a second opinion. If validate used a model, revise would be
-theatre.
-
-**One engine, six configs.** Canonical extraction knows nothing about any
-source. It opens each file from the config's own `resource` section, which
-proves a config is sufficient on its own.
-
-**The state file is the spine of Part 2.** It carries state between steps,
-makes a crash cost one step instead of the whole run, and is where the cost and
-timing numbers come from.
-
-**The human sits at the review step, not at the end.** A config reaches
-`configs/` because a person said yes, never because a model said it was fine.
-
 ---
 
-# Decisions that span the whole pipeline
-
-## No agent framework
-
-Plain Python functions, one per step, with progress saved to JSON.
-
-The graders never ask which library was used. The task demands tokens and
-seconds per source, and frameworks bury those behind their own tracing.
-Learning one inside a 6-hour budget is the risk most likely to sink the
-submission.
+# Decisions on system level
 
 ## Picking the model on today's price, not on the version number
 
@@ -263,7 +231,7 @@ no.
 A published price list is not a statement of availability. We only found out
 because we made three probe calls before spending at scale.
 
-## Every model call is priced as it happens
+## Every model call is monitored
 
 One function, `src/llm.py:ask()`, that every call goes through. It records
 model, tokens in, tokens out, seconds and dollars to `runs/llm_calls.jsonl`.
@@ -271,7 +239,7 @@ model, tokens in, tokens out, seconds and dollars to `runs/llm_calls.jsonl`.
 Bolting this on at the end means the earlier numbers are gone and the answer
 becomes an estimate, which the assignment says it marks down.
 
-## The contract between the agent and the engine
+## The chosen contract between the agent and the engine
 
 Written before any agent code, because changing it later kills every config
 already generated.
@@ -282,6 +250,38 @@ already generated.
 | `config/transforms.yaml` | the closed list of 20 operations |
 | `src/transforms.py` | the implementations |
 | `configs/EXAMPLE_asic-company.yaml` | a worked example that validates |
+
+### What a mapping config holds
+
+Ten parts, eight of them required.
+
+| part | what it is for |
+|---|---|
+| `config_version` | Which schema version this was written against, so an old config stays readable after the schema moves. |
+| `source_id` | Stable id for the dataset. Goes onto every observation the engine emits. |
+| `generated_by` | Which model wrote it, how many correction rounds it took, who approved it and when. This is what makes a bad mapping traceable to a model version six months later. |
+| `resource` | How to open the file: real format, encoding, delimiter, header row, sheet, member inside a zip. Filled by the probe step from actual bytes, not from the catalogue's claim. |
+| `record_id` | How to build a traceable id for each raw record. Where a source has no key, this records the strategy and the reason for it. |
+| `observation` | The envelope every emitted record carries: licence, source reliability, and where `observed_at`, `valid_from` and `valid_to` come from. |
+| `field_mappings` | One entry per canonical field, each with its source column, transform chain and confidence. The four things the brief requires per field. |
+| `unmapped_source_fields` | Source columns we chose not to map, each with a reason. Listed, not guessed at. |
+| `unfilled_canonical_fields` | Ontology fields this source cannot fill, each with a reason. |
+| `validation` | Rows tested, rows emitted, and every failure with a count and real examples. Written by the test step, never by the model. This is what a reviewer reads. |
+
+### The schema never reaches the model
+
+Only `src/verify.py` reads `mapping_config.schema.json`, to check all six
+configs are well-formed.
+
+What goes into the propose prompt is three other things: the ontology rendered
+from `firmable_ontology.yaml`, the 20 transforms rendered from
+`config/transforms.yaml`, and the column profile.
+
+The model's output is constrained by a smaller, separate response schema — the
+`SCHEMA` constant in `src/agent/propose.py` — which covers only the parts the
+model is allowed to decide. `source_id`, `licence`, the `resource` block and
+the whole `validation` block are facts we already hold and fill in ourselves.
+The model never gets to invent them.
 
 **The model never writes code.** It picks transform names from a list. An
 unknown name is rejected before anything runs:
@@ -788,6 +788,15 @@ Status         null=0.00  distinct=3    all values: DRGD, EXAD, REGD
 **`acn_valid=1.000` is not a guess from a column name.** It is the published
 checksum run over 400 real values. The model is told which column holds a valid
 identifier before it is asked to map anything.
+
+Three reasons that number is worth computing. A column name is a claim and a
+checksum is proof, so `entity.abn` becomes a near-certain mapping rather than a
+hopeful one. It catches the opposite case too: the Victorian schools file has
+nine-digit values sitting in a column called `ABN`, which the name alone would
+never reveal. And it sets the expectation the validate step measures against —
+if the profile says 99.8% pass and the extracted field fills 60%, the transform
+chain is eating values. It costs nothing, being arithmetic over 400 values
+already in memory.
 
 The Victorian schools ABN column scores 0.998, not 1.000. Those failing rows
 stay in the profile. A real register has bad rows, and a mapping that claims
