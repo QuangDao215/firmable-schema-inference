@@ -323,20 +323,29 @@ Blending them is on the assignment's count-against list.
 `src/catalogue.py`, `src/formats.py`, `src/score.py`, `src/triage.py`,
 `src/shortlist.py`, `src/handcheck.py`
 
-## Search on purpose (`catalogue fetch`)
+## Search on purpose
 
-data.gov.au holds 141,297 datasets. Fewer than one in four has a file a machine
-can parse.
+data.gov.au holds 141,297 datasets. Only 30,079 of them (21%) ship a file a
+machine can read, so most of that catalogue is unusable to us whatever it is
+about.
 
-**Every record comes from a deliberate search.** An engineer who knows the
+Every record we hold came from a deliberate search. An engineer who knows the
 domain picks the terms, chosen against the ontology's own fields: `abn`,
 `company register`, `licensed contractors`, `liquor licences`, `procurement
 contracts`, and eight more.
 
-### Two channels, because they find different things
+The alternative was `q=*:*`, Solr for "match everything". That retrieves an
+arbitrary slice and leaves a model to find the good ones, moving the judgement
+downstream where it costs money per dataset and leaves no reviewable record.
+Twelve terms in a config file are free, auditable and editable. We kept the
+unaimed crawl only as a measurement, in `src/baseline_report.py`.
 
-**Channel 1, `package_search`.** Free text over a dataset's title, description
-and tags. CKAN keeps those in a Solr full-text index. One call per term:
+Two searches run, because they find different things.
+
+## Channel 1: searching the dataset page
+
+`package_search` runs free text over a dataset's title, description and tags,
+which CKAN holds in a Solr index. One call per term:
 
 ```
 GET /api/3/action/package_search
@@ -345,28 +354,13 @@ GET /api/3/action/package_search
     &rows=60&start=0
 ```
 
-`q` is the search. `fq` is a filter CKAN hands to Solr, which applies it before
-building the response, so a PDF-only dataset is never serialised and never
-counted against our page size.
+`q` is the search. `fq` is a filter Solr applies before building the response,
+so a PDF-only dataset is never serialised, never sent, and never counted
+against our page size. It is what takes 141,297 datasets down to the 30,079
+(21%) worth looking at.
 
-The filter itself lives in `config/settings.yaml`:
-
-```yaml
-format_filter: "res_format:(CSV OR TSV OR XLSX OR XLS OR JSON OR GEOJSON OR XML OR ZIP)"
-```
-
-and is passed on every call in `src/catalogue.py`:
-
-```python
-total += _collect(
-    base_url, folder, label,
-    lambda start, rows, q=query: {"q": q, "fq": fmt, "rows": rows, "start": start},
-    settings["records_per_query"], settings)
-```
-
-Of 141,297 datasets, 30,079 survive that filter. The reply is complete dataset metadata,
-including licence and every resource URL, so one call gives us everything Part
-2 will need.
+The reply carries complete dataset metadata, including the licence and every
+resource URL, so one call gives us everything Part 2 will later need.
 
 | query | records | query | records |
 |---|---|---|---|
@@ -378,34 +372,38 @@ including licence and every resource URL, so one call gives us everything Part
 | | | government tenders awarded | 14 |
 | | | liquor licences | 8 |
 
-Five queries returned fewer than 60 because the catalogue ran out. Only eight
-liquor licence datasets exist with a parseable file. The loop stops on a short
-page, so we never page past the end.
+7/12 queries (58%) returned fewer than the 60 asked for, because the catalogue
+ran out. Only 8 liquor licence datasets exist with a parseable file. The loop
+stops on a short page, so we never page past the end.
 
-**Channel 2, `resource_search`.** `package_search` does not index the names of
-files inside a dataset. A dataset called "Annual Report 2023" shipping
-`licensed_contractors.csv` is invisible to channel 1.
+## Channel 2: searching the file names
+
+`package_search` does not index the names of files inside a dataset. A dataset
+called "Annual Report 2023" that ships `licensed_contractors.csv` is invisible
+to channel 1.
 
 ```
 GET /api/3/action/resource_search?query=name:contractor&limit=40
 ```
 
 Eight such queries returned 241 resource hits belonging to only 99 distinct
-datasets. Rather than 99 lookups we batch them 30 at a time back through
-`package_search` with `fq=id:(...)`. Four calls instead of 99. The format
-filter runs again, which is why 63 of the 99 came back.
+datasets — one dataset often ships a dozen similarly named files. Rather than
+99 separate lookups we resolve them 30 at a time back through
+`package_search`, which is 4 calls instead of 99. The format filter runs again
+there, so 63/99 (64%) came back.
 
-### Result
+## Result
 
 **24 HTTP calls, 43 seconds, no API key.** 519 records.
 
-| found by | datasets |
-|---|---|
-| dataset text, channel 1 only | 313 |
-| file name, channel 2 only | 45 |
-| both channels | 18 |
+| found by | datasets | share |
+|---|---|---|
+| dataset text, channel 1 only | 313 | 83% |
+| file name, channel 2 only | 45 | 12% |
+| both channels | 18 | 5% |
 
-Those 45 are what the second channel bought us.
+Those 45 are what the second channel bought us. Without it, 12% of the pool
+would not exist.
 
 ## Flatten (`catalogue flatten`)
 
@@ -416,84 +414,96 @@ only place raw CKAN shapes are read.
 **The licence is captured here, at the first step.** The ontology requires one
 on every observation, and backfilling it later means crawling twice.
 
-519 records dedupe to **376 unique datasets**.
+519 records dedupe to **376 unique datasets** (72%).
 
-## Rule scoring, with plain code (`score`)
+## Rule scoring (`score`)
 
-Word weights from `config/keywords.yaml`. Strong words worth 3 points each
-(`abn`, `licensee`, `trading name`, `contractor`), medium worth 1 (`permit`,
-`tender`, `prosecution`), negative worth −2 (`rainfall`, `species`,
-`bathymetry`). Whole-word matching, so `abn` never fires on `abnormal`. A
-publisher bonus for ASIC, the ABR, the ATO and the ACNC. A format bonus,
-because CSV is less work than ZIP.
+A score between 0 and 1 per dataset, from four inputs, with no model involved.
+
+| input | weight | examples |
+|---|---|---|
+| strong words | +3 each | `abn`, `licensee`, `trading name`, `contractor` |
+| medium words | +1 each | `permit`, `tender`, `prosecution` |
+| negative words | −2 each | `rainfall`, `species`, `bathymetry` |
+| known publisher | +2 | ASIC, the ABR, the ATO, the ACNC |
+| readable format | +0.5 to +2 | CSV scores above ZIP, being less work to open |
+
+Words match whole only, so `abn` never fires inside `abnormal`. Weights live in
+`config/keywords.yaml` and are tunable without touching code.
 
 **Every score keeps its evidence.** `rule_evidence` lists exactly which words
-fired, so a human can see why a dataset ranked where it did.
+fired, so a reviewer can see why a dataset ranked where it did.
 
-**No threshold anywhere.** The assignment asks for 50 datasets, never for
-datasets above a confidence. We rank and take the top k:
-`candidate_pool: 120`, `shortlist_size: 50`, both in `config/settings.yaml`.
+**No threshold anywhere.** The brief asks for 50 datasets, not for datasets
+above a confidence. We rank and take the top k: `candidate_pool: 120`,
+`shortlist_size: 50`.
 
 ### Folding yearly editions
 
-The ACNC Annual Information Statement appeared twelve times in the pool, one
-file per year. MIWB Contract Disclosure five times.
+Publishers republish the same dataset annually. The ACNC Annual Information
+Statement appeared 12 times in the pool, MIWB Contract Disclosure 5 times.
 
-Strip years, quarters and month names from the title, group by publisher plus
-the stripped title, keep the newest, and record the rest as `edition_siblings`
-on the survivor.
+We strip years, quarters and month names from the title, group by publisher
+plus the stripped title, keep the newest, and record the rest as
+`edition_siblings` on the survivor rather than deleting them — they are real
+datasets and a reviewer should be able to disagree.
 
-Three reasons: we would pay the model to read the same dataset twelve times;
-the shortlist would hold one source repeated twelve ways; and Part 2 needs six
-sources that differ, which twelve editions of one register plainly are not.
+Without this we would pay the model to read one dataset twelve times, fill the
+shortlist with one source repeated, and hand Part 2 six sources that are not
+actually different.
 
-We record the siblings rather than delete them. They are real datasets, and a
-reviewer should be able to disagree.
+**54 editions folded (14%). 376 datasets become 322 distinct sources.**
 
-**54 editions folded. 376 datasets become 322 distinct sources.**
-
-## Model triage, the first model call (`triage`)
+## Model triage (`triage`)
 
 The keyword scorer ranks. The model judges. Different questions on purpose.
 
-### What the model sees
-
-One JSON line per dataset, twenty per call: dataset id, title, publisher,
-readable formats, the names of up to six files inside it, and the first 400
-characters of the description.
-
-**It never sees our rule score.** Tell a model what you already think and it
-agrees with you, and two signals collapse into one.
-
-**Resource names are included** because file names often say more than the
-dataset page. **Descriptions are cut at 400 characters** because some run to
-several thousand and the first 400 say what a dataset is.
-
 ### The question worth paying for
 
-Not "is this about business". Keywords answer that. It is **what one row of this file
-represents**. The field is called `record_grain` in the code, after the
-dimensional-modelling term, and it takes four values:
+Not "is this about business" — keywords answer that. It is **what one row of
+this file represents**. The field is called `record_grain` in the code, after
+the dimensional-modelling term, and takes four values:
 
 | value | what one row is | example |
 |---|---|---|
 | `entity` | one business | ASIC Company Dataset |
-| `event` | an approval, contract or prosecution that names a business | building approvals |
+| `event` | an approval, contract or prosecution naming a business | building approvals |
 | `aggregate` | a count or an average across many businesses | business counts by state |
 | `unknown` | not enough information to say | |
 
-Our scorer cannot tell these apart. Every one of them is full of business words.
+Our scorer cannot tell these apart. All four are full of business words.
+
+### What the model is sent
+
+Twenty datasets per call, one JSON line each:
+
+```json
+{"dataset_id": "7b8656f9-606d-4337-af29-66b89b2eeefb",
+ "title": "ASIC - Company Dataset",
+ "publisher": "Australian Securities and Investments Commission (ASIC)",
+ "formats": ["CSV", "ZIP"],
+ "resource_names": ["Company Dataset - Help File", "Company Dataset - Current"],
+ "description": "###Update March 2025 ### From 11 March 2025, the dataset will
+                 be updated to include 1 new field, Date of Deregistration…"}
+```
+
+**It never sees our rule score.** Tell a model what you already think and it
+agrees with you, and two independent signals collapse into one.
+
+**Resource names are included** because file names often say more than the
+dataset page does. **Descriptions are cut at 400 characters**, since some run
+to several thousand and the first 400 say what a dataset is.
 
 ### What came back
 
 120 datasets, 6 calls, 41 seconds, **$0.026**.
 
-| one row is | datasets |
-|---|---|
-| entity | 52 |
-| event | 47 |
-| aggregate | 14 |
-| unknown | 7 |
+| one row is | datasets | share |
+|---|---|---|
+| entity | 52 | 43% |
+| event | 47 | 39% |
+| aggregate | 14 | 12% |
+| unknown | 7 | 6% |
 
 The 14 aggregates are the win, because our keyword scorer had ranked several of
 them highly. It dropped *Industry breakdown of PPSR registrations* as
@@ -504,14 +514,14 @@ database of addresses, not a list of businesses". Keywords cannot catch that.
 
 - **JSON against a declared schema.** No markdown fences, no parse failures.
 - **Matched by id, never by position.** A reply one item short would otherwise
-  shift every judgment onto the wrong dataset. We warn and drop rather than
+  shift every judgement onto the wrong dataset. We warn and drop rather than
   guess.
 - **Each batch cached to `runs/triage/`.** A failure on batch 4 does not
   re-spend batches 1 to 3.
 
 ### One honest weakness
 
-Confidence bunches at the top. Of 120 datasets, 52 scored 0.90 or above, and
+Confidence bunches at the top: 52/120 datasets (43%) scored 0.90 or above, and
 every shortlisted dataset is 0.90 or higher. The model is not using the range.
 
 So `record_grain` is doing the real work and `confidence` is close to flat,
@@ -520,11 +530,12 @@ rather than presenting the confidence column as if it discriminated.
 
 ## The shortlist (`shortlist`)
 
-99 of the 120 survived as entity or event. Ranked by model confidence with the
-rule score only as a tie-break, top 50 shipped.
+99/120 datasets (82%) survived as `entity` or `event`. Ranked by model
+confidence, with the rule score only as a tie-break, the top 50 ship.
 
-**We keep `event` datasets.** A building approval names a builder per row, and
-the assignment's own list of useful sources is mostly event-shaped.
+**We keep `event` datasets rather than dropping them.** A building approval
+names a builder on every row, and the brief's own list of useful sources is
+mostly event-shaped.
 
 | | |
 |---|---|
@@ -539,27 +550,25 @@ ontology fields, rule score, licence, landing page and download URL.
 
 ## Checking against the real data (`handcheck`)
 
-The assignment asks for a hand-check of 20 and says plainly that it wants the
+The brief asks for a check on 20 of the 50 and says plainly that it wants the
 number honest rather than high.
 
-**What we built, and what it is.** A second model reads the **actual file**:
-real column names, real first rows, downloaded from the real URL. It is a
-different model from the one that made the original judgment and is never shown
-that judgment. Beside every verdict we record deterministic counts anyone can
-check: cells containing "Pty Ltd", ABN-shaped values, entity-named columns.
+Triage judged from metadata. This step does not. It downloads the actual file
+and reads the real column names and first rows. The checker is a different
+model from the one that made the original judgement and never sees it, and
+every verdict is recorded alongside deterministic counts anyone can re-run:
+cells containing "Pty Ltd", ABN-shaped values, entity-named columns.
 
-**Say the limitation plainly: this is a model checking a model.** What makes it
-worth more than the triage step is that it reads records where triage read
-descriptions. What makes it auditable is that the raw evidence sits next to
-every verdict in `outputs/shortlist_handcheck_results.csv`.
+It is still a model reading data, not a person, and the output says so on every
+row.
 
 ### The numbers
 
 | | |
 |---|---|
 | Sampled | 20 of 50, random, seed 20260919 |
-| File could be read | 14 |
-| Could not be read | 6 |
+| File could be read | 14 (70%) |
+| Could not be read | 6 (30%) |
 | Contained businesses | 12 |
 | **Precision on readable files** | **12/14 = 86%** |
 | Precision counting unreadable as wrong | 12/20 = 60% |
@@ -568,7 +577,7 @@ every verdict in `outputs/shortlist_handcheck_results.csv`.
 could open. 60% is what you get end to end, and it is the number that matters
 if you have to onboard a source tomorrow.
 
-### Why seven could not be read
+### Why six could not be read
 
 | reason | count |
 |---|---|
@@ -577,60 +586,58 @@ if you have to onboard a source tomorrow.
 | HTTP 404, dead link in the catalogue | 1 |
 | connection refused | 1 |
 | zip over the 8 MB sample cap | 1 |
-| spreadsheet would not parse | 1 |
 
-**This is a finding, not a failure.** Roughly a third of catalogue links do not
-serve a file on demand, and Source selection has to work around that.
+Roughly 30% of catalogue links do not serve a file on demand. That is a finding
+about the catalogue, not a failure of ours, and source selection has to work
+around it.
 
 ### The one genuine false positive
 
-*ASIC - Banned and Disqualified Persons Dataset*. The rows are individual
+*ASIC - Banned and Disqualified Persons Dataset*. Its rows are individual
 people, not companies. Triage saw "ASIC" and "disqualified" in the metadata and
 scored it 1.00.
 
 ASIC publishes a near-identical *Organisations* dataset, also on our shortlist,
-which is correct. Metadata alone cannot separate those two. Data can. That is
+which is correct. Metadata alone cannot separate those two. Data can, which is
 the argument for this whole step.
 
 ## Bugs found in discovery, and what they taught
 
-**The crawler cached pages by page number.** Raising the target per query from
-25 to 60 would have read the old 25-record page, seen it was short, and
-stopped. It would have returned 25 and reported success. Fixed by naming cached
-pages after their start offset and size, so a cached page is reused only when
-it is exactly the slice being asked for. *Caching that quietly returns a wrong
-answer is worse than no caching.*
+- **The crawler cached pages by page number.** Raising the target per query
+  from 25 to 60 would have read the old 25-record page, seen it was short, and
+  stopped — returning 25 and reporting success. Fixed by naming cached pages
+  after their start offset and size, so a page is reused only when it is
+  exactly the slice being asked for. *Caching that quietly returns a wrong
+  answer is worse than no caching.*
 
-**Publishers type format labels by hand.** The catalogue holds `XLSX`,
-`EXCEL (.XLSX)`, `.XLSX`, `EXCEL (XLSX)` and `XSLX` for one thing, plus
-`ZIP (CSV)` and `ESRI SHAPEFILE - ZIPPED`. Comparing raw strings would have
-given source selection a fake spread. `src/formats.py` folds 66 raw labels into 22
-tokens and keeps the raw string beside the clean one. *The clean token is for
-logic. The raw string is evidence, so we never destroy it.*
+- **Publishers type format labels by hand.** The catalogue holds `XLSX`,
+  `EXCEL (.XLSX)`, `.XLSX`, `EXCEL (XLSX)` and `XSLX` for one thing, plus
+  `ZIP (CSV)` and `ESRI SHAPEFILE - ZIPPED`. Comparing raw strings would have
+  handed source selection a fake spread. `src/formats.py` folds 66 raw labels
+  into 22 tokens and keeps the raw string beside the clean one. *The clean
+  token is for logic. The raw string is evidence, so we never destroy it.*
 
-**We filtered in our own code instead of on the server.** The first version
-downloaded 600 records' metadata to keep 190. CKAN will apply
-`fq=res_format:(...)` itself. *Push work to the server where it will take it.*
+- **We filtered in our own code instead of on the server.** The first version
+  downloaded 600 records' metadata to keep 190 (32%). CKAN will apply
+  `fq=res_format:(…)` itself. *Push work to the server where it will take it.*
 
-**The shortlist picked "the first resource that is not HTML".** ASIC's Company
-Dataset ships `company-dataset-help-file.pdf` first and `company_202609.csv`
-second, so we were checking the help file. The first hand-check run reported
-25% precision, which was our bug, not the shortlist's. *A default that is never
-exercised looks like a decision.*
+- **The shortlist picked "the first resource that is not HTML".** ASIC's
+  Company Dataset ships `company-dataset-help-file.pdf` first and
+  `company_202609.csv` second, so we were checking the help file. The first
+  check run reported 25% precision, which was our bug and not the shortlist's.
+  *A default that is never exercised looks like a decision.*
 
-**Format ranking alone was not enough.** The ABN Bulk Extract ships a `.xsd`
-schema and an index CSV listing the other files, both of which beat the real
-zip on format. Anything named schema, readme, help, dictionary, resource list
-or codeset now sorts last whatever its format.
+- **Format ranking alone was not enough.** The ABN Bulk Extract ships a `.xsd`
+  schema and an index CSV listing the other files, both of which beat the real
+  zip on format. Anything named schema, readme, help, dictionary, resource list
+  or codeset now sorts last whatever its format.
 
-**The download cache was keyed by dataset id.** When a fix changed which file
-we wanted, the old download was served from cache and the fix looked broken.
-*A cache key must contain everything that decides the content.*
+- **The download cache was keyed by dataset id.** When a fix changed which file
+  we wanted, the old download was served from cache and the fix looked broken.
+  *A cache key must contain everything that decides the content.*
 
-**And a habit, not a bug.** A number that looks wrong usually is. Treat a
-surprising metric as a hypothesis to test before writing it down.
-
----
+- **A habit, not a bug.** A number that looks wrong usually is. Treat a
+  surprising metric as a hypothesis to test before writing it down.
 
 # Part 2a — Source selection
 
