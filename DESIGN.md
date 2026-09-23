@@ -725,13 +725,34 @@ agent has to survive.
 
 ## The state file
 
-One per source at `runs/<source_id>/state.json`, saved after every step. A step
-already marked done is skipped on a rerun. A failed step records the exception
-and traceback and leaves everything before it intact.
+One per source at `runs/<source_id>/state.json`, written after every step.
 
-It does three jobs at once: carries state between steps, makes a crash cost one
-step instead of the whole run, and holds the seconds and dollars Part 5 asks
-for.
+```json
+{ "source_id": "asic-company-dataset-7b8656f9",
+  "source":    { "title": "ASIC - Company Dataset", "download_format": "CSV" },
+  "steps": {
+    "c1_probe":    { "status": "done", "seconds": 1.84 },
+    "c2_profile":  { "status": "done", "seconds": 0.02 },
+    "c3_propose":  { "status": "done", "seconds": 10.78,
+                     "result": { "model": "gemini-3.7-flash",
+                                 "input_tokens": 2696, "output_tokens": 3318,
+                                 "usd": 0.0145 } },
+    "c4_validate": { "status": "done", "seconds": 0.03 },
+    "c5_revise":   { "status": "done", "seconds": 11.01,
+                     "result": { "rounds": 1, "still_failing": false } },
+    "c6_review":   { "status": "done", "seconds": 0.00 },
+    "c7_freeze":   { "status": "done", "seconds": 0 } } }
+```
+
+It does three jobs at once.
+
+- **It carries state between steps.** Propose needs what probe and profile
+  found, so each step reads the file rather than taking ten arguments.
+- **It makes a crash cheap.** A step marked `done` is skipped on a rerun, so a
+  failure in validate costs validate and not the download. A failed step
+  records the exception and traceback and leaves everything before it intact.
+- **It is the cost evidence.** Every `seconds` and `usd` in Part 5 is summed
+  from these files, not estimated afterwards.
 
 **Where a run can fail without losing the whole job:**
 
@@ -741,43 +762,48 @@ for.
 | Profile | a column will not parse | profiled as unknown, run continues |
 | Propose | model returns unusable JSON | one call |
 | Validate | engine raises on a row | counted as a failure, run continues |
-| Revise | no convergence in two rounds | flagged for a human, config kept as draft |
+| Revise | no convergence in 2 rounds | flagged for a human, config kept as draft |
 | Review | a person rejects | note kept, propose through review rerun with it |
 | Freeze | only runs on approval | nothing else can write to `configs/` |
 
 ## Step 1 — Probe (`c1_probe`)
 
 Download the file, work out what it really is from its bytes, and pull up to
-2,000 records into one flat shape at `runs/<source_id>/records.jsonl`.
+2,000 records into one flat shape. The output is the `resource` block of a
+mapping config: real format, encoding, delimiter, header row, sheet name,
+member inside a zip.
 
-The output is the `resource` section of a mapping config: real format,
-encoding, delimiter, header row, sheet name, member inside a zip.
+3/6 sources are spreadsheets, 1 is tab separated, 1 a CSV, 1 a zip. The probe
+turns all of them into the same list of dictionaries, so nothing downstream has
+to care which.
 
-**The records are split in two.** The first 400 rows are the sample. The rest
-are held back for the validate step. A mapping that only works on rows the sample came from is
-not a mapping.
+The records are then split, and the split is the point:
 
-**Who reads what.** Our code reads all 400 rows. The model never sees them. It
-sees the summary the profile step builds from them.
+```
+runs/<source_id>/records.jsonl        2,000 records
+├── rows    0 – 399     sample     ──>  profile  ──>  what the model sees
+└── rows  400 – 1,999   holdout    ──>  validate ──>  what the model is tested on
+```
 
-Whether a "row" is a spreadsheet row or a line of text depends on the source.
-Three of the six are spreadsheets, one is tab separated, one is a CSV, one is a
-zip. The probe step turns all of them into the same list of dictionaries, so nothing
-downstream has to care.
+The model never reads either half. It reads the summary the profile builds from
+the sample. A mapping that only works on the rows the sample came from is not a
+mapping, so validate runs on 800 rows the profile never touched.
 
 ## Step 2 — Profile (`c2_profile`)
 
-Per column, from the sample rows only:
+Per column, over the 400 sample rows:
 
-- how full it is, how many distinct values, longest value
-- up to eight real example values, never invented ones
-- **all** distinct values when there are 25 or fewer, so the model can write a
-  complete `map_values` rather than guess at an enum
-- what the values look like: the share that pass the ABN checksum, the ACN
-  checksum, look like a postcode, a state, a number, a URL, an email, and which
-  date formats match
+- **null rate** — how often the column is empty
+- **distinct count** — capped at 500
+- **max length**
+- **examples** — up to 8 real values, never invented
+- **all_values** — every distinct value when there are 25 or fewer, so the
+  model can write a complete `map_values` rather than guess at an enum
+- **looks_like** — the share of values passing the ABN checksum, the ACN
+  checksum, matching a postcode, a state, a number, a URL, an email
+- **date_formats** — which `strptime` patterns the values match
 
-ASIC's Company Dataset, first six columns:
+ASIC's Company Dataset, first 6 columns:
 
 ```
 Company Name   null=0.00  distinct=400  e.g. LOVINI HOLDINGS PTY LTD
@@ -788,61 +814,101 @@ Sub Class      null=0.01  distinct=6    all values: LISN, LIST, PROP, PSTC, ULSN
 Status         null=0.00  distinct=3    all values: DRGD, EXAD, REGD
 ```
 
-**`acn_valid=1.000` is not a guess from a column name.** It is the published
-checksum run over 400 real values. The model is told which column holds a valid
-identifier before it is asked to map anything.
+`acn_valid=1.000` is the published checksum run over 400 real values, not a
+guess from the column header. That matters three ways: a column name is a claim
+and a checksum is proof; it catches the reverse case, where the Victorian
+schools file has 9-digit values in a column called `ABN`; and it sets the
+baseline validate measures against, so a field filling 60% from a column that
+passes 99.8% means the transforms are eating values.
 
-Three reasons that number is worth computing. A column name is a claim and a
-checksum is proof, so `entity.abn` becomes a near-certain mapping rather than a
-hopeful one. It catches the opposite case too: the Victorian schools file has
-nine-digit values sitting in a column called `ABN`, which the name alone would
-never reveal. And it sets the expectation the validate step measures against —
-if the profile says 99.8% pass and the extracted field fills 60%, the transform
-chain is eating values. It costs nothing, being arithmetic over 400 values
-already in memory.
-
-The Victorian schools ABN column scores 0.998, not 1.000. Those failing rows
-stay in the profile. A real register has bad rows, and a mapping that claims
-100% is the kind of claim the assignment says it marks down.
+That schools column scores 0.998, not 1.000, and the failing rows stay in the
+profile. A real register has bad rows, and a mapping claiming 100% is what the
+brief says it marks down.
 
 ### Why the profile exists
 
-| source | columns | profile | 400 raw rows |
-|---|---|---|---|
-| Victorian schools ABNs | 5 | 600 tokens | 12,000 |
-| ASIC Company Dataset | 15 | 1,600 | 46,000 |
-| WGEA | 20 | 2,400 | 93,000 |
-| Victorian liquor licences | 21 | 2,100 | 60,000 |
-| Finance contract notices | 43 | 5,100 | 145,000 |
-| ACNC Registered Charities | 69 | 6,700 | 205,000 |
+| source | columns | profile | 400 raw rows | ratio |
+|---|---|---|---|---|
+| Victorian schools ABNs | 5 | 600 tokens | 12,000 | 20x |
+| ASIC Company Dataset | 15 | 1,600 | 46,000 | 29x |
+| WGEA | 20 | 2,400 | 93,000 | 39x |
+| Victorian liquor licences | 21 | 2,100 | 60,000 | 29x |
+| Finance contract notices | 43 | 5,100 | 145,000 | 28x |
+| ACNC Registered Charities | 69 | 6,700 | 205,000 | 31x |
 
-**Thirty times smaller, and better.** Raw rows would show 400 examples of the
-same thing and no statistics. The profile carries null rates, distinct counts,
-the complete enum where there is one, and checksum pass rates. None of that is
+**The cost, at $0.75 per million input tokens.** The ACNC source is $0.005 per
+attempt as a profile against $0.15 as raw rows — 30x. Across 6 sources at up to
+3 attempts each, that is $0.09 against $2.50: 4% of the cost, and the
+difference between a $10 budget holding and not.
+
+**And it is better input, not just cheaper.** 400 raw rows show the model 400
+examples of the same thing. The profile carries null rates, distinct counts,
+the complete enum where one exists, and checksum pass rates. None of that is
 visible from staring at rows.
-
-At $0.75 per million input tokens, the ACNC source alone would cost $0.15 per
-attempt in raw rows against $0.005 as a profile. Across six sources and up to
-three attempts each, that is about $2.50 against $0.09.
 
 ## Step 3 — Propose (`c3_propose`)
 
-The model gets four things and never the file: the ontology as field names with
-notes and allowed enum values, the closed list of 20 transforms, what the
-probe found about the file, and what the profile found about every column. The ASIC prompt is 7,875
+The model receives 4 things and never the file: the ontology rendered as field
+names with notes and allowed enum values, the closed list of 20 transforms, the
+`resource` block from probe, and the column profile. The ASIC prompt is 7,875
 characters, about 2,000 tokens.
 
-### One thing that needed working around
+### In
 
-A response schema cannot describe a free-form object, and transform arguments
-are free-form: `parse_date` takes a list, `map_values` takes a dictionary. So
-the model returns arguments as a JSON string in `args_json`, parsed on the way
-in. An argument that will not parse is dropped and recorded rather than reaching
-the engine. Across all six sources, zero arguments failed to parse.
+```
+# THE ONTOLOGY you are mapping onto
+  entity.legal_name (string) - As registered. Not the trading name.
+  entity.abn (string) pattern ^\d{11}$ - Has a checksum — validate it.
+  entity.status (enum) one of ['active','deregistered','in_liquidation',…]
+  …
+
+# THE TRANSFORMS you may use
+  strip(): Remove whitespace from both ends.
+  map_values(mapping, default): Look the value up. Use for enums.
+  abn_normalize(): Strip to digits, require 11, verify the checksum.
+  …
+
+# THE FILE
+  { "real_format": "TSV", "delimiter": "\t", "header_row": 0 }
+
+# THE COLUMNS
+  - "Company Name"  null_rate=0.0  distinct=400  max_len=59
+      examples=["LOVINI HOLDINGS PTY LTD", "MONAKA PTY LTD", …]
+  - "ACN"  null_rate=0.0  distinct=167  looks_like={"acn_valid": 1.0}
+      examples=["000003958", "000000779", …]
+  - "Status"  null_rate=0.0  distinct=3
+      all_values=["DRGD", "EXAD", "REGD"]
+```
+
+### Out
+
+```json
+{ "record_id": { "strategy": "hash_of_fields",
+                 "fields": ["ACN", "Company Name"],
+                 "note": "ACN alone is not unique because the dataset includes
+                          historical name records per company." },
+  "source_reliability": 0.98,
+  "field_mappings": [
+    { "canonical_field": "entity.legal_name", "source_field": "Company Name",
+      "transforms": [{ "op": "strip" }, { "op": "collapse_spaces" }],
+      "field_confidence": 0.95 },
+    { "canonical_field": "entity.acn", "source_field": "ACN",
+      "transforms": [{ "op": "acn_normalize" }],
+      "field_confidence": 1.0 } ],
+  "unfilled_canonical_fields": [
+    { "canonical_field": "entity.trading_name",
+      "reason": "Source only contains registered corporate legal names, not
+                 trading names." } ] }
+```
+
+Transform arguments arrive as a JSON string in `args_json`, because a response
+schema cannot describe a free-form object and `map_values` takes a dictionary.
+We parse it on the way in and drop anything that will not parse. Across all 6
+sources, 0 arguments failed.
 
 ### What came back
 
-| source | fields mapped | columns left alone | cannot fill | cost |
+| source | mapped | left alone | cannot fill | cost |
 |---|---|---|---|---|
 | ASIC Company Dataset | 6 | 9 | 10 | $0.0168 |
 | WGEA | 4 | 17 | 12 | $0.0181 |
@@ -853,24 +919,23 @@ the engine. Across all six sources, zero arguments failed to parse.
 
 Three things in the ASIC draft are worth pointing at.
 
-**It covered the whole enum.** The profile sent every distinct value of `Status`, so the
-model wrote a complete `map_values` for `REGD`, `DRGD` and `EXAD` with a default
-of `unknown`, rather than guessing at categories it had not seen.
-
-**It used the date format the profile detected**, `%d/%m/%Y`, not a guess.
-
-**It refused to invent a record id.** It chose `hash_of_fields` over ACN plus
-Company Name and explained why: the file holds historical company names, so one
-ACN appears on several rows. It read that out of the distinct counts.
+- **It covered the whole enum.** The profile sent all 3 distinct values of
+  `Status`, so the model wrote a complete `map_values` for `REGD`, `DRGD` and
+  `EXAD` with a default of `unknown`, rather than guessing at categories it had
+  not seen.
+- **It used the detected date format**, `%d/%m/%Y`, not a guess.
+- **It refused to invent a record id.** It chose `hash_of_fields` over ACN plus
+  Company Name and said why: the file holds historical company names, so one
+  ACN appears on several rows. It read that out of the distinct counts.
 
 ### Refusing is the behaviour we wanted
 
-Ten of sixteen ontology fields are declared unfillable for ASIC, each with a
+10/16 ontology fields (63%) are declared unfillable for ASIC, each with a
 reason. For `entity.trading_name`: "Dataset contains only registered corporate
 legal names, not trading or business names."
 
-The Victorian schools file mapped 2 fields of 16, which is right. It has five
-columns and three are a school number, a financial period and a load timestamp.
+The Victorian schools file mapped 2/16 (13%), which is right. It has 5 columns
+and 3 of them are a school number, a financial period and a load timestamp.
 
 ## Step 4 — Validate (`c4_validate`)
 
