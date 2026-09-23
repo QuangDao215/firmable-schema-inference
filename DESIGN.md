@@ -206,20 +206,19 @@ field carries its own confidence. Fields no source supplied are absent.
 We read the live pricing page rather than working from memory, and two things
 fell out of it:
 
-- `gemini-3.5-flash` costs $1.50 in and $9.00 out. `gemini-3.7-flash` costs
-  $0.75 and $3.75, under a promotion ending 31 December 2026. The newer model
-  is currently the cheaper one. Picking by version number would have cost
-  twice as much for a worse model.
+- A newer model is not always the dearer one. On the day we checked,
+  `gemini-3.5-flash` was $1.50 in and $9.00 out while `gemini-3.7-flash` was
+  $0.75 and $3.75. Picking by version number would have cost twice as much for
+  a worse model.
 - Output bills four to five times higher than input, and thinking tokens count
   as output. Mapping configs are output, so we keep them compact and keep
   thinking off by default.
 
-Prices live in `config/settings.yaml`, so every call is priced from a table
-rather than estimated later. The promotion end date is recorded so the cost
-figure still reads correctly next year.
+Prices live in `config/settings.yaml`, read on 2026-09-19, so every call is
+priced from a table rather than estimated later.
 
-**The promotion is not the real cost story.** The extractor makes zero model
-calls, so the per-record cost is zero whatever the token price does.
+**Neither price is the real cost story.** The extractor makes zero model calls,
+so the per-record cost is zero whatever the token price does.
 
 ### The cheapest model on the price list does not exist
 
