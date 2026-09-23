@@ -5,6 +5,17 @@ does it, what is worth pointing at, and what broke while building it.
 
 Brief is in `ASSIGNMENT.md`. Schema is in `firmable_ontology.yaml`.
 
+## Terms used throughout
+
+| term | what it is |
+|---|---|
+| **ABN** | Australian Business Number. Eleven digits with a checksum, issued by the Australian Business Register to any business that registers for tax. The strongest identifier in this data. |
+| **ACN** | Australian Company Number. Nine digits with a checksum, issued by ASIC to companies only, so sole traders and partnerships have an ABN but no ACN. The last nine digits of an ABN are often the ACN, but not always. |
+| **CKAN** | The open-source data portal software data.gov.au runs on. It gives every state portal the same REST API, so the same code works against data.nsw.gov.au and data.qld.gov.au. |
+| **Solr** | The search index CKAN puts behind that API. `q` is the search, `fq` is a filter Solr applies before a response is built. |
+| **observation** | One claim a source made about a business at a point in time. Five sources saying five different things produce five observations, not one curated value. |
+| **link** | One row saying two specific source records refer to the same business, with the evidence for it. |
+
 ---
 
 # The pipeline
@@ -21,8 +32,8 @@ Brief is in `ASSIGNMENT.md`. Schema is in `firmable_ontology.yaml`.
    score     keywords + publisher + format, no model
      │       54 yearly editions folded into their newest ──>  322 sources
      │
-   triage    MODEL. what is one row of this file?
-     │       entity / event / aggregate / unknown
+   triage    MODEL. what does one row of this file represent?
+     │       a business / an event / a total / unknown
      │       120 datasets, 6 calls, 41s, $0.026
      │
    rank      top 50 by model confidence                  ──>  shortlist
@@ -58,14 +69,138 @@ Brief is in `ASSIGNMENT.md`. Schema is in `firmable_ontology.yaml`.
      │       observations. Zero model calls.
      ▼
    outputs/observations/<source_id>.jsonl          6,000 records
+   outputs/observations_deep/                    126,540 records, for part 3
+
+
+  PART 3   ENTITY IDENTIFICATION
+  ──────────────────────────────────────────────────────────────────────
+
+   block     group records that share a validated ABN, a validated ACN,
+     │       or a normalised name. No model.
+     │
+   score     compare every pair inside a group by method
+     │       abn_exact 0.99 · acn_exact 0.99 · abn_acn_derived 0.80
+     │       name_geo 0.75 · name_only 0.45
+     │
+     ├──  at or above 0.70  ──>  outputs/links.jsonl        1,609 links
+     │
+     ├──  conflicted or below  ──>  outputs/unlinked.jsonl  1,025 refusals
+     │                              each with a stated reason
+     │
+     ├──  group links by key  ──>  outputs/entities.jsonl   1,434 entities
+     │
+     └──  a source names a different business
+                              ──>  outputs/relationships.jsonl
+                                   12,421 parent edges, never sameness
+     │
+     ▼
+   measure   150 pairs, our verdict stripped out          OUTSIDE REVIEWER
+             100% at 0.70 · 90% on the weak tier · 98% at 0.45
+
+
+  PART 4   COMPANY PROFILES
+  ──────────────────────────────────────────────────────────────────────
+
+   gather    every observation behind one entity. No model.
+     │
+   resolve   per field: mutable facts by recency, registry facts by
+     │       publisher reliability. Keep every losing value.
+     ▼
+   outputs/company_profiles.jsonl     50 businesses, per-field confidence,
+                                      provenance, and visible conflicts
+   outputs/profile_source_impact.json  what breaks if a source disappears
 ```
 
-## What the diagram is meant to show
+## The workflow, stage by stage
 
-**Model calls happen in four places and never in the extractor.** Triage and
-the data check in Part 1, propose and revise in Part 2. Everything else is
-plain code. That is what lets us report a per-record cost of exactly zero: all
-spend is one-time, when a config is written.
+### Discovery
+
+**In:** twelve search terms and eight file-name patterns from
+`config/settings.yaml`. **Out:** `data/interim/datasets.jsonl`, 376 unique CKAN
+dataset records, each with its licence, publisher and resource URLs.
+
+Twelve `package_search` calls over dataset titles, descriptions and tags. Eight
+`resource_search` calls over the names of files inside datasets, resolved back
+to their datasets in four batched lookups. Both filtered on CKAN's own server
+to formats we can parse. Deduplicated by dataset id.
+
+### Triage
+
+**In:** those 376 dataset records. **Out:** `outputs/shortlist.csv`, 50 ranked
+datasets, each with a confidence, a one-line reason, a licence and a download
+URL.
+
+Keyword weights from `config/keywords.yaml` score every dataset, and 54 yearly
+editions collapse into their newest. The top 120 go to `gemini-3.1-flash-lite`
+in six batches of twenty, which classifies what one row of each file
+represents. Totals and unknowns drop out; the top 50 by model confidence become
+the shortlist. Twenty are sampled with a fixed seed and checked against their
+downloaded files rather than their descriptions.
+
+### Source selection
+
+**In:** the 50 shortlisted datasets. **Out:** `outputs/selected_sources.json`,
+six datasets with a verified live download URL.
+
+95 candidate files are downloaded and inspected. 59 parse, across 30 datasets.
+A written rule then picks six for spread: one per publisher, preferring a
+format not yet held, with at least one that is not a plain CSV and at least one
+whose rows are contracts rather than registrations.
+
+### Schema inference
+
+**In:** one source's download URL. **Out:** `configs/<source_id>.json`, a
+mapping config, plus `runs/<source_id>/state.json` recording every step's
+duration and cost.
+
+Probe reads the file's first bytes to find its real format, unwraps zips,
+locates the header row, and extracts 2,000 records — the first 400 as a sample,
+the rest held back. Profile summarises each column into null rates, distinct
+counts, example values and checksum pass rates. `gemini-3.7-flash` reads the
+ontology, the 20 transforms and that profile, and returns a draft config. The
+draft runs over the held-back rows and every failure is counted. Failures go
+back to the model for up to two correction rounds, and a revision that deletes
+a validating transform is rejected. A person then reads a review card and
+approves before the config is written.
+
+### Extraction
+
+**In:** six approved configs. **Out:**
+`outputs/observations/<source_id>.jsonl`, 6,000 canonical observations, each
+with the full ontology envelope and three separate confidence numbers.
+
+One engine opens each file from its config's `resource` block and applies the
+transform chains. No model calls, so the per-record cost is zero.
+
+### Entity identification
+
+**In:** 126,540 observations from a deeper 25,000-per-source pull. **Out:**
+`outputs/links.jsonl`, `unlinked.jsonl`, `entities.jsonl` and
+`relationships.jsonl`.
+
+Records are grouped by validated ABN, validated ACN, or normalised name. Each
+candidate pair inside a group is scored by method. Pairs at or above 0.70
+become links carrying their evidence; conflicted or low-confidence pairs become
+refusals carrying their reason. 1,434 entities are derived by grouping links on
+the entity key. WGEA's corporate group column becomes 12,421 parent edges,
+joined on the same key and never treated as sameness.
+
+### Profile assembly
+
+**In:** entities and their observations. **Out:**
+`outputs/company_profiles.jsonl`, 50 merged businesses.
+
+Every value any source offered for each ontology field is collected with its
+provenance. Mutable fields resolve by recency, registry fields by publisher
+reliability, and every losing value is kept with its source and date. Each
+field carries its own confidence. Fields no source supplied are absent.
+
+## Five things the diagram is meant to show
+
+**Model calls happen in four places and never after a config is frozen.**
+Triage and the data check in Part 1, propose and revise in Part 2. Extraction,
+matching, relationships and profiles are all plain code. That is what lets us
+report a per-record cost of exactly zero.
 
 **The correction loop is propose → validate → revise, and validate has no
 model in it.** The model is corrected by real parse failures and real checksum
@@ -211,8 +346,26 @@ GET /api/3/action/package_search
     &rows=60&start=0
 ```
 
-`q` is the search. `fq` is a filter CKAN applies on its own server, so a
-PDF-only dataset is never sent to us. The reply is complete dataset metadata,
+`q` is the search. `fq` is a filter CKAN hands to Solr, which applies it before
+building the response, so a PDF-only dataset is never serialised and never
+counted against our page size.
+
+The filter itself lives in `config/settings.yaml`:
+
+```yaml
+format_filter: "res_format:(CSV OR TSV OR XLSX OR XLS OR JSON OR GEOJSON OR XML OR ZIP)"
+```
+
+and is passed on every call in `src/catalogue.py`:
+
+```python
+total += _collect(
+    base_url, folder, label,
+    lambda start, rows, q=query: {"q": q, "fq": fmt, "rows": rows, "start": start},
+    settings["records_per_query"], settings)
+```
+
+Of 141,297 datasets, 30,079 survive that filter. The reply is complete dataset metadata,
 including licence and every resource URL, so one call gives us everything Part
 2 will need.
 
@@ -319,15 +472,16 @@ several thousand and the first 400 say what a dataset is.
 
 ### The question worth paying for
 
-Not "is this about business". Keywords answer that. It is **what is one row of
-this file**:
+Not "is this about business". Keywords answer that. It is **what one row of this file
+represents**. The field is called `record_grain` in the code, after the
+dimensional-modelling term, and it takes four values:
 
-| grain | meaning | example |
+| value | what one row is | example |
 |---|---|---|
-| entity | one row is one business | ASIC Company Dataset |
-| event | one row is an approval, contract or prosecution, naming a business | building approvals |
-| aggregate | one row is a count or an average | business counts by state |
-| unknown | not enough information | |
+| `entity` | one business | ASIC Company Dataset |
+| `event` | an approval, contract or prosecution that names a business | building approvals |
+| `aggregate` | a count or an average across many businesses | business counts by state |
+| `unknown` | not enough information to say | |
 
 Our scorer cannot tell these apart. Every one of them is full of business words.
 
@@ -1002,6 +1156,49 @@ on no evidence. Components are built only from links at or above threshold, and
 you cannot compare everything to everything. Blocking is what makes it
 tractable and it is the component that breaks first at scale.
 
+### What a row looks like
+
+One row of `outputs/links.jsonl`, unedited. Natural Areas Pty Ltd appears in
+both the charity register and the ASIC company register:
+
+```json
+{ "source_a_record": { "source_id": "acnc-registered-charities-b050b242",
+                       "source_record_id": "323bbe0105d4b4f6" },
+  "source_b_record": { "source_id": "asic-company-dataset-7b8656f9",
+                       "source_record_id": "cc13ba86dd3c5455" },
+  "canonical_entity_key": "abn:13000864077",
+  "confidence": 0.99,
+  "evidence": { "method": "abn_exact",
+                "matched_on": { "abn": "13000864077" },
+                "agreement": { "legal_name_a": "NATURAL AREAS PTY LTD",
+                               "legal_name_b": "NATURAL AREAS PTY LTD" },
+                "conflicts": [],
+                "source_reliability_a": 0.95,
+                "source_reliability_b": 0.98 },
+  "matcher_version": "matcher0.1",
+  "threshold_used": 0.7,
+  "human_verdict": null }
+```
+
+Read as a table, 1,609 rows of it:
+
+| record A | record B | entity key | conf | method |
+|---|---|---|---|---|
+| acnc / 323bbe01… | asic / cc13ba86… | `abn:13000864077` | 0.99 | abn_exact |
+| finance / CN3444680-A5 | wgea / 6f56ddc1… | `abn:90127406295` | 0.99 | abn_exact |
+| acnc / 047bf993… | liquor / 31100099 | `nk:4a2f8c…` | 0.75 | name_geo |
+
+**The two records are pointers, never copies.** A link says nothing about the
+businesses themselves, so re-extracting a source cannot break it. Copying the
+names in would freeze a snapshot that quietly goes stale.
+
+**The alternative it replaces** is writing `entity_id: 4471` onto each record
+and discarding the rest. That stores the conclusion and loses the reason, which
+is what turns a matcher upgrade into a rebuild instead of a diff.
+
+**`entities.jsonl` is built by grouping these rows** on `canonical_entity_key`.
+Delete it and it rebuilds in a second. Delete the links and nothing can.
+
 ## The canonical key carries its own provenance
 
 ```
@@ -1017,13 +1214,18 @@ indistinguishable downstream.
 
 ## Matching methods
 
-| method | rule | link_confidence |
+| method | what it means | link_confidence |
 |---|---|---|
-| `abn_exact` | both checksum-valid, equal | 0.99 |
-| `acn_exact` | both checksum-valid, equal | 0.99 |
-| `abn_acn_derived` | `abn[2:] == acn`, both valid | 0.80 |
-| `name_geo` | normalised name equal **and** postcode or state agrees | 0.75 |
-| `name_only` | normalised name equal, nothing confirms it | 0.45 |
+| `abn_exact` | Both records carry an ABN, both pass the checksum, and they are the same eleven digits. A government identifier for one legal entity. | 0.99 |
+| `acn_exact` | The same, for a nine-digit ACN. | 0.99 |
+| `abn_acn_derived` | One record has an ABN, the other an ACN, and the ABN's last nine digits are that ACN. A bridge, not an identifier match. | 0.80 |
+| `name_geo` | Legal or trading names match after normalising, **and** the postcode or state agrees. Two signals, neither of them an identifier. | 0.75 |
+| `name_only` | Names match and nothing else confirms it. Below threshold, so these become refusals. | 0.45 |
+
+Normalising a name means uppercasing it, stripping punctuation and removing the
+legal form, so `Wilson Security Pty Ltd` and `WILSON SECURITY PTY. LTD.` are
+the same string. The legal form is kept separately, because an incorporated
+association and a company with the same stem are different bodies.
 
 `abn_acn_derived` exists because the ontology warns about it: "The last 9
 digits of an ABN are often the ACN, but not always." **It produced zero links
