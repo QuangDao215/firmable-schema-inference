@@ -939,94 +939,121 @@ and 3 of them are a school number, a financial period and a load timestamp.
 
 ## Step 4 — Validate (`c4_validate`)
 
-Run the config over rows 400 to 1200, which the profile was not built from. No
-model call. Two things come out: what failed, and how often each mapped field
-produced a value.
+Run the draft config over rows 400–1,199 — 800 rows the profile was not built
+from. No model call, which is what makes the next step a correction rather than
+a second opinion.
 
-### The check I got wrong first
+Two things come out.
 
-The first version flagged a field when its fill rate was far below the
-confidence the model claimed. It flagged the ACNC charity register's
-`entity.trading_name`: claimed 0.85, filled 13%.
+**Fill rates.** Each mapped field's fill rate beside its source column's. A
+field tracking its column is correct; a column at 99% producing a field at 13%
+means the transforms are eating values. Comparing against the column rather
+than against the model's claimed confidence matters, because a sparse column
+can be mapped perfectly.
 
-A false alarm, and the reason matters. `field_confidence` means "we are sure
-this mapping and parse are right". Fill rate means "this column has data". The
-ACNC's other-names column is empty 87% of the time, and a mapping of it can be
-perfectly correct.
+**Failures**, in 6 classes:
 
-**The right comparison is the field's fill rate against the source column's own
-fill rate.** Now the report reads:
+| class | what it means |
+|---|---|
+| unknown transform | the op is not in the vocabulary |
+| transform raised | the chain threw on a real value |
+| source column missing | the config names a column the file does not have |
+| dropped a value the source had | usually a failed checksum or an unparsed date |
+| value not in the enum | `map_values` fell through to its default |
+| two mappings write one field | ambiguous, raised before any row is read |
+
+A drop is *not* counted as a failure when a `null_if` in the chain names that
+exact value, because then it is a recorded decision rather than an accident.
+
+### What the model is handed
+
+`runs/<source_id>/failure_report.txt`, verbatim:
 
 ```
-entity.trading_name  from "Other_Organisation_Names"  column 10% -> field 13%
-entity.abn           from "ABN"                       column 98% -> field 99%
-address.state        from "State"                     column 88% -> field 86%
+Your config was run over 800 rows that the profile was NOT built from.
+
+FILL RATES. 'column' is how full the source column is, 'field' is how often
+your mapping produced a value.
+  entity.legal_name       from "Company Name"  column 100% -> field 100%
+  entity.legal_name       from "Current Name"  column  58% -> field 100%
+  entity.acn              from "ACN"           column 100% -> field 100%
+  entity.abn              from "ABN"           column 100% -> field  96%
+  entity.status           from "Status"        column 100% -> field 100%
+
+FAILURES:
+  entity.legal_name   two mappings write this one canonical field, 100% of rows
+      real values that did this: ["Company Name", "Current Name"]
+  entity.status       value not in the enum, fell back to default, 2% of rows
+      real values that did this: ["SOFF"]
 ```
 
-A field tracking its column is correct. A column at 99% producing a field at
-13% means the transforms are eating values. That is the only thing worth
-calling a problem.
-
-### What the six drafts did
-
-Two had no failures at all. The two real findings were both in ASIC's Company
-Dataset: `entity.abn` dropped a value on 4% of rows, and the value was `0`,
-which ASIC uses as a null placeholder; `entity.status` fell back to `unknown`
-on 1.5%, and the value was `SOFF`, struck off, which the 400-row sample did not
-contain.
-
-Neither is visible from metadata or from a profile. Both needed the config run.
+Every line of that is measured. `SOFF` is a real ASIC status the 400-row sample
+never contained.
 
 ## Step 5 — Revise (`c5_revise`)
 
-The model is shown the failure report and asked for a corrected config. At most
-two rounds. What makes it a correction and not a second opinion is that the
-report came from running its config over real rows. A failed ABN checksum is a
-fact.
+The model reads that report and returns a corrected config. At most 2 rounds.
 
 ### What it fixed
 
-**ASIC, round 1, two failures to zero.** It added `SOFF: deregistered` to the
-status map and put a `null_if` in front of the ABN chain:
+The report above is ASIC's. Both failures in it were fixed in round 1.
+
+**The duplicate.** Propose had written two mappings for `entity.legal_name`,
+one from `Company Name` and one from `Current Name`. Validate raised it before
+reading a row. Revise merged them into one mapping with the preferred column
+first:
 
 ```
-was:  abn_normalize
-now:  strip, null_if{values:["0"]}, abn_normalize
+was:  [Company Name] strip -> collapse_spaces
+      [Current Name] strip -> collapse_spaces        two mappings, one field
+now:  coalesce["Current Name", "Company Name"] -> strip -> collapse_spaces
 ```
 
-That is the better answer, and not only because the count went down. Before, a
-placeholder was dropped by a checksum failing. After, it is dropped because the
-config says so. The difference is whether a reader can tell it was deliberate.
+**The missing enum value.** `SOFF` — strike-off action in progress — appeared
+on 2% of the held-out rows and on none of the 400 the profile was built from.
+Revise added it:
 
-**Victorian liquor licences, round 1, one failure to zero.**
+```
+was:  map_values{REGD: active, DRGD: deregistered, EXAD: in_liquidation}
+now:  map_values{REGD: active, DRGD: deregistered, EXAD: in_liquidation,
+                 SOFF: in_liquidation}
+```
+
+7 mappings became 6, 2 failures became 0.
+
+**Worth noting what propose got right without being told.** ASIC writes `0`
+where a company has no ABN. The draft already carried
+`null_if{values:["0"]} -> abn_normalize`, inferred from the example values in
+the profile. Without it, that placeholder would have been dropped by a checksum
+quietly failing rather than by a decision anyone could see.
 
 ### Where it tried to cheat
 
-On the Finance contract notices, `address.postcode` dropped `801`, `97219` and
+On the Finance contract register, `address.postcode` dropped `801`, `97219` and
 `OX2 6DP`. The model's fix was to delete `postcode_extract` and keep only
-`strip` and `collapse_spaces`. The failure count went to zero and the mapping
-got worse: a US zip code now passes as an Australian postcode.
+`strip`. Failures went to 0 and the mapping got worse: a US zip code now passed
+as an Australian postcode.
 
 **A model optimising for a number will pass the test by deleting the test.**
 
-So "better" is no longer just "fewer failures". Ops that check a value rather
-than reshape it are tracked per field, and a revision that drops one is
-rejected whatever its numbers say:
+So "better" is no longer "fewer failures". Ops that *check* a value rather than
+reshape it — `abn_normalize`, `acn_normalize`, `postcode_extract`,
+`state_normalize`, `parse_date`, `map_values` — are tracked per field, and a
+revision that drops one is rejected whatever its numbers say:
 
 ```
 c5_revise: round 1, failures 1 -> 0, rejected, made it worse
            removed validating transforms: ['address.postcode:postcode_extract']
 ```
 
-That source went to a human, which is the honest outcome. `97219` is a real
-value in an Australian government contract register and somebody has to decide
-what it means.
+That source went to a human. `97219` is a real value in an Australian
+government contract register and somebody has to decide what it means.
 
 ### Where it ran out
 
-The Victorian schools file has 9-digit values in a column called ABN, such as
-`142 547 710`. That is ACN length. Two rounds did not fix it, so the source was
-flagged rather than forced through.
+The Victorian schools file has 9-digit values in a column called `ABN`, such as
+`142 547 710`. That is ACN length. 2 rounds did not resolve it, so the source
+was flagged rather than forced through.
 
 ### The result
 
@@ -1039,63 +1066,81 @@ flagged rather than forced through.
 | Victorian schools ABNs | 1 | 1 | 2 | flagged for a human |
 | Finance contract notices | 1 | 1 | 1 | revision rejected, flagged |
 
-**Four of six onboarded without a person. Two stopped and said why.**
+**4/6 sources (67%) onboarded without a person. 2 stopped and said why.**
 
 ## Step 6 — Human review (`c6_review`)
 
-One per source at `runs/<source_id>/review_card.md`. It shows what the agent
-decided and why, what it mapped with the source column's fill rate next to the
-field's, what it refused and why, what broke on rows the model never saw, and
-five real records raw beside canonical.
-
-**Nothing on the card is the model describing its own work.** Every number came
-from running the config.
+The agent stops and writes one card per source to
+`runs/<source_id>/review_card.md`. It covers four things in a deliberate order:
+what the agent decided and why, every field it mapped with the source column's
+fill rate beside the field's and the transform chain below it, everything it
+refused with a reason, and what broke on the 800 rows the model never saw. Then
+5 real records, raw beside canonical. Refusals sit above failures because that
+is where a reviewer is most likely to disagree — a failure is a fact, a refusal
+is a judgement. Nothing on the card is the model describing its own work; every
+number came from running the config. A reviewer approves or rejects from the
+command line, and a rejection carries their note back into the next propose
+prompt.
 
 ## Step 7 — Freeze (`c7_freeze`)
 
 A config reaches `configs/` because a person said yes, never because a model
-said it was fine. Approving stamps who, when, how many correction rounds it
-took, and any unresolved failures into the config itself, so "approved anyway"
-stays visible.
+said it was fine. Approving stamps the decision into the config itself:
 
-That `generated_by` block is the answer to the assignment's hardest question.
-Six months from now, when the matching model improves, you can find every
-config a given model version produced.
+```json
+"generated_by": { "agent_version": "0.1",
+                  "model": "gemini-3.7-flash",
+                  "revisions": 1,
+                  "approved_by": "dao.lq",
+                  "approved_at": "2026-09-20T09:14:02" },
+"validation":   { "rows_tested": 800, "rows_emitted": 800, "failures": [] }
+```
+
+So "approved anyway" stays visible: the 2 configs with an unresolved failure
+carry it here, with the reviewer's note.
+
+That `generated_by` block is the answer to the brief's hardest question. When
+the matching model improves 6 months from now, you can select every config a
+given model version produced.
 
 ## Bugs found in the agent, and what they taught
 
-**A deliberate `null_if` was counted as a failure.** Once the model added one,
-the engine still reported "dropped a value the source had", because the source
-did have a value. The fix looked like it had not worked. Now the engine checks
-whether a `null_if` names that exact value, and treats the drop as a recorded
-decision. *A rule that cannot tell a decision from an accident sends a model
-round in circles.*
+- **A deliberate `null_if` was counted as a failure.** Once the model added
+  one, the engine still reported "dropped a value the source had", because the
+  source did have a value — so the fix looked like it had not worked. The
+  engine now checks whether a `null_if` names that exact value and treats the
+  drop as a recorded decision. *A rule that cannot tell a decision from an
+  accident sends a model round in circles.*
 
-**Rejecting did not undo approving.** The refused config stayed in `configs/`
-and kept shipping. Now a rejection deletes the frozen file.
+- **Rejecting did not undo approving.** A refused config stayed in `configs/`
+  and kept shipping. A rejection now deletes the frozen file. *An approval you
+  can withdraw only in theory is not a gate.*
 
-**A reviewer's note went nowhere.** It was recorded and then ignored. Now it is
-carried into the next propose prompt under a heading saying a human rejected the
-earlier attempt and their notes outrank the model's own judgement. Notes
-accumulate across rejections.
+- **A reviewer's note went nowhere.** It was recorded and then ignored. It is
+  now carried into the next propose prompt under a heading saying a human
+  rejected the earlier attempt and their notes outrank the model's judgement,
+  and notes accumulate across rejections. *Asking for a reason and discarding
+  it is worse than not asking.*
 
-**Two mappings can write one canonical field.** Asked to also map `Current
-Name`, the model mapped both it and `Company Name` to `entity.legal_name`. The
-engine applies mappings in order, so the later one won when it had a value.
-That produced the right answer by accident, which is worse than being wrong:
-nobody chose the behaviour and the review card's fill-rate table, keyed by
-canonical field, showed nonsense. Now a duplicate is a failure the validate step raises before
-looking at a single row, and the revise step is told the answer is `coalesce`. Round one
-took three failures to zero:
+- **Two mappings can write one canonical field.** Asked to also map `Current
+  Name`, the model mapped both it and `Company Name` to `entity.legal_name`.
+  The engine applies mappings in order, so the later one won when it had a
+  value — producing the right answer by accident. The review card's fill-rate
+  table, keyed by canonical field, showed nonsense as a result. A duplicate is
+  now a failure validate raises before reading a single row, and revise is told
+  the answer is `coalesce`. Round 1 took 3 failures to 0:
 
-```
-entity.legal_name   coalesce["Current Name", "Company Name"] -> strip -> collapse_spaces
-```
+  ```
+  entity.legal_name   coalesce["Current Name", "Company Name"] -> strip -> collapse_spaces
+  ```
 
-**That last one was found by the human gate, not by us.** The reviewer rejected
-ASIC with "also map Current Name to entity.legal_name", and everything above
-followed from it. It is the clearest evidence in the project that the human
-step does something.
+  *The right answer for the wrong reason is worse than a wrong answer, because
+  nothing tells you it happened.*
+
+- **The human gate found that one, not us.** The reviewer rejected ASIC with
+  "also map Current Name to entity.legal_name", and everything above followed.
+  It is the clearest evidence in the project that the review step does
+  something.
 
 ---
 
