@@ -1245,24 +1245,23 @@ read and argue with.
 
 ## The data model: a pairwise link table
 
-The assignment leaves this open and says the choice tells them more than the
-implementation. Ours is a **pairwise link table as the source of truth, with
+The brief leaves this open and says the choice tells them more than the
+implementation. Ours is **a pairwise link table as the source of truth, with
 clusters derived from it**.
 
-| | pairwise links | canonical key only | cluster / component | graph database |
-|---|---|---|---|---|
-| Records why two records matched | yes | no | no | yes, on edges |
-| Undo one bad decision | delete one row | recompute everything | recompute the cluster | delete one edge |
-| Re-score after a model upgrade | per link, with a diff | all or nothing | all or nothing | per edge |
-| Place to record a refusal | yes | none | none | yes |
-| "Who is this business?" | needs a derivation step | instant | instant | traversal |
-| Cost at 15M companies | O(pairs) | O(records) | O(records) | O(pairs) |
+| | pairwise links | canonical key only | cluster / component |
+|---|---|---|---|
+| Records why two records matched | yes | no | no |
+| Undo one bad decision | delete one row | recompute everything | recompute the cluster |
+| Re-score after a model upgrade | per link, with a diff | all or nothing | all or nothing |
+| Place to record a refusal | yes | none | none |
+| "Who is this business?" | needs a derivation step | instant | instant |
 
 **Why pairwise wins here.** Part 5 asks what you do when the matching model
 improves and millions of links already exist. A link row carrying its method,
-matcher version and evidence can be re-scored on its own: you diff old against
-new, promote what improved, quarantine what flipped. A bare canonical key
-throws away *why*, so the only option left is recomputing everything.
+version and evidence can be re-scored on its own: diff old against new, promote
+what improved, quarantine what flipped. A bare canonical key throws away *why*,
+so the only move left is recomputing everything.
 
 **And a wrong link is worse than no link.** Pairwise gives a refusal somewhere
 to live. A key assignment has nowhere to say "I nearly merged these and chose
@@ -1273,9 +1272,21 @@ catastrophic merges: A matches B, B matches C, and now A and C are one company
 on no evidence. Components are built only from links at or above threshold, and
 `entities.jsonl` is a view — rebuildable from the links, which are the record.
 
-**The honest cost.** Links grow with pairs, not records, so at 15M companies
-you cannot compare everything to everything. Blocking is what makes it
-tractable and it is the component that breaks first at scale.
+### On a graph database
+
+A graph database is the right home for this data eventually, but it is not an
+alternative to the link table. A link table *is* an edge list, so a graph
+database stores the same model with better tooling around it. It does not make
+matching cheaper: the expensive part at scale is generating candidate pairs,
+and that happens before anything is stored.
+
+What it does make cheap is reading the result. "Every business in Wesfarmers'
+group, three hops out, with its current legal name" is one traversal in a graph
+database and a painful chain of self-joins anywhere else. With 1,609 links and
+17,095 relationship edges in a file you can `grep`, that convenience is not
+worth a server and a dependency inside a 6-hour budget. At 15M companies with
+ownership chains to walk it clearly is — and because the link table is already
+an edge list, loading it into one is an import, not a migration.
 
 ### What a row looks like
 
@@ -1301,21 +1312,9 @@ both the charity register and the ASIC company register:
   "human_verdict": null }
 ```
 
-Read as a table, 1,609 rows of it:
-
-| record A | record B | entity key | conf | method |
-|---|---|---|---|---|
-| acnc / 323bbe01… | asic / cc13ba86… | `abn:13000864077` | 0.99 | abn_exact |
-| finance / CN3444680-A5 | wgea / 6f56ddc1… | `abn:90127406295` | 0.99 | abn_exact |
-| acnc / 047bf993… | liquor / 31100099 | `nk:4a2f8c…` | 0.75 | name_geo |
-
 **The two records are pointers, never copies.** A link says nothing about the
 businesses themselves, so re-extracting a source cannot break it. Copying the
 names in would freeze a snapshot that quietly goes stale.
-
-**The alternative it replaces** is writing `entity_id: 4471` onto each record
-and discarding the rest. That stores the conclusion and loses the reason, which
-is what turns a matcher upgrade into a rebuild instead of a diff.
 
 **`entities.jsonl` is built by grouping these rows** on `canonical_entity_key`.
 Delete it and it rebuilds in a second. Delete the links and nothing can.
@@ -1337,140 +1336,177 @@ indistinguishable downstream.
 
 | method | what it means | link_confidence |
 |---|---|---|
-| `abn_exact` | Both records carry an ABN, both pass the checksum, and they are the same eleven digits. A government identifier for one legal entity. | 0.99 |
-| `acn_exact` | The same, for a nine-digit ACN. | 0.99 |
-| `abn_acn_derived` | One record has an ABN, the other an ACN, and the ABN's last nine digits are that ACN. A bridge, not an identifier match. | 0.80 |
-| `name_geo` | Legal or trading names match after normalising, **and** the postcode or state agrees. Two signals, neither of them an identifier. | 0.75 |
+| `abn_exact` | Both records carry an ABN, both pass the checksum, same 11 digits. | 0.99 |
+| `acn_exact` | The same, for a 9-digit ACN. | 0.99 |
+| `abn_acn_derived` | One has an ABN, the other an ACN, and the ABN's last 9 digits are that ACN. A bridge, not an identifier match. | 0.80 |
+| `name_geo` | Names match after normalising, **and** the postcode or state agrees. | 0.75 |
 | `name_only` | Names match and nothing else confirms it. Below threshold, so these become refusals. | 0.45 |
 
-Normalising a name means uppercasing it, stripping punctuation and removing the
+Normalising a name means uppercasing, stripping punctuation and removing the
 legal form, so `Wilson Security Pty Ltd` and `WILSON SECURITY PTY. LTD.` are
 the same string. The legal form is kept separately, because an incorporated
 association and a company with the same stem are different bodies.
 
 `abn_acn_derived` exists because the ontology warns about it: "The last 9
-digits of an ABN are often the ACN, but not always." **It produced zero links
-on these six sources**, because ASIC is the only source carrying an ACN and it
+digits of an ABN are often the ACN, but not always." **It produced 0 links on
+these 6 sources**, because ASIC is the only source carrying an ACN and it
 carries an ABN too, so `abn_exact` always wins first. Built and tested,
-currently unused. Saying so is better than leaving it looking like a working
+currently unused — saying so is better than leaving it looking like a working
 feature.
 
 `link_confidence` is the only number in the score. Source reliability and the
-per-field confidences are recorded inside the evidence as inputs and never
-folded in.
+per-field confidences are recorded inside the evidence as inputs, never folded
+in.
 
-## Sampling was the real problem
+## Sampling, not matching, was the first problem
 
 The first run over the Part 2 deliverable found **17** cross-source ABN matches
-in total. Not enough to check 50 links.
-
-The cause was sampling, not matching. Each 1,000-row slice is the head of a
+in total — not enough to check 50 links. Each 1,000-row slice is the head of a
 different file: ASIC's is sorted by ACN, so it is the oldest companies in
 Australia, while WGEA's is a different population entirely.
 
-The engine costs nothing to run, so Part 3 runs on a deeper pull of 25,000
+The engine costs nothing to run, so Part 3 works from a deeper pull of 25,000
 records per source — **126,540 observations in 6.5 seconds, $0.00** — written
 to `outputs/observations_deep/` so the Part 2 deliverable stays at the 1,000
-per source the assignment specifies.
+per source the brief specifies.
 
 **Cross-source ABN matches went from 17 to 1,541.**
 
-## The result
+## The result, and where we drew the line
 
-| | |
-|---|---|
-| Links proposed at threshold 0.70 | 1,609 |
-| Refused | 1,025 |
-| Entities in more than one source | 1,434 |
-| Runtime | 1.1s, zero model calls |
-
-In four sources: 3 businesses. In three: 83. In two: 1,348.
-
-The Victorian liquor register, which carries no identifier at all, links 63
-times to the ACNC and 6 times to the contract register purely on name and
-postcode. That is the tier that earns the 0.75 confidence.
-
-1,541 of the links are `abn_exact` and 68 are `name_geo`.
-
-## Where we drew the line
+| | | |
+|---|---|---|
+| Links at threshold 0.70 | 1,609 | `abn_exact` 1,541 · `name_geo` 68 |
+| Refusals | 1,025 | every one with a stated reason |
+| Entities in >1 source | 1,434 | 3 in four sources, 83 in three, 1,348 in two |
+| Runtime | 1.1s | 0 model calls |
 
 The refusal queue is a deliverable, not a list of failures.
 
-| reason | count |
-|---|---|
-| confidence below the threshold | 762 |
-| names agree but the ABNs differ | 217 |
-| different legal forms | 28 |
-| one side reads as a person's name | 11 |
-| one side is a related body, the other is not | 5 |
-| names agree but the states differ | 2 |
+| reason | count | example |
+|---|---|---|
+| below the 0.70 threshold | 762 | name matches, nothing confirms it |
+| names agree, ABNs differ | 217 | `KINROSS WOLAROI SCHOOL` — 54645079607 vs 87938495176 |
+| different legal forms | 28 | `Portsea Surf Life Saving Club Inc` vs `… Ltd` |
+| reads as a person's name | 11 | `Rainbow Sky` vs `RAINBOW SKY PTY LTD` |
+| a related body, not the body | 5 | `Mannix College Foundation` vs `MANNIX COLLEGE` |
+| names agree, states differ | 2 | `Seymour College Inc` SA vs `SEYMOUR COLLEGE` VIC |
 
-```
-KINROSS WOLAROI SCHOOL | KINROSS WOLAROI SCHOOL
-  refused: names agree but abn: 54645079607 vs 87938495176
-```
+Same name, two registered entities. A name-only matcher merges these. Every
+refusal keeps `would_have_been`, so a looser threshold can be evaluated without
+rerunning anything.
 
-Same name, two registered entities. A name-only matcher merges these.
-
-Every refusal keeps `would_have_been`, so a looser threshold can be evaluated
-without rerunning anything.
+The Victorian liquor register, which carries no identifier at all, still links
+63 times to the ACNC and 6 times to the contract register on name and postcode
+alone. That is the tier that earns the 0.75 confidence.
 
 ## Relationships between businesses
 
-We scanned every column of all six sources for parent, group, holding, owner,
+We scanned every column of all 6 sources for parent, group, holding, owner,
 subsidiary and trustee. **Only WGEA asserts a relationship between two
-businesses**, via `corporate_group_name`, and on 36% of rows it differs from
-the employer name.
+businesses**, via `corporate_group_name`, which differs from the employer name
+on 36% of rows.
 
-| outcome | count |
-|---|---|
-| parent assertions found | 12,421 |
-| both ends resolved to a canonical key | 4,193 |
-| parent not found in our six sources | 6,880 |
-| parent name too generic to resolve | 1,243 |
-| **parent name ambiguous, two businesses share it** | **105** |
+An edge with both ends resolved:
 
-```
-24 children   SONIC HEALTHCARE
-21 children   COMFORTDELGRO CORPORATION AUSTRALIA
-19 children   WESFARMERS
+```json
+{ "relation":      "member_of_corporate_group",
+  "from_key":      "abn:12647225929", "from_name_raw": "MARROARCHI PTY LTD",
+  "to_key":        "abn:43639336226", "to_name_raw":   "EMBRACE THE CHI PTY LTD",
+  "asserted_by":   "wgea-dataset-4d35cd80",
+  "confidence":    0.90 }
 ```
 
-476 groups have more than one known child. 353 of those children and 101 of
-the parents are themselves multi-source entities, so `relationships.jsonl` and
-`entities.jsonl` join on `canonical_entity_key`.
+And one we refused to resolve:
 
-**Three rules govern that file.**
+```json
+{ "from_name_raw": "Taylor Fry Pty Ltd",
+  "to_name_raw":   "Qantas Airways Limited",
+  "to_key":        "",
+  "resolved":      { "from": "abn_exact",
+                     "to": "unresolved_ambiguous", "to_candidates": 2 } }
+```
 
-A relationship is never a sameness link. A subsidiary is not its parent, and
-merging them is the failure the assignment warns about precisely because the
-names look alike.
+Two registered businesses answer to "Qantas Airways Limited" in our data.
+Picking one would be a guess, and a wrong parent is worse than no parent.
 
-We record only what a source asserted. `SALTER BROTHERS (CLOVELLY) PTY LTD`
-looks like a child of `SALTER BROTHERS HOSPITALITY`, and probably is. But
-`NICHOLAS FAMILY TRUST` as parent of `STEEKIM NICHOLAS FAMILY TRUST` is the
-same shape and far less certain. We infer nothing from name similarity.
+| outcome | count | share |
+|---|---|---|
+| parent assertions found | 12,421 | |
+| both ends resolved to a key | 4,193 | 34% |
+| parent not in our 6 sources | 6,880 | 55% |
+| parent name too generic | 1,243 | 10% |
+| parent name ambiguous | 105 | 1% |
 
-Both ends resolve where we can and stay raw where we cannot. Those 105
-ambiguous parents stay unresolved: picking one of two registered businesses
-would be a guess, and a wrong parent is worse than no parent.
+476 groups have more than one known child — Sonic Healthcare 24, ComfortDelGro
+21, Wesfarmers 19. 353 of those children and 101 of the parents are themselves
+multi-source entities, so `relationships.jsonl` and `entities.jsonl` join on
+`canonical_entity_key`.
 
-**`same_group_sibling` is derived and deliberately unused.** 4,674 sibling
-pairs are recorded with `"used_in_matching": false` on every row. Knowing that
-six hospitals share a parent is a positive signal that they are *different*
-companies, so it could lower link confidence. We chose to record it and not
-wire it in, and the flag on each row is what a future change would have to
-flip.
+**Three rules govern that file.** A relationship is never a sameness link — a
+subsidiary is not its parent, and merging them is tempting precisely because
+the names look alike. We record only what a source asserted, never inferring a
+parent from name similarity: `SALTER BROTHERS (CLOVELLY) PTY LTD` reads like a
+child of `SALTER BROTHERS HOSPITALITY` and almost certainly is, but `NICHOLAS
+FAMILY TRUST` as parent of `STEEKIM NICHOLAS FAMILY TRUST` has the same shape
+and is far less safe. And both ends resolve where we can, staying raw where we
+cannot, because an unresolved edge is still useful.
 
-**What we left alone, and why.** The Finance register's `Parent Contract ID`
-relates two contracts, not two businesses. ASIC's former-versus-current name
-and the liquor register's licensee-versus-trading-as are one business under
-two names, not two businesses; both already feed matching through `coalesce`
-and the trading-name comparison.
+**`same_group_sibling` is derived and deliberately unused.** 4,674 of them,
+each carrying the flag that would have to be flipped to use it:
+
+```json
+{ "relation":         "same_group_sibling",
+  "direction":        "undirected",
+  "from_key":         "abn:28128586667",
+  "to_key":           "abn:48616381269",
+  "via_group":        "NEXUS DAY HOSPITALS HOLDINGS",
+  "confidence":       0.85,
+  "used_in_matching": false }
+```
+
+Six hospitals sharing a parent is evidence they are *different* companies, so
+these edges could legitimately lower link confidence. That is a change worth
+making with a measurement behind it, not in passing.
+
+**What we left alone.** The Finance register's `Parent Contract ID` relates two
+contracts, not two businesses. ASIC's former-versus-current name and the liquor
+register's licensee-versus-trading-as are one business under two names; both
+already feed matching through `coalesce` and the trading-name comparison.
+
+## The clean-run generalisation test
+
+data.gov.au is live, so a clean-checkout run on a different day crawled 366
+datasets instead of 376 and selected a **completely different six**:
+
+```
+Liquor licence premises list       Liquor & Gaming NSW        CSV
+Bar, tavern, pub patron capacity   City of Melbourne          JSON, 3 columns
+Fair Jobs Code Registers           Vic Dept of Jobs           CSV
+Premises list as of 1 Nov 2020     Data.NSW                   CSV
+```
+
+**The agent mapped all 6 without a line of code from anyone.** 5 needed at most
+one revision round; the 6th hit the same postcode problem and was flagged for a
+human. 3/6 had the wrong format in the catalogue: a declared CSV that is TSV,
+another that is JSON, another that is a spreadsheet.
+
+That is the brief's own test — "if we handed your submission a seventh dataset
+tomorrow, could it produce a mapping config without you writing anything?" —
+answered on 6 at once, by accident, because the catalogue moved.
+
+Run pinned instead and the agent reproduces this submission closely: field
+counts match on 5/6, and both problem sources fail in exactly the same way. The
+6th differs — ACNC came out with 10 mapped fields instead of 9, because the
+model found `address.full` that time and not the other. **The sources are
+pinned. The mapping the model proposes is not.**
 
 ## Measured precision
 
-Three samples, because one random 50 would not tell you much.
+Three samples, because one random 50 would not tell you much. A random 50 at
+threshold 0.70 is almost all `abn_exact` — two checksum-valid identical numbers
+— so 100% is expected and says nothing about judgement. The weak tier is where
+errors live, and a random sample would have held about 2 of them.
 
 | sample | threshold | checked | correct | wrong | unsure | precision |
 |---|---|---|---|---|---|---|
@@ -1484,25 +1520,38 @@ Three samples, because one random 50 would not tell you much.
 | `name_geo` | 46/51 = 90% |
 | `name_only` | 49/50 = 98% |
 
-**A random 50 at threshold 0.70 is almost all `abn_exact`**, which is two
-checksum-valid identical numbers. 100% is expected and says nothing about the
-matcher's judgement. The weak tier is where errors live, and a random sample
-would have contained about two of them.
+**The reviewer sits outside the pipeline.** `prepare` writes 150 pairs with our
+method, confidence and key stripped out; a reviewer answers into
+`precision_verdicts.json`; `merge` reports. `reviewed_by` is recorded, so the
+number always carries who produced it. The matcher is rules and the mapping was
+written by Gemini, so the reviewer is a third model family to both — letting
+one family grade its own work is not a check.
 
-**The reviewer sits outside the pipeline.** `prepare` writes the 150 pairs,
-a reviewer answers into `precision_verdicts.json`, `merge` reports. The
-reviewer never sees our method, our confidence or our key: those fields are
-prefixed with an underscore and the question says to ignore them. `reviewed_by`
-is recorded in the output, so the number always carries who produced it.
+## The bug the clean run found
 
-The matcher is rules and the extraction was Gemini, so the reviewer is a
-different model family again. Letting one model family grade its own work is
-not a check.
+`src/relationships.py` hard-coded the WGEA source id. The moment WGEA was not
+among the six it raised `FileNotFoundError`, and an entire Part 3 deliverable
+would have been missing.
+
+It now discovers its own group column: it scans every approved config for a
+column whose name suggests a link to a different business — group, parent,
+holding, ultimate, controlling, subsidiary, owner — and requires that column to
+actually disagree with the entity's own name on at least 5% of rows. A column
+that always equals the employer name is not a parent.
+
+The filter is deliberately narrow. `contract`, `invoice`, `order`, `ethnic`,
+`anzsic` and anything ending in `id` are excluded, so `Parent Contract ID`
+cannot be mistaken for a corporate parent.
+
+On our 6 it still finds WGEA's `corporate_group_name` and the same 12,421
+assertions. On the clean-room 6 it finds nothing, writes an empty file and
+exits cleanly. *An absent relationship is a finding about those sources, not a
+failure of the code.*
 
 ## The pattern that caused most of the errors
 
-The first measurement put the weak tier at 88%, and four of the five errors
-were the same shape:
+The first measurement put the weak tier at 88%, and 4/5 errors were the same
+shape:
 
 ```
 Mannix College Foundation           | MANNIX COLLEGE
@@ -1512,45 +1561,19 @@ Burwood Rsl Sub-Branch              | 11 HYSLOP STREET LTD
 ```
 
 **A body attached to an organisation is not that organisation.** A foundation
-is not its college. A committee of management is not the association it
+is not its college; a committee of management is not the association it
 manages. They share an address, a postcode and most of a name, which is exactly
-what a name-based matcher falls for.
-
-It survived the legal-form check because "Foundation" is part of the name, not
-a suffix like PTY LTD.
+what a name-based matcher falls for. It survived the legal-form check because
+"Foundation" is part of the name, not a suffix like PTY LTD.
 
 The fix is a marker list — FOUNDATION, COMMITTEE, AUXILIARY, FRIENDS, ALUMNI,
-SUB BRANCH, BRANCH, GUILD, TRUSTEE and a few more — **applied
-asymmetrically**: refuse only when one side carries a marker and the other does
-not. Two foundations with the same name are still plausibly the same
-foundation. It is checked on trading names as well, because the marker can sit
-there.
+SUB BRANCH, BRANCH, GUILD, TRUSTEE — **applied asymmetrically**: refuse only
+when one side carries a marker and the other does not, since two foundations
+with the same name are still plausibly the same foundation. It is checked on
+trading names too, because the marker can sit there.
 
-Three of the five errors became refusals. The weak tier went from 88% to 90%,
-and more usefully the remaining errors are now different in kind.
-
-## What the reviewer refused to decide
-
-Three "cannot_tell" verdicts, all the same shape: a venue or hotel brand on one
-side and its corporate owner on the other.
-
-```
-Pullman Melbourne Albert Park | Ascendas Hotel Investment Company Pty Ltd
-Aitken Hill                   | Zhong Ao Zhi Hong Investment Holding Pty Ltd
-```
-
-Only the trading name links them and there is no ABN to confirm it. Refusing to
-guess is the right answer, and it is a reminder that a trading-name match
-between a brand and a holding company is a weaker claim than it looks.
-
-## On loosening the threshold
-
-98% at 0.45 on this sample, which looks like free recall. **We are not acting
-on it**, and the reason belongs in the write-up: those pairs are clean because
-the rule-based refusals had already removed the obvious contradictions. A
-production loosening would need the 217 ABN-conflict refusals re-examined
-first, which is a different experiment.
-
+3/5 errors became refusals. The weak tier went from 88% to 90%, and more
+usefully the remaining errors are now different in kind.
 
 ---
 
